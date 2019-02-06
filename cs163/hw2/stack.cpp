@@ -1,15 +1,21 @@
 #include "header.h"
 
-
+/*
+This class is a stack of message objects. The messages are stored
+in dynamically allocated arrays. The arrays are stored in a linear linked list.
+The index "top" is the index where the next item should be placed.
+The top existing item of the stack is in head's array at index top-1.
+*/
 
 Stack::Stack(void){
     top = 0;
-
 }
+
 
 Stack::~Stack(void){
 
 }
+
 
 int Stack::push(Message & ref_message){
     Message new_message;
@@ -20,12 +26,13 @@ int Stack::push(Message & ref_message){
         // Failed to clone the ref_message
         return 0;
     }
-
+    // If the LLL is empty, create the first node and the node's array
     if (!head){
         head = new StackNode;
         head->messages = new Message[SIZE_STACK_ARRAY];
         head->next = NULL;
     } 
+    // If the head node is full, create a new head node and the node's array
     else if (top == SIZE_STACK_ARRAY){
         new_stack_node = new StackNode;
         new_stack_node->next = head;
@@ -33,13 +40,15 @@ int Stack::push(Message & ref_message){
         head->messages = new Message[SIZE_STACK_ARRAY];
         top = 0;
     }
+
+    // The temp new message was just for error testing.
+    // Clone this into the top of the stack.
     head->messages[top].clone(new_message);
     ++top;
 }
 
+
 int Stack::peek(Message & ref_message){
-
-
     if (!head) return 0;
 
     // top points to where the next message should go,
@@ -49,14 +58,18 @@ int Stack::peek(Message & ref_message){
     return 1;
 }
 
+
 int Stack::pop(Message & ref_message){
     StackNode * old_head;
 
+    // This stack gives a reference of what was popped
     if(!peek(ref_message)){
         // Use peek to get a ref of the top message
         return 0;
     }
 
+    // If the top array is no longer needed, then deallocate and
+    // move head to next node.
     if (top==1){
         top = SIZE_STACK_ARRAY;
         old_head = head;
@@ -69,6 +82,7 @@ int Stack::pop(Message & ref_message){
     
     return 1;
 }
+
 
 int Stack::display(){
 
