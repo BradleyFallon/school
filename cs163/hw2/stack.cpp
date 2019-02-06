@@ -15,6 +15,7 @@ int Stack::push(Message & ref_message){
     Message new_message;
     StackNode * new_stack_node;
 
+    // Do a test clone to fail before allocating array
     if (!new_message.clone(ref_message)){
         // Failed to clone the ref_message
         return 0;
@@ -24,19 +25,16 @@ int Stack::push(Message & ref_message){
         head = new StackNode;
         head->messages = new Message[SIZE_STACK_ARRAY];
         head->next = NULL;
-        head->messages[top] = new_message;
     } 
     else if (top == SIZE_STACK_ARRAY){
         new_stack_node = new StackNode;
         new_stack_node->next = head;
         head = new_stack_node;
+        head->messages = new Message[SIZE_STACK_ARRAY];
         top = 0;
-        head->messages[top] = new_message;
     }
-    else {
-        head->messages[top] = new_message;
-        ++top;
-    }
+    head->messages[top].clone(new_message);
+    ++top;
 }
 
 int Stack::peek(Message & ref_message){
@@ -59,15 +57,16 @@ int Stack::pop(Message & ref_message){
         return 0;
     }
 
-    if (top==0){
+    if (top==1){
         top = SIZE_STACK_ARRAY;
         old_head = head;
         head = old_head->next;
-
-        delete old_head->messages;
+        delete [] old_head->messages;
+        delete old_head;
+    } else {
+        --top;
     }
     
-    --top;
     return 1;
 }
 

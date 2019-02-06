@@ -10,27 +10,29 @@ Message::Message(void){
 }
 
 Message::~Message(void){
-
+    if (body) delete body;
+    if (author) delete author;
 }
 
 int Message::set_body(const char text[]){
     if (body) delete body;
     body = new char[strlen(text)+1];
     strcpy(body, text);
-    return 0;
+    return 1;
 }
 
 int Message::set_author(const char text[]){
     if (author) delete author;
     author = new char[strlen(text)+1];
     strcpy(author, text);
-    return 0;
+    return 1;
 }
 
 
 int Message::clone(Message & ref_msg){
     set_body(ref_msg.body);
-    return 0;
+    set_author(ref_msg.author);
+    return 1;
 }
 
 // Displays all content of this job
