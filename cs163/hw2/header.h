@@ -107,3 +107,18 @@ class Stack{
 
 };
 
+class Queue{
+	public:
+		Queue(void);
+		~Queue(void);
+
+		int enqueue(Message & );
+		int peek(Message & );
+		int dequeue(Message &); 
+		int display();
+
+	private:
+		StackNode * head;
+		int top;
+
+};
