@@ -91,6 +91,11 @@ struct StackNode{
 	Message * messages; // Points to the start of an array of messages
 };
 
+struct MsgNode{
+	MsgNode * next;
+	Message msg;
+};
+
 class Stack{
 	public:
 		Stack(void);
@@ -118,7 +123,6 @@ class Queue{
 		bool is_empty();
 
 	private:
-		StackNode * head;
-		int top;
-
+		MsgNode * rear;
+		int top;                                                                                        
 };
