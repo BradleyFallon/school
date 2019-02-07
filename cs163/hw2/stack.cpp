@@ -9,6 +9,7 @@ The top existing item of the stack is in head's array at index top-1.
 
 Stack::Stack(void){
     top = 0;
+    head = NULL;
 }
 
 
@@ -84,6 +85,7 @@ int Stack::pop(Message & ref_message){
 }
 
 
-int Stack::display(){
-
+bool Stack::is_empty(){
+    if (!head) return true;
+    return false;
 }

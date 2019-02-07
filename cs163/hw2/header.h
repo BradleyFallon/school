@@ -99,7 +99,7 @@ class Stack{
 		int push(Message & );
 		int peek(Message & );
 		int pop(Message &); 
-		int display();
+		bool is_empty();
 
 	private:
 		StackNode * head;
@@ -115,7 +115,7 @@ class Queue{
 		int enqueue(Message & );
 		int peek(Message & );
 		int dequeue(Message &); 
-		int display();
+		bool is_empty();
 
 	private:
 		StackNode * head;
