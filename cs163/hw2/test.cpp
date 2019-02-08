@@ -198,7 +198,7 @@ int read_task_no()
     int option = 0; // The number of the chosen option
     bool failed = false; // Tracks if the user has alread failed to get option
 
-    while (!(option >=1 & option <= 6))
+    while (!(option >=1 & option <= 9))
     {
         // After first try, print failed message
         if (failed)
