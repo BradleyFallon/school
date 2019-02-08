@@ -77,12 +77,16 @@ class Message{
 		int clone(Message &); // Makes this message copy a reference
 
 		int set_author(const char text[]);
+		int set_subject(const char text[]);
+		int set_date(const char text[]);
 		int set_body(const char text[]);
 
 		void display();
 
 	private:
 		char * author;
+		char * subject;
+		char * date;
 		char * body;
 };
 
