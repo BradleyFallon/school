@@ -3,6 +3,7 @@
 const int SIZE = 256;
 
 // Prototypes - See definitions below
+int auto_test();
 int read_task_no();
 int define_message(Message & ref_msg);
 
@@ -60,26 +61,37 @@ int main()
         {
             cout << "Option 5 selected!" << endl;
             // 5: Display front of queue.
+            if (msg_queue.peek(ref_msg)){
+                ref_msg.display();
+            } else cout << "Nothing to display!" << endl;            
         }
         else if (task_no == 6)
         {
             cout << "Option 6 selected!" << endl;
             // 6: Delete top of stack.
+            if (msg_stack.pop(ref_msg)){
+                cout << "Top message removed from stack!" << endl;
+            } else cout << "Nothing to pop!" << endl;
         }
         else if (task_no == 7)
         {
             cout << "Option 7 selected!" << endl;
             // 7: Delete front of queue.
+            if (msg_queue.dequeue(ref_msg)){
+                cout << "Front message removed from queue!" << endl;
+            } else cout << "Nothing to dequeue!" << endl;
         }
         else if (task_no == 8)
         {
             cout << "Option 8 selected!" << endl;
             // 8: Run Autotest.
+            auto_test();
         }
         else if (task_no == 9)
         {
             cout << "Option 9 selected!" << endl;
             // 9: Exit.
+            cout << "Goodbye!" << endl;
             do_run = false;
         }
         // Invalid option
@@ -102,6 +114,8 @@ int auto_test(){
 
     ref_msg.set_body("This is the first message. This is my test text. Isn't it nice?");
     ref_msg.set_author("Mr tester");
+    ref_msg.set_date("Today");
+    ref_msg.set_subject("Testing the ADT");
     ref_msg.display();
 
     cout << "Pushing the first message" << endl;
@@ -113,6 +127,8 @@ int auto_test(){
 
     ref_msg.set_body("This is a duplicating message text");
     ref_msg.set_author("Mr super tester");
+    ref_msg.set_date("Today");
+    ref_msg.set_subject("Testing the ADT some more");
 
     for (int i=2; i<13; ++i){
         cout << "pushing msg " << i << endl;
@@ -197,17 +213,18 @@ int read_task_no()
 {
     int option = 0; // The number of the chosen option
     bool failed = false; // Tracks if the user has alread failed to get option
+    char garbage[SIZE]; // In case they dont enter a number
 
     while (!(option >=1 & option <= 9))
     {
         // After first try, print failed message
         if (failed)
         {
-            cout << "Invalid response. Please try again." << endl;
+            cout << "Invalid response. Please try again..." << endl;
         }
         failed = true;
         // Give instructions and get response
-        cout << "\n\nWhat you wanna do?" << endl
+        cout << "\n\nWhat do you want?" << endl
             << "1: Add a new message to stack." << endl
             << "2: Duplicate top message of stack." << endl
             << "3: Move top stack to queue." << endl
@@ -219,7 +236,14 @@ int read_task_no()
             << "9: Exit." << endl
             << "\nEnter a number to enjoy an option." << endl
             << endl;
-        cin >> option;
+        if (!(cin >> option)){
+            // I was annoyed with input errors, discovered clear() on a forum
+            // http://www.cplusplus.com/forum/beginner/26821/
+            cin.clear();
+            cin.ignore();
+            option = 0;
+        } else
+        // cin.get(garbage, SIZE, '\n');
         cin.ignore(SIZE, '\n');
     }
     return option;

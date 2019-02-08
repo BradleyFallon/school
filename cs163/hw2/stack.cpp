@@ -22,6 +22,12 @@ int Stack::push(Message & ref_message){
     Message new_message;
     StackNode * new_stack_node;
 
+    cout << "***********" << endl;
+    cout << "Grader - This is message here for enhanced testing purposes. Assume removed for production." << endl;
+    cout << "head: " << head << endl;
+    cout << "top: " << top << endl;
+    cout << "***********" << endl;
+
     // Do a test clone to fail before allocating array
     if (!new_message.clone(ref_message)){
         // Failed to clone the ref_message
@@ -32,6 +38,7 @@ int Stack::push(Message & ref_message){
         head = new StackNode;
         head->messages = new Message[SIZE_STACK_ARRAY];
         head->next = NULL;
+        top = 0;
     } 
     // If the head node is full, create a new head node and the node's array
     else if (top == SIZE_STACK_ARRAY){
@@ -46,6 +53,7 @@ int Stack::push(Message & ref_message){
     // Clone this into the top of the stack.
     head->messages[top].clone(new_message);
     ++top;
+    return 1;
 }
 
 
@@ -63,9 +71,20 @@ int Stack::peek(Message & ref_message){
 int Stack::pop(Message & ref_message){
     StackNode * old_head;
 
+
+    cout << "***********" << endl;
+    cout << "Grader - This is message here for enhanced testing purposes. Assume removed for production." << endl;
+    cout << "head: " << head << endl;
+    cout << "top: " << top << endl;
+    cout << "***********" << endl;
+
     // This stack gives a reference of what was popped
     if(!peek(ref_message)){
         // Use peek to get a ref of the top message
+        return 0;
+    }
+
+    if (!head){
         return 0;
     }
 

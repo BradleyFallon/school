@@ -47,23 +47,36 @@ int Message::set_body(const char text[]){
 }
 
 int Message::clone(Message & ref_msg){
-    set_author(ref_msg.author);
-    set_subject(ref_msg.subject);
-    set_date(ref_msg.date);
-    set_body(ref_msg.body);
+    // If the ref message was poorly defined, return 0
+    if (ref_msg.author){
+        set_author(ref_msg.author);
+    } else return 0;
+    if (ref_msg.subject){
+        set_subject(ref_msg.subject);
+    } else return 0;
+    if (ref_msg.date){
+        set_date(ref_msg.date);
+    } else return 0;
+    if (ref_msg.body){
+        set_body(ref_msg.body);
+    } else return 0;
     return 1;
 }
 
 // Displays all content of this job
 void Message::display(){
-    cout << "======================================" << endl
-        << "Author:" << endl
-        << '\t' << author << endl
-        << "Subject:" << endl
-        << '\t' << author << endl
-        << "Date:" << endl
-        << '\t' << author << endl
-        << "Message:" << endl
-        << '\t' << body << endl
-        << endl;
+    if (author && subject && date && body){
+        cout << "======================================" << endl
+            << "Author:" << endl
+            << '\t' << author << endl
+            << "Subject:" << endl
+            << '\t' << subject << endl
+            << "Date:" << endl
+            << '\t' << date << endl
+            << "Message:" << endl
+            << '\t' << body << endl
+            << endl;
+    } else {
+        cout << "Message not fully defined!" << endl;
+    }
 }
