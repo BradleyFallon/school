@@ -1,0 +1,89 @@
+
+Table Design - 
+The Abstract Data Structure (ADT) will be a hash table.
+There needs to be multiple keys to arrive to the same item, so the items will not be stored in the table directly.
+The table data items will be pointers to the objects in question.
+The table will be an array of linear linked lists (LLL).
+Each element of the array will be a pointer to a node, either the head node of a LLL or null.
+Each node will have a next node pointer and a pointer to the data object.
+Each data object will have multiple keywords which need to be useable as keys to find the data in the table.
+As a result of needing many lookup hash keys per data item, the table will many nodes for each data item.
+To avoid duplicating data, it is important that the table nodes store pointers and not the data objects.
+The table will require a hashing function.
+
+Hashing Function Design -
+The hashing function should have a large number of possible outputs considering the expected inputs.
+The goal of this is to distribute nodes evenly across all elements of the table array for a large number of table items.
+The input data for the hashing function will be a character array representing a keyword.
+Most of these keywords will probably be a single word, with 3 to 10 characters.
+Assuming this will be the form of the vast majority of inputs, I will design the hash function around this.
+    Note: The integer encoding values for letters do not start at 1, but this does not matter to me.
+            I am less concerned with the magnitude of the output, and more concerned with the number
+            of possible outputs that are unique after being modded by the array length. Distribution is
+            more important than magnitude. For example, adding 2^10 to all hashes regardless of input is worthless.
+If the hash function were to add the characters values as integers, what would that result in?
+    The low end of this would be a word such as "be".
+        This value would give 2+5=7
+    The high end would be something like "fuzzywuzzy".
+        This value would give 6+21+26+26+25+23+21+26+26+25=225
+    From this algorithm, I would expect to see hashes resulting in a bell curve with 90% ranging about 10 to 200.
+    I would expect the inner quartiles of inputs to be from maybe 20 to 100.
+We are expecting a large dataset, but what is large. Is this enough spread? How long is the table array?
+I think a hashing function should probably have the inner quartiles of expected inputs have at least
+double the number of possible outputs as array elements. Under this assumption,
+the additive hash could be appropriate for an array of about 40 elements. For this assignment,
+I would like to use closet to 100 elements, so I will need a hashing function with a lot more noise.
+How do we make the hashing scatter the outputs more? I could multiply the characters, but I would prefer
+to multiply each character by the index and add these.
+    The low end of this would be a word such as "be" 
+        This value would give (2)+(5*2)=12
+    The high end would be something like "fuzzywuzzy".
+        This value would give 6+(21*2)+(26*3)+(26*4)+(25*5)+(23*6)+(21*7)+(26*8)+(26*9)+(25*10)=1332
+I think that this hashing algorithm will give a good spread for the magnitude of data we will use for this application.
+One benefit of addition is that we will avoid having prime factors common to nearly all outputs.
+This algorithm should give roughly equal odd and even results, since the first character value is always added without
+an even multiplier.
+The algorithm for hashing will be to sum each character multiplied by its index.
+
+
+These are the required feature functions:
+    Load from file -
+        The ADT will have a function to parse a text file of proprietary format.
+    Add a new channel or website -
+        This will have the user define a new channel at runtime and add it to the table.
+    Search for a key -
+        (supplymatching  information  back  to  the client program that matches the search key supplied)
+        This will take in an channel array and an integer parameter max matches, which is to be the array length.
+        This will go to the LLL in the index associated with the hash result of the search key, then traverse
+        the LLL and copy each item containing the search key to the array. Return the number of matches.
+    Remove by name -
+        We will make the name of each channel one of the search keys. This way, we can use the search to prevent
+        needing to traverse every single LLL of the table. Them, we need to check that the name matches the
+        search name, since we don't know if other channels have a keyword that matches a different channels name.
+        Remove every channel with matching name from the table, and deallocate the memory of the channel object.
+    Display all matches for a search key -
+        This will use the search for a key function, then for each result, use the channel class' display method.
+    Display all -
+        This will traverse all LLLs of the table and run the channel display method for each channel object.
+        This will result in channels being displayed once per search key. In order to avoid this, we would need to do
+        a lot of searching, or make use of other data structures beyond the hash table. We could put all of the pointers
+        of the table into an binary sorted tree, and only insert if the pointer does not already exist in the tree.
+        Then we could display all items of the tree. At this point we have done all of the work to display sorted,
+        which is not what we are expected to do, so I will simply repeat displays for each keyword.
+
+These are additional functions required to support the feature functions:
+    Copy channel -
+        The user will create a temporary channel object. The add a new channel function will rely
+        on the client to provide the reference object.
+    Add to table -
+        This will use the copy channel function to create a private copy of the channel object.
+        The hash function will be used to add a node for each search keyword of the channel object
+        to the table.
+    Hashing function -
+        This will generate an integer from a given character array, used select which LLL from the
+        table's array to insert a node at.
+        The algorithm for hashing will be to sum each character multiplied by its index.
+    Display Channel -
+        There will be a channel class and it will have a display method which will display all
+        of the object's member values in a well formatted way. This would not be part of the ADT
+        unless explicitly requested, which it seemingly is. That is my understanding from the first week's lectures.
