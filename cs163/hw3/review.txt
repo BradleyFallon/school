@@ -1,0 +1,35 @@
+
+Table Design - 
+The Abstract Data Structure (ADT) will be a hash table.
+There needs to be multiple keys to arrive to the same item, so the items will not be stored in the table directly.
+The table data items will be pointers to the objects in question.
+The table will be an array of linear linked lists (LLL).
+Each element of the array will be a pointer to a node, either the head node of a LLL or null.
+Each node will have a next node pointer and a pointer to the data object.
+Each data object will have multiple keywords which need to be useable as keys to find the data in the table.
+As a result of needing many lookup hash keys per data item, the table will many nodes for each data item.
+To avoid duplicating data, it is important that the table nodes store pointers and not the data objects.
+The table will require a hashing function.
+
+Hashing Function Design -
+The hashing function should have a large number of possible outputs considering the expected inputs.
+The goal of this is to distribute nodes evenly across all elements of the table array for a large number of table items.
+The input data for the hashing function will be a character array representing a keyword.
+Most of these keywords will probably be a single word, with 3 to 10 characters.
+Assuming this will be the form of the vast majority of inputs, I will design the hash function around this.
+    Note: The integer encoding values for letters do not start at 1, but this does not matter to me.
+            I am less concerned with the magnitude of the output, and more concerned with the number
+            of possible outputs that are unique after being modded by the array length. Distribution is
+            more important than magnitude. For example, adding 2^10 to all hashes regardless of input is worthless.
+If the hash function were to add the characters values as integers, what would that result in?
+    The low end of this would be a word such as "be" (even this word makes for a silly keyword, but let's assume some keywords are like this)
+        This value would give 2+5=7
+    The high end would be something like "fuzzywuzzy".
+        This value would give 6+21+26+26+25+23+21+26+26+25=225
+    From this algorithm, I would expect to see hashes resulting in a bell curve with 90% ranging about 10 to 200.
+    I would expect the inner quartiles of inputs to be from maybe 20 to 100.
+We are expecting a large dataset, but what is large. Is this enough spread? How long is the table array?
+I think a hashing function should probably have the inner quartiles of expected inputs have at least
+double the number of possible outputs as array elements. Under this assumption,
+the additive hash could be appropriate for an array of about 40 elements. For this assignment,
+I would like to use closet to 100 elements, so I will need a hashing function with a lot more noise.
