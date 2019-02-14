@@ -1,3 +1,12 @@
+// ====================================================================
+// Homework 3 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/14/2019
+//
+// Design Write-up
+// ====================================================================
+
 
 Table Design - 
 The Abstract Data Structure (ADT) will be a hash table.
