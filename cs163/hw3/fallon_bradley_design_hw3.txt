@@ -96,3 +96,25 @@ These are additional functions required to support the feature functions:
         There will be a channel class and it will have a display method which will display all
         of the object's member values in a well formatted way. This would not be part of the ADT
         unless explicitly requested, which it seemingly is. That is my understanding from the first week's lectures.
+
+
+// ====================================================================
+// Test Plan
+// ====================================================================
+
+FUNCTION               CASE                             EXPECTED RESULT
+Copy channel           Poorly defined reference         return 0
+Copy channel           Well defined reference           return 1, and copy vals to this
+Add to table           Failed Copy                      return 0
+Add to table           Insert at NULL array element     Start new head for that element
+Add to table           Normal                           Each search key has a new node in table
+Hashing function       Large data set                   For a good hashing function, there will be even usage of array elements
+Display channel        Poorly defined reference         return 0
+Display channel        Well defined reference           return 1, and display vals
+Remove by name         Name not in table                return 0
+Remove by name         Normal                           Remove all referencing nodes in table and deallocate the object
+Display all matches    Name not in table                return 0
+Display all matches    Normal                           Display each object that had any matching nodes
+Display all            Each empty array element         Do not display from this element
+Display all            All empty array elements         return 0
+Display all            Normal                           Diplay all objects, sorted, only once each
