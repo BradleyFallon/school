@@ -1,3 +1,16 @@
+//====================================================================
+// Homework 2 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/8/2019
+// ====================================================================
+
+// This is a test client to prove that the ADT works for the use case.
+// The use case is that messages are added to a stack, where newest message is to be viewed
+// Messages can be deleted or moved to the queue.
+// Messages in the queue are only fetched from the front, and added to the rear.
+// Messages are deleted from the queue when user action complete.
+
 #include "header.h"
 
 const int SIZE = 256;

@@ -1,3 +1,12 @@
+//====================================================================
+// Homework 2 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/8/2019
+// ====================================================================
+
+// This is the queue class. Stores new messages at rear, and fetches messages from front.
+
 #include "header.h"
 
 Queue::Queue(void){

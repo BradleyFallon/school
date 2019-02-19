@@ -1,6 +1,9 @@
-
-
-
+//====================================================================
+// Homework 2 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/8/2019
+// ====================================================================
 
 This ADT was made up of two data structures. One is a stack and the other is a queue. This is extremely efficient.
 Getting the newest message requires no traversal, so it will be retrieved with no delay regardless of the number of 
@@ -10,20 +13,20 @@ fast and efficient application (except when quitting and deallocating memory, th
 
 This incredible performance and efficiency comes at a cost, which is a lack of possible features. In some cases, only being
 able to see the newest item might be very beneficial, but I do not know what those use cases are. We are losing the ability
-to display all and to search. It might be nice for someone to have a mesaging application that only shows the newest and oldest
-messages built into a small minimal device, such as a pager. When it comes to a smart phone or a webapp, people definitely
+to display all and to search. It might be nice for someone to have a messaging application that only shows the newest and oldest
+messages built into a small minimal device, such as a pager. When it comes to a smartphone or a webapp, people definitely
 want to have the ability to see a list of all messages and search through them. Nobody has time to filter through all the junk
 one by one.
 
 Perhaps a stack best for data that is not directly viewed by the user, but used to support the application in more subtle ways;
 such as keeping track of the path back to origin in a random generated dungeon crawler game, where each room is generated as entered,
 and only the path back is remembered. This would allow the user to find their way back, but if they then tried to go again deeper
-into the duneon, the map would now be different. Spooky.
+into the dungeon, the map would now be different. Spooky.
 
-This ADT performs very well, but is feature limited. If we were required to have a seach and display all feature, a better option
+This ADT performs very well, but is feature limited. If we were required to have a search and display all feature, a better option
 may have been a hash table. With a hash table we could search for a message (by subject I suppose). A hash table would still
 be limited though, because then we lose the ability to keep track of the order of the messages. That is a pretty fundamental
-feature of messaging applilcations, you shuold be able to see them in chronological order. I take this back, a hash table is
+feature of messaging applications, you should be able to see them in chronological order. I take this back, a hash table is
 not a good ADT for a messaging application.
 
 The two most important features I would typically expect in a messaging application are, display all, in chronological order,
@@ -35,7 +38,9 @@ customer changes their mind and says we need that. Considering likely future fea
 implementation used here is a great start.
 
 I have been focusing mostly on the stack though. The queue is for a very specific purpose, and it does that thing well. It would
-be nice though if the queue could also be list of arrays. I think the assumption is that the queue should neve be very large, so it 
+be nice though if the queue could also be list of arrays. I think the assumption is that the queue should never be very large, so it 
 is ok for it to be a bit memory inefficient in exchange for instant enqueue and dequeue. A list of arrays would work I think, but we
 would need a tail pointer instead of circular, because we cannot check if rear==rear->next, and we would need two index variables.
 This would work just fine I think, but it would be more complicated to write. If there was a need for improvement I would do this.
+
+If I had more time, I don't know if I would change anything. I'm pretty satisfied with my result, so please let me know if I can improve.

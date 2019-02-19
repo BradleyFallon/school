@@ -1,9 +1,9 @@
+//====================================================================
+// Homework 2 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/8/2019
 // ====================================================================
-// // Homework 2 for CS163
-// // Bradley Fallon
-// // bfallon@pdx.edu
-// // 1/31/2019
-// // ====================================================================
 //
 //
 // This program defines an abstract data structure that is intended to be used to store text messages.
@@ -38,26 +38,6 @@
 // All methods of the list will return 1 for success and 0 for failure. It is up to the appliction developer
 // to determine what to do in case of these errors and how to communicate with the user if necessary.
 //
-//
-// TEST PLAN
-//
-// Function                 Case          Expected
-//
-// stack::push            empty           add the thing and return 1
-// stack::pop             empty           return 0
-// stack::pop             normal          return 1, remove top
-// stack::peek            empty           return 0
-// stack::peek            normal          return 1, ref var copies top
-// stack::display         normal          return 1, displays top
-// stack::display         empty           return 0
-//
-// queue::enqueue         normal          return 1, rear->next is new
-// queue::dequeue         normal          return 1, rear->next is rear->next->next
-// queue::dequeue         empty           return 0
-// stack::peek            empty           return 0
-// stack::peek            normal          return 1, ref var copies top
-// stack::display         normal          return 1, displays top
-// stack::display         empty           return 0
 //
 //
 
@@ -105,9 +85,9 @@ class Stack{
 		Stack(void);
 		~Stack(void);
 
-		int push(Message & );
-		int peek(Message & );
-		int pop(Message &); 
+		int push(Message & ); // Add new message to top
+		int peek(Message & ); // Copy the top item
+		int pop(Message &); // "Remove" the top item, and copy
 		bool is_empty();
 
 	private:
@@ -121,9 +101,9 @@ class Queue{
 		Queue(void);
 		~Queue(void);
 
-		int enqueue(Message & );
-		int peek(Message & );
-		int dequeue(Message &); 
+		int enqueue(Message & ); // Add new message to rear
+		int peek(Message & ); // Copy the front item
+		int dequeue(Message &); // "Remove" the front item, and copy
 		bool is_empty();
 
 	private:

@@ -1,3 +1,12 @@
+//====================================================================
+// Homework 2 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/8/2019
+// ====================================================================
+
+// This is the message class. It is for storing, retreiving and displaying message data.
+
 #include "header.h"
 
 
