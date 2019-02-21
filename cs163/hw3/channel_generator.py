@@ -2,9 +2,13 @@
 
 
 """
+Dependencies:
+
 https://pypi.org/project/thesaurus/
-pip install thesauruspip install thesaurus
+pip install thesaurus
+
 """
+
 from thesaurus import Word
 import random
 import pprint
@@ -17,7 +21,6 @@ SERVICES = [
     "media",
     "news",
     "station",
-    "company",
     "radio",
     "services",
 ]
@@ -97,49 +100,88 @@ class Channel(object):
         self.description = ""
         self.notes = ""
         self.rating = ""
-        self.search_keys_list = list()
+        self.search_keys = set()
 
-def make_channel_name(descriptors_syns, genres_syns):
-    name_words = list()
+    def generate_search_keys(self, syns_dict):
+        for chars in self.name.split(" "):
+            self.search_keys.add(chars)
+            if chars in syns_dict:
+                if syns_dict[chars]:
+                    synonym = random.choice(syns_dict[chars])
+                    if synonym:
+                        self.search_keys.add(synonym)
+        return
 
-    # What is the business nature of this channel, sometimes
-    if random.choice([True, False]):
-        root_word = random.choice(list(descriptors_syns.keys()))
+    def generate_notes(self):
+        notes_words = list()
+        doge_vocab = ["many", "much", "very"]
+        notes_words.append("wow.")
+        for i, term in enumerate(list(self.search_keys)):
+            notes_words.append(doge_vocab[i % len(doge_vocab)])
+            notes_words.append(term + ".")
+        self.notes = " ".join(notes_words) + " what is " + next(iter(self.search_keys)) + "?"
+
+    def generate_description(self):
+        desc_words = list()
+        name_words = self.name.split(" ")
+        desc_words.append("This is a")
+        desc_words.append(name_words[-1])
+        desc_words.append("service about")
+        desc_words.append(name_words[-2])
+        desc_words.append("that is very")
+        desc_words.append(name_words[1])
+        self.description = " ".join(desc_words)
+        return
+
+    def generate_properties(self, syns_dict):
+        self.generate_search_keys(syns_dict)
+        self.generate_notes()
+        self.generate_description()
+
+
+    
+
+    def randomize_channel_name(self, syns_dict):
+        name_words = list()
+
+        # What is the business nature of this channel, sometimes
         if random.choice([True, False]):
-            if descriptors_syns[root_word]:
-                synonym = random.choice(descriptors_syns[root_word])
+            root_word = random.choice(DESCRIPTORS)
+            if random.choice([True, False]):
+                if syns_dict[root_word]:
+                    synonym = random.choice(syns_dict[root_word])
+                    if synonym:
+                        name_words.append(synonym)
+            else:
+                name_words.append(root_word)
+
+        # add a genre 
+        root_word = random.choice(GENRES)
+        # Sometimes add a second genre, could repeat ironically
+        if random.randint(0, 5) > 3:
+            if syns_dict[root_word]:
+                synonym = random.choice(syns_dict[root_word])
                 if synonym:
                     name_words.append(synonym)
-        else:
-            name_words.append(root_word)
+        # rarely add a tertiary genre
+        if random.randint(0, 10) > 8:
+            root_word = random.choice(GENRES)
+            if syns_dict[root_word]:
+                synonym = random.choice(syns_dict[root_word])
+                if synonym:
+                    name_words.append(synonym)
+        name_words.append(root_word)
 
-    # add a genre 
-    root_word = random.choice(list(genres_syns.keys()))
-    # Sometimes add a second genre, could repeat ironically
-    if random.randint(0, 5) > 3:
-        if genres_syns[root_word]:
-            synonym = random.choice(genres_syns[root_word])
-            if synonym:
-                name_words.append(synonym)
-    name_words.append(root_word)
-    # rarely add a tertiary genre
-    if random.randint(0, 10) > 8:
-        root_word = random.choice(list(genres_syns.keys()))
-        if genres_syns[root_word]:
-            synonym = random.choice(genres_syns[root_word])
-            if synonym:
-                name_words.append(synonym)
+        # Add a service type
+        root_word = random.choice(SERVICES)
+        name_words.append(root_word)
 
-    # Add a service type
-    root_word = random.choice(SERVICES)
-    name_words.append(root_word)
-
-    # Ensure all lower
-    for i, chars in enumerate(name_words):
-        name_words[i] = chars.lower()
-    
-    # Join words into one string, ignoreing blanks if discovered
-    return " ".join([chars for chars in name_words if chars])
+        # Ensure all lower
+        for i, chars in enumerate(name_words):
+            name_words[i] = chars.lower()
+        
+        # Join words into one string, ignoreing blanks if discovered
+        self.name = " ".join([chars for chars in name_words if chars])
 
 
 def generate_synonyms_dict(words_list):
@@ -158,24 +200,27 @@ def generate_synonyms_dict(words_list):
     return synonyms_dict
 
 
-def main(number_channels=100):
-    genres_syns = generate_synonyms_dict(GENRES)
-    descriptors_syns = generate_synonyms_dict(DESCRIPTORS)
+def main(number_channels=500):
+    syns_dict = generate_synonyms_dict(DESCRIPTORS + GENRES)
 
     names_set = set()
-    timeout_tries = number_channels * 2 # in case something get's stuck, don't run forever
+    channel_list = list()
+    timeout_tries = number_channels * 2 # in case cannot come up with original names, don't run forever. 
     tries = 0
 
     while len(names_set) < number_channels and tries < timeout_tries:
         print("tries: ", tries)
         tries += 1
-        new_name = make_channel_name(
-            descriptors_syns=descriptors_syns,
-            genres_syns=genres_syns,
-        )
-        names_set.add(new_name)
+        new_channel = Channel()
+        new_channel.randomize_channel_name(syns_dict=syns_dict)
+        # If this is not an original name, don't use it
+        if new_channel.name in names_set:
+            continue
+        names_set.add(new_channel.name)
+        new_channel.generate_properties(syns_dict=syns_dict)
+        channel_list.append(new_channel)
 
-    print_list(names_set)
+    print_list([channel.description for channel in channel_list])
 
 if __name__ == "__main__":
     main()
