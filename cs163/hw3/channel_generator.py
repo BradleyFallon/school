@@ -14,6 +14,13 @@ import random
 import pprint
 print_list = pprint.PrettyPrinter(indent=4).pprint
 
+OUTPUT_PATH = "U:/development/practice/school/cs163/hw3/channels.txt"
+FILE_HEADER = "#CHANNELS-DUMP"
+CHANNEL_HEADER = "#CHANNEL-OBJECT"
+CHANNEL_FOOTER = "#CHANNEL-END"
+
+DELIM = "\n"
+
 SERVICES = [
     "channel",
     "network",
@@ -133,13 +140,14 @@ class Channel(object):
         self.description = " ".join(desc_words)
         return
 
+    def generate_rating(self):
+        self.rating = random.randint(1, 5)
+
     def generate_properties(self, syns_dict):
         self.generate_search_keys(syns_dict)
         self.generate_notes()
         self.generate_description()
-
-
-    
+        self.generate_rating()
 
     def randomize_channel_name(self, syns_dict):
         name_words = list()
@@ -181,8 +189,28 @@ class Channel(object):
             name_words[i] = chars.lower()
         
         # Join words into one string, ignoreing blanks if discovered
-        self.name = " ".join([chars for chars in name_words if chars])
+        self.name = " ".join(name_words)
+        # was somehow getting blank words occasionally
+        # remove excess whitespace
+        self.name = " ".join(self.name.split())
 
+    def write_to_file(self, outf):
+        text_dump_words = [
+            "", # To separate from previous object
+            CHANNEL_HEADER,
+            self.name,
+            self.description,
+            self.notes,
+            str(self.rating),
+        ]
+        # Write the search keys between key section tags
+        for search_key in self.search_keys:
+            text_dump_words.append(search_key)
+        text_dump_words.append(CHANNEL_FOOTER)
+
+        # Join the properties into one string joined with the delimiter
+        text_dump = DELIM.join(text_dump_words)
+        outf.write(text_dump)
 
 def generate_synonyms_dict(words_list):
     synonyms_dict = dict()
@@ -220,7 +248,11 @@ def main(number_channels=500):
         new_channel.generate_properties(syns_dict=syns_dict)
         channel_list.append(new_channel)
 
-    print_list([channel.description for channel in channel_list])
+    with open(OUTPUT_PATH, "w") as outf:
+        outf.write(FILE_HEADER + DELIM)
+        for channel in channel_list:
+            channel.write_to_file(outf)
+
 
 if __name__ == "__main__":
     main()

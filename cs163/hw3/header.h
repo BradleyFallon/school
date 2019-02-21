@@ -20,6 +20,7 @@ using namespace std;
 // const int SIZE_TBLARY = 66; // Larger and even    (three prime factors: 2,3,11)
 // const int SIZE_TBLARY = 72; // Larger and even    (two prime factors: 2,3)
 const int SIZE_TBLARY = 79; // Larger and prime
+const int SIZE_TEMP_CHARS = 256;
 
 
 struct CharsNode{
@@ -62,6 +63,12 @@ class Channel{
         int rating;
 };
 
+struct TableNode{
+	TableNode * next;
+	char * keyword;
+    Channel * chan_ptr;
+};
+
 class HashTable{
     public:
         HashTable(void);
@@ -76,6 +83,14 @@ class HashTable{
         int remove_by_name();
 
     private:
+        const char DATA_PATH[13] = "channels.txt";
+        const char FILE_HEADER[15] = "#CHANNELS-DUMP";
+        const char CHANNEL_HEADER[15] = "#CHANNEL-START";
+        const char CHANNEL_FOOTER[13] = "#CHANNEL-END";
+        const char DELIM = '\n';
+
+        void _read_file();
+        
         Channel ** hash_array; // This is the array of the table, the top level
         
 };
