@@ -46,7 +46,7 @@ class Channel{
 		int clone(Channel &); // Makes this message copy a reference
 
         int set_name(const char text[]);
-		int add_search_key(const char * search_keys_ref[], int num_keys_ref);
+		int add_search_key(const char text[]);
 		int set_description(const char text[]);
 		int set_notes(const char text[]);
         int set_rating(int rating);
