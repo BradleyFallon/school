@@ -49,21 +49,28 @@ int Channel::set_notes(const char text[]){
     return 1;
 }
 
+int Channel::set_rating(int value){
+    rating = value;
+    return 1;
+}
 
-int Channel::clone(Channel & ref_msg){
+int Channel::add_search_key(const char text[]){
+    search_keys_list.insert(text);
+}
+
+
+int Channel::clone(Channel & ref_chan){
     // If the ref Channel was poorly defined, return 0
-    if (ref_msg.name){
-        set_name(ref_msg.name);
+    if (ref_chan.name){
+        set_name(ref_chan.name);
     } else return 0;
-    if (ref_msg.description){
-        set_description(ref_msg.description);
+    if (ref_chan.description){
+        set_description(ref_chan.description);
     } else return 0;
-    if (ref_msg.notes){
-        set_notes(ref_msg.notes);
+    if (ref_chan.notes){
+        set_notes(ref_chan.notes);
     } else return 0;
-    if (ref_msg.body){
-        set_body(ref_msg.body);
-    } else return 0;
+    search_keys_list.copy(ref_chan.search_keys_list);
     return 1;
 }
 

@@ -33,7 +33,11 @@ class TextList{
 		TextList(void);
 		~TextList(void);
 
-        int insert();
+        int insert(const char text[]);
+        int copy(TextList & other);
+        int copy_rec(CharsNode & * head);
+        int delete_all();
+        int delete_all_rec(CharsNode * head);
 
     private:
         CharsNode * head;
@@ -50,7 +54,7 @@ class Channel{
 		int add_search_key(const char text[]);
 		int set_description(const char text[]);
 		int set_notes(const char text[]);
-        int set_rating(int rating);
+        int set_rating(int value);
 
 		void display();
 
