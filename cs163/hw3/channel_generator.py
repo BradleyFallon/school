@@ -24,7 +24,6 @@ OUTPUT_PATH = "U:/development/practice/school/cs163/hw3/channels.txt"
 FILE_HEADER = "#CHANNELS-DUMP"
 CHANNEL_HEADER = "#CHANNEL-OBJECT"
 CHANNEL_FOOTER = "#CHANNEL-END"
-
 DELIM = "\n"
 
 SERVICES = [

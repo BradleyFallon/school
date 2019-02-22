@@ -1,0 +1,65 @@
+// ====================================================================
+// Homework 3 for CS162
+// Bradley Fallon
+// bfallon@pdx.edu
+// 11/1/2018
+// ====================================================================
+
+/*
+ * Algorithm:
+ * 
+ * Main setup:
+ * The program starts with creating an array of structs to hold the info of the apartments.
+ * Create an integer to track the number of apartments we havea info for, which defaults to zero.
+ *
+ * Main loop:
+ * The program then enters the main loop. The main loop runs until the user eventually indicates
+ * that they want to quit. After the main loop quits, a file with all of the apartment info will
+ * be saved. At the top of othe loop, we need to have the user select what operation they would
+ * like to perform. The options for the user are:
+ * 	1: Read apartment data from a file.
+ * 	2: Enter info for another apartment.
+ * 	3: Search the apartment info array for one at least a minimum square footage.
+ * 	4: Display all of the apartments info.
+ * 	5: Quit and save apartment data to file.
+ * Show these options to the user and prompt for a choice.
+ * 
+ * Function Read Apartment - Reads Char Array Into Apartment Struct:
+ * To get an apartments data, read characters until we get to the
+ * delimiter ':'. The characters before the delimiter are read into the first member of the first
+ * first struct. Do the same process to read characters into all of the remaining members of the first
+ * empty struct. 
+ * 
+ * Function Display Apartment - Dispays all member names and values of an apartment info struct:
+ * For each member of the apartment info struct, output a description of the member and the value
+ * of that member for the struct provided as function argument.
+ * 
+ * Operation 1 - Read File:
+ * Attempt to open a file for reading with the standard hardcoded filename from the current directory.
+ * Check that the file was read successfully, and if not then inform user and then go back to top of
+ * main loop. If the file is opened and has data, then read info of each apartment in the file until
+ * we get to the end of file. Increment the count of apartments. Read for new line break, if it exists,
+ * and check for end of file. If not end of file, then repeat the process of defining a struct upon the 
+ * next struct in the array.
+ *
+ * Operation 2 - Eneter Apartment Info:
+ * Explain the format requiured for data input from the user. Prompt the user to enter info for one
+ * apartment in this format.
+ * 
+ * Operation 3 - Search:
+ * Prompt the user for sq ft minimum to use when searching. Read in user response to an integer. Get
+ * the first struct from the struct array. Check if the square footage is more than the search value,
+ * if it is, then display the apartment info. Do this for as many structs as we have defined, according
+ * to the counter.
+ * 
+ * Operation 4 - Display All Apartments Info:
+ * For each struct in the array, as many as our counter indicates we have defined, run the display
+ * apartment info struct function.
+ *
+ * Operation 5 - Save and Quit:
+ * Open a file in write mode, at the standard hardcoded path that this program uses.
+ * For each struct in the array, up to as many as our defined counter, write each member separated by 
+ * our standard delimiter. Each struct is separated by a line break. Close the file. Set the flag that
+ * controls the main loop false, so that the main function completes and the program closes.
+ *
+ */
