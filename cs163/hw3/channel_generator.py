@@ -1,8 +1,14 @@
 
-
-
 """
-Dependencies:
+written for python 3.6
+
+Written by Bradley Fallon for CS163 hw3
+
+This script will generate randomized channel objects and dump them to a text file.
+
+
+
+Must install dependencies:
 
 https://pypi.org/project/thesaurus/
 pip install thesaurus
@@ -237,6 +243,8 @@ def main(number_channels=500):
     tries = 0
 
     while len(names_set) < number_channels and tries < timeout_tries:
+        # Keep an eye on the # of tries. If it is significant;y more than the number of 
+        # channels requested, then too many channels are requested for the given vocabulary
         print("tries: ", tries)
         tries += 1
         new_channel = Channel()
@@ -248,6 +256,7 @@ def main(number_channels=500):
         new_channel.generate_properties(syns_dict=syns_dict)
         channel_list.append(new_channel)
 
+    # Write to file
     with open(OUTPUT_PATH, "w") as outf:
         outf.write(FILE_HEADER + DELIM)
         for channel in channel_list:

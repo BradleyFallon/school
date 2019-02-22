@@ -113,7 +113,7 @@ void HashTable::_read_file(){
                 infile.ignore(SIZE,'\n');
                 new_channel.set_rating(text);
 
-                while (!strcmp(text, CHANNEL_FOOTER)){
+                while (strcmp(text, CHANNEL_FOOTER)){
                     infile.get(text, SIZE_TEMP_CHARS, '\n');
                     infile.ignore(SIZE,'\n');
                     new_channel.add_search_key(text);
