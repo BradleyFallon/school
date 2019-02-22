@@ -10,17 +10,43 @@
 #include "header.h"
 
 
-HashTable::~HashTable(void){
+HashTable::HashTable(void){
     // Initialize the has table with null pointers
-    hash_array = new Channel*[SIZE_TBLARY];
+    hash_array = new TableNode*[SIZE_TBLARY];
     for (int i=0; i<SIZE_TBLARY; ++i)
         hash_array[i] = NULL;
 };
 
-HashTable::HashTable(void){
+HashTable::~HashTable(void){
 };
 
-int HashTable::add_channel(){
+int HashTable::insert_at_index(int index, const char text[], Channel * chan_ptr){
+    TableNode * new_node;
+    // Create the new node and copy text
+    new_node = new TableNode;
+    new_node->keyword = new char[strlen(text)+1];
+    strcpy(new_node->keyword, text);
+    new_node->chan_ptr = chan_ptr;
+    // Insert at head, unsorted
+    new_node->next = hash_array[index];
+    hash_array[index] = new_node;
+};
+
+int HashTable::add_channel(Channel & ref_chan){
+    int index; // index from hash where to insert a node
+    char text[SIZE_TEMP_CHARS];
+    CharsNode * current_key;
+
+    
+    ref_chan.get_name(text);
+    index = get_hash(text) % SIZE_TBLARY;
+
+    insert_at_index(index, text, & ref_chan);
+
+    
+    ref_chan.search_keys_list()
+
+
     return 1;
 };
 
@@ -71,8 +97,7 @@ int HashTable::remove_by_name(){
 void HashTable::_read_file(){
     ifstream infile;
     Channel * new_channel;
-    float dec_num;
-
+    int int_num;
     char text[SIZE_TEMP_CHARS];
     
     infile.open(DATA_PATH);
@@ -98,29 +123,29 @@ void HashTable::_read_file(){
                 new_channel = new Channel;
 
                 infile.get(text, SIZE_TEMP_CHARS, '\n');
-                infile.ignore(SIZE,'\n');
-                new_channel.set_name(text);
+                infile.ignore(SIZE_TEMP_CHARS,'\n');
+                new_channel->set_name(text);
 
                 infile.get(text, SIZE_TEMP_CHARS, '\n');
-                infile.ignore(SIZE,'\n');
-                new_channel.set_description(text);
+                infile.ignore(SIZE_TEMP_CHARS,'\n');
+                new_channel->set_description(text);
 
                 infile.get(text, SIZE_TEMP_CHARS, '\n');
-                infile.ignore(SIZE,'\n');
-                new_channel.set_notes(text);
+                infile.ignore(SIZE_TEMP_CHARS,'\n');
+                new_channel->set_notes(text);
 
-                infile.get(text, SIZE_TEMP_CHARS, '\n');
-                infile.ignore(SIZE,'\n');
-                new_channel.set_rating(text);
+                infile >> int_num;
+                infile.ignore(SIZE_TEMP_CHARS,'\n');
+                new_channel->set_rating(int_num);
 
                 while (strcmp(text, CHANNEL_FOOTER)){
                     infile.get(text, SIZE_TEMP_CHARS, '\n');
-                    infile.ignore(SIZE,'\n');
-                    new_channel.add_search_key(text);
+                    infile.ignore(SIZE_TEMP_CHARS,'\n');
+                    new_channel->add_search_key(text);
                 }
 
             // Add the channel to the table per name and per each search key
-            
+            add_channel(new_channel);
 
 
 

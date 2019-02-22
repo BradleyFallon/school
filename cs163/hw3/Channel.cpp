@@ -35,6 +35,11 @@ int Channel::set_name(const char text[]){
     return 1;
 }
 
+int Channel::get_name(char text[]){
+    strcpy(text, name);
+    return 1;
+}
+
 int Channel::set_description(const char text[]){
     if (description) delete description;
     description = new char[strlen(text)+1];
@@ -76,7 +81,7 @@ int Channel::clone(Channel & ref_chan){
 
 // Displays all content of this job
 void Channel::display(){
-    if (name && description && notes && body){
+    if (name && description && notes && notes){
         cout << "======================================" << endl
             << "name:" << endl
             << '\t' << name << endl
@@ -84,8 +89,8 @@ void Channel::display(){
             << '\t' << description << endl
             << "notes:" << endl
             << '\t' << notes << endl
-            << "Channel:" << endl
-            << '\t' << body << endl
+            << "rating:" << endl
+            << '\t' << rating << endl
             << endl;
     } else {
         cout << "Channel not fully defined!" << endl;

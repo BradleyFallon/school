@@ -41,12 +41,19 @@ int TextList::insert(const char text[]){
 
 int TextList::copy(TextList & other){
     delete_all();
-
-    return 1;
+    return copy_rec(head, other.head);
 }
 
-int TextList::copy_rec(CharsNode & * head){
-
+int TextList::copy_rec(CharsNode * & head, CharsNode * & other_head){
+    if (!other_head){
+        head = NULL;
+        return 0;
+    }
+    head = new CharsNode;
+    head->txt = new char[strlen(other_head->txt)+1];
+    strcpy(head->txt, other_head->txt);
+    copy_rec(head->next, other_head->next);
+    return 1;
 }
 
 int TextList::delete_all(){

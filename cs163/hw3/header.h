@@ -35,7 +35,7 @@ class TextList{
 
         int insert(const char text[]);
         int copy(TextList & other);
-        int copy_rec(CharsNode & * head);
+        int copy_rec(CharsNode * & head, CharsNode * & other_head);
         int delete_all();
         int delete_all_rec(CharsNode * head);
 
@@ -55,12 +55,14 @@ class Channel{
 		int set_description(const char text[]);
 		int set_notes(const char text[]);
         int set_rating(int value);
+        int get_name(char text[]);
 
 		void display();
 
+        TextList search_keys_list;
+
 	private:
         char * name;
-		TextList search_keys_list;
         int num_keys;
 		char * description;
 		char * notes;
@@ -73,13 +75,28 @@ struct TableNode{
     Channel * chan_ptr;
 };
 
+// // TableList
+// class TableList{
+//     public:
+// 		TableList(void);
+// 		~TableList(void);
+
+//         int insert(const char keyword[], Channel * chan_ptr);
+//         int delete_all();
+//         int delete_all_rec(CharsNode * head);
+
+//     private:
+//         CharsNode * head;
+// };
+
 class HashTable{
     public:
         HashTable(void);
         ~HashTable(void);
 
         int copy_channel();
-        int add_channel();
+        int insert_at_index(int index, const char text[], Channel * chan_ptr);
+        int add_channel(Channel & ref_chan);
         int get_hash(const char text[]);
         int search_keyword();
         int display_matches();
@@ -95,6 +112,6 @@ class HashTable{
 
         void _read_file();
         
-        Channel ** hash_array; // This is the array of the table, the top level
+        TableNode ** hash_array; // This is the array of the table, the top level
         
 };
