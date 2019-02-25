@@ -96,17 +96,18 @@ class HashTable{
 
         int copy_channel();
         int insert_at_index(int index, const char text[], Channel * chan_ptr);
-        int add_channel(Channel & ref_chan);
+        int add_channel(Channel * ref_chan);
         int get_hash(const char text[]);
         int search_keyword();
         int display_matches();
         int display_all();
         int remove_by_name();
+        int display_stats();
 
     private:
         const char DATA_PATH[13] = "channels.txt";
         const char FILE_HEADER[15] = "#CHANNELS-DUMP";
-        const char CHANNEL_HEADER[15] = "#CHANNEL-START";
+        const char CHANNEL_HEADER[15] = "#CHANNEL";
         const char CHANNEL_FOOTER[13] = "#CHANNEL-END";
         const char DELIM = '\n';
 

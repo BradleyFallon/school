@@ -20,9 +20,9 @@ import random
 import pprint
 print_list = pprint.PrettyPrinter(indent=4).pprint
 
-OUTPUT_PATH = "U:/development/practice/school/cs163/hw3/channels.txt"
+OUTPUT_PATH = "./channels.txt"
 FILE_HEADER = "#CHANNELS-DUMP"
-CHANNEL_HEADER = "#CHANNEL-OBJECT"
+CHANNEL_HEADER = "#CHANNEL"
 CHANNEL_FOOTER = "#CHANNEL-END"
 DELIM = "\n"
 
@@ -233,7 +233,7 @@ def generate_synonyms_dict(words_list):
     return synonyms_dict
 
 
-def main(number_channels=500):
+def main(number_channels=10):
     syns_dict = generate_synonyms_dict(DESCRIPTORS + GENRES)
 
     names_set = set()
@@ -257,7 +257,7 @@ def main(number_channels=500):
 
     # Write to file
     with open(OUTPUT_PATH, "w") as outf:
-        outf.write(FILE_HEADER + DELIM)
+        outf.write(FILE_HEADER)
         for channel in channel_list:
             channel.write_to_file(outf)
 

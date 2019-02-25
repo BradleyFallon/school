@@ -15,6 +15,7 @@ HashTable::HashTable(void){
     hash_array = new TableNode*[SIZE_TBLARY];
     for (int i=0; i<SIZE_TBLARY; ++i)
         hash_array[i] = NULL;
+    _read_file();
 };
 
 HashTable::~HashTable(void){
@@ -32,19 +33,19 @@ int HashTable::insert_at_index(int index, const char text[], Channel * chan_ptr)
     hash_array[index] = new_node;
 };
 
-int HashTable::add_channel(Channel & ref_chan){
+int HashTable::add_channel(Channel * ref_chan){
     int index; // index from hash where to insert a node
     char text[SIZE_TEMP_CHARS];
     CharsNode * current_key;
 
     
-    ref_chan.get_name(text);
+    ref_chan->get_name(text);
     index = get_hash(text) % SIZE_TBLARY;
 
-    insert_at_index(index, text, & ref_chan);
+    insert_at_index(index, text, ref_chan);
 
     
-    ref_chan.search_keys_list()
+    // ref_chan.search_keys_list()
 
 
     return 1;
@@ -84,6 +85,21 @@ int HashTable::remove_by_name(){
     return 1;
 };
 
+int HashTable::display_stats(){
+    TableNode * current;
+
+    cout << "This is your table:" << endl;
+
+    for (int i=0; i<SIZE_TBLARY; ++i){
+        cout << "In column " << i << endl;
+        current = hash_array[i];
+        while (current){
+            current->chan_ptr->display();
+            current = current->next;
+        }
+    }
+}
+
 /*
         const char OUTPUT_PATH[13] = "channels.txt";
         const char FILE_HEADER[15] = "#CHANNELS-DUMP";
@@ -101,8 +117,6 @@ void HashTable::_read_file(){
     char text[SIZE_TEMP_CHARS];
     
     infile.open(DATA_PATH);
-
-
     // Make sure this existed and was not empty before attempting to read
     if (infile)
     {
@@ -115,7 +129,6 @@ void HashTable::_read_file(){
             // Read the current line of file, if it is not a header, continue
             infile.get(text, SIZE_TEMP_CHARS, '\n');
             infile.ignore(SIZE_TEMP_CHARS,'\n');
-
 
             // Check if this is a job header
             if (!strcmp(text, CHANNEL_HEADER)){
@@ -144,12 +157,11 @@ void HashTable::_read_file(){
                     new_channel->add_search_key(text);
                 }
 
-            // Add the channel to the table per name and per each search key
-            add_channel(new_channel);
+                // Add the channel to the table per name and per each search key
+                add_channel(new_channel);
+                new_channel->display();
 
-
-
-            } // End read job
+            } // End read channel
 
         }// end file work
         infile.close();

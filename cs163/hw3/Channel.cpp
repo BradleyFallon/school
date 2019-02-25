@@ -81,7 +81,7 @@ int Channel::clone(Channel & ref_chan){
 
 // Displays all content of this job
 void Channel::display(){
-    if (name && description && notes && notes){
+    if (name && description && notes){
         cout << "======================================" << endl
             << "name:" << endl
             << '\t' << name << endl

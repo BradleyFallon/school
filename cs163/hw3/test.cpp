@@ -63,50 +63,52 @@ int main()
 }
 
 int auto_test(){
-    cout << "Auto-test not implemented." << endl;
+    HashTable my_table;
+    cout << "In autotest." << endl;
+    my_table.display_stats();
     return 0;
 }
 
-// This is used to prompt user for ref_chan propeties and set them to the ref_chan
-int define_Channel(Channel & ref_msg){
-    char text[SIZE];
+// // This is used to prompt user for ref_chan propeties and set them to the ref_chan
+// int define_Channel(Channel & ref_msg){
+//     char text[SIZE];
 
-    // All of the setters for text values are the same idea
-    // We get a cstring drom the user, then call the ref_chan's setter method to apply
-    // I didn't actually come up wait a failure condition for the setter,
-    // so I am not useing any return value for text setters.
+//     // All of the setters for text values are the same idea
+//     // We get a cstring drom the user, then call the ref_chan's setter method to apply
+//     // I didn't actually come up wait a failure condition for the setter,
+//     // so I am not useing any return value for text setters.
 
-        int set_name(const char text[]);
-		int add_search_key(const char text[]);
-		int set_description(const char text[]);
-		int set_notes(const char text[]);
-        int set_rating(int rating);
+//         int set_name(const char text[]);
+// 		int add_search_key(const char text[]);
+// 		int set_description(const char text[]);
+// 		int set_notes(const char text[]);
+//         int set_rating(int rating);
 
-    cout <<"Enter channel name (text for cstring):" << endl;
-    cin.get(text, SIZE, '\n');
-    cin.ignore(SIZE,'\n');
-    ref_chan.set_name(text);
+//     cout <<"Enter channel name (text for cstring):" << endl;
+//     cin.get(text, SIZE, '\n');
+//     cin.ignore(SIZE,'\n');
+//     ref_chan.set_name(text);
 
-    cout <<"Enter channel description (text for cstring):" << endl;
-    cin.get(text, SIZE, '\n');
-    cin.ignore(SIZE,'\n');
-    ref_chan.set_description(text);
+//     cout <<"Enter channel description (text for cstring):" << endl;
+//     cin.get(text, SIZE, '\n');
+//     cin.ignore(SIZE,'\n');
+//     ref_chan.set_description(text);
 
-    cout <<"Enter channel notes (text for cstring):" << endl;
-    cin.get(text, SIZE, '\n');
-    cin.ignore(SIZE,'\n');
-    ref_chan.set_notes(text);
+//     cout <<"Enter channel notes (text for cstring):" << endl;
+//     cin.get(text, SIZE, '\n');
+//     cin.ignore(SIZE,'\n');
+//     ref_chan.set_notes(text);
 
-    cout <<"Enter channel rating (integer 1 to 5):" << endl;
-    cin.get(text, SIZE, '\n');
-    cin.ignore(SIZE,'\n');
-    ref_chan.set_rating(text);
+//     cout <<"Enter channel rating (integer 1 to 5):" << endl;
+//     cin.get(text, SIZE, '\n');
+//     cin.ignore(SIZE,'\n');
+//     ref_chan.set_rating(text);
 
-    cout <<"Enter a channel search keyword (text for cstring):" << endl;
-    cin.get(text, SIZE, '\n');
-    cin.ignore(SIZE,'\n');
-    ref_chan.add_search_key(text);
-}
+//     cout <<"Enter a channel search keyword (text for cstring):" << endl;
+//     cin.get(text, SIZE, '\n');
+//     cin.ignore(SIZE,'\n');
+//     ref_chan.add_search_key(text);
+// }
 
 // Read from user which task they want to perform
 int read_task_no()
@@ -126,14 +128,11 @@ int read_task_no()
         // Give instructions and get response
         cout << "\n\nWhat do you want?" << endl
             << "1: Add a new Channel to stack." << endl
-            << "2: Duplicate top Channel of stack." << endl
-            << "3: Move top stack to queue." << endl
-            << "4: Display top of stack." << endl
-            << "5: Display front of queue." << endl
-            << "6: Delete top of stack." << endl
-            << "7: Delete front of queue." << endl
-            << "8: Run Autotest." << endl
-            << "9: Exit." << endl
+            << "2: Search by keyword, display all matches" << endl
+            << "3: Remove channel by name" << endl
+            << "4: Display all." << endl
+            << "5: Run Autotest." << endl
+            << "6: Exit." << endl
             << "\nEnter a number to enjoy an option." << endl
             << endl;
         if (!(cin >> option)){
