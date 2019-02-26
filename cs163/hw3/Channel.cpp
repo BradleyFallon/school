@@ -63,6 +63,9 @@ int Channel::add_search_key(const char text[]){
     search_keys_list.insert(text);
 }
 
+CharsNode * Channel::get_head_search_key(){
+    return search_keys_list.get_head();
+}
 
 int Channel::clone(Channel & ref_chan){
     // If the ref Channel was poorly defined, return 0

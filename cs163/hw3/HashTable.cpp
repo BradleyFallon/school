@@ -21,7 +21,7 @@ HashTable::HashTable(void){
 HashTable::~HashTable(void){
 };
 
-int HashTable::insert_at_index(int index, const char text[], Channel * chan_ptr){
+int HashTable::_insert_at_index(int index, const char text[], Channel * chan_ptr){
     TableNode * new_node;
     // Create the new node and copy text
     new_node = new TableNode;
@@ -33,7 +33,7 @@ int HashTable::insert_at_index(int index, const char text[], Channel * chan_ptr)
     hash_array[index] = new_node;
 };
 
-int HashTable::add_channel(Channel * ref_chan){
+int HashTable::_add_channel(Channel * ref_chan){
     int index; // index from hash where to insert a node
     char text[SIZE_TEMP_CHARS];
     CharsNode * current_key;
@@ -42,17 +42,26 @@ int HashTable::add_channel(Channel * ref_chan){
     ref_chan->get_name(text);
     index = get_hash(text) % SIZE_TBLARY;
 
-    insert_at_index(index, text, ref_chan);
+    _insert_at_index(index, text, ref_chan);
 
-    
-    // ref_chan.search_keys_list()
-
+    current_key = ref_chan->get_head_search_key();
+    while (current_key){
+        index = get_hash(current_key->txt) % SIZE_TBLARY;
+        _insert_at_index(index, current_key->txt, ref_chan);
+        current_key = current_key->next;
+    }
 
     return 1;
 };
 
-int HashTable::copy_channel(){
-    return 1;
+int HashTable::copy_channel(Channel & ref_chan){
+    Channel * new_channel;
+    new_channel = new Channel;
+    if (new_channel->clone(ref_chan)){
+        if (_add_channel(new_channel)) return 1;
+    }
+    // If we either could not copy or add, then return 0
+    return 0;
 };
 
 int HashTable::get_hash(const char text[]){
@@ -62,22 +71,75 @@ int HashTable::get_hash(const char text[]){
     text_len = strlen(text);
     // Do not attempt to hash if no text given. Hash will remain 0 if text_len==0
     // To get hash, sum each character's ascii value multiplied by position
+
+    // Actually, I abandoned that. I iteratively modified this until I was happy with results,
+    // There was not much of a plan
     for (int i=0; i<text_len; ++i){
-        hash_val = hash_val + (i+1)*text[i];
+        hash_val = hash_val + (i*(i+1)+i)*(text[i]-'B')*(text[i]-'D');
     }
 
     return hash_val;
 };
 
-int HashTable::search_keyword(){
-    return 1;
+int HashTable::search_keyword(const char searched[], Channel found[], int max_hits){
+    int index;
+    TableNode * current;
+    int hit_count = 0;
+
+    index = get_hash(searched) % SIZE_TBLARY;
+    current = hash_array[index];
+
+    while (current && hit_count < max_hits){
+        if (!strcmp(current->keyword, searched)){
+            current->chan_ptr->display();
+            found[hit_count].clone(*current->chan_ptr);
+            ++hit_count;
+        }
+        current = current->next;
+    }
+
+    return hit_count;
 };
 
-int HashTable::display_matches(){
+
+// This could have used the search_keyword, but that would have more overhead,
+// because we would need to do the whole create an array and clone matches thing.
+// This is more efficient, since it just displays the hit and then moves on.
+int HashTable::display_matches(const char searched[]){
+    int index;
+    TableNode * current;
+    int any_hits = false;
+
+    index = get_hash(searched) % SIZE_TBLARY;
+    current = hash_array[index];
+
+    while (current){
+        if (!strcmp(current->keyword, searched)){
+            current->chan_ptr->display();
+            any_hits = true;
+        }
+        current = current->next;
+    }
+
+    if (!any_hits){
+        cout << "No results found!" << endl;
+        return 0;
+    }
     return 1;
 };
 
 int HashTable::display_all(){
+    TableNode * current;
+
+    cout << "This is your table:" << endl;
+    for (int i=0; i<SIZE_TBLARY; ++i){
+        cout << "In column " << i << endl;
+        current = hash_array[i];
+        while (current){
+            current->chan_ptr->display();
+            current = current->next;
+        }
+    }
     return 1;
 };
 
@@ -87,27 +149,20 @@ int HashTable::remove_by_name(){
 
 int HashTable::display_stats(){
     TableNode * current;
+    int col_count = 0;
 
     cout << "This is your table:" << endl;
 
     for (int i=0; i<SIZE_TBLARY; ++i){
-        cout << "In column " << i << endl;
+        col_count = 0;
         current = hash_array[i];
         while (current){
-            current->chan_ptr->display();
+            ++col_count;
             current = current->next;
         }
+        cout << "Items in column " << i << ": " << col_count << endl;
     }
 }
-
-/*
-        const char OUTPUT_PATH[13] = "channels.txt";
-        const char FILE_HEADER[15] = "#CHANNELS-DUMP";
-        const char CHANNEL_HEADER[16] = "#CHANNEL-OBJECT";
-        const char KEYS_START[12] = "#START-KEYS";
-        const char KEYS_END[10] = "#END-KEYS";
-        const char DELIM = '\n';
-*/
 
 // Read all channnels info from a file.
 void HashTable::_read_file(){
@@ -158,8 +213,7 @@ void HashTable::_read_file(){
                 }
 
                 // Add the channel to the table per name and per each search key
-                add_channel(new_channel);
-                new_channel->display();
+                _add_channel(new_channel);
 
             } // End read channel
 

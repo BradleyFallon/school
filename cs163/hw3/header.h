@@ -19,7 +19,8 @@ using namespace std;
 // const int SIZE_TBLARY = 64; // Larger and square  (one prime factor: 2)
 // const int SIZE_TBLARY = 66; // Larger and even    (three prime factors: 2,3,11)
 // const int SIZE_TBLARY = 72; // Larger and even    (two prime factors: 2,3)
-const int SIZE_TBLARY = 79; // Larger and prime
+// const int SIZE_TBLARY = 79; // Larger and prime
+const int SIZE_TBLARY = 79;
 const int SIZE_TEMP_CHARS = 256;
 
 
@@ -35,12 +36,14 @@ class TextList{
 
         int insert(const char text[]);
         int copy(TextList & other);
-        int copy_rec(CharsNode * & head, CharsNode * & other_head);
         int delete_all();
         int delete_all_rec(CharsNode * head);
+        CharsNode * get_head();
 
     private:
         CharsNode * head;
+
+        int copy_rec(CharsNode * & head, CharsNode * & other_head);
 };
 
 class Channel{
@@ -56,6 +59,7 @@ class Channel{
 		int set_notes(const char text[]);
         int set_rating(int value);
         int get_name(char text[]);
+        CharsNode * get_head_search_key();
 
 		void display();
 
@@ -75,31 +79,16 @@ struct TableNode{
     Channel * chan_ptr;
 };
 
-// // TableList
-// class TableList{
-//     public:
-// 		TableList(void);
-// 		~TableList(void);
-
-//         int insert(const char keyword[], Channel * chan_ptr);
-//         int delete_all();
-//         int delete_all_rec(CharsNode * head);
-
-//     private:
-//         CharsNode * head;
-// };
-
 class HashTable{
     public:
         HashTable(void);
         ~HashTable(void);
 
-        int copy_channel();
-        int insert_at_index(int index, const char text[], Channel * chan_ptr);
-        int add_channel(Channel * ref_chan);
+        // This is the public add_channel method, which makes a copy of the channel and adds to table
+        int copy_channel(Channel & ref_chan); 
         int get_hash(const char text[]);
-        int search_keyword();
-        int display_matches();
+        int search_keyword(const char text[], Channel found[], int max_hits);
+        int display_matches(const char searched[]);
         int display_all();
         int remove_by_name();
         int display_stats();
@@ -110,6 +99,9 @@ class HashTable{
         const char CHANNEL_HEADER[15] = "#CHANNEL";
         const char CHANNEL_FOOTER[13] = "#CHANNEL-END";
         const char DELIM = '\n';
+
+        int _insert_at_index(int index, const char text[], Channel * chan_ptr);
+        int _add_channel(Channel * ref_chan); // This is the private add_channel method, which does not make a copy of the channel
 
         void _read_file();
         

@@ -1,94 +1,2777 @@
 #CHANNELS-DUMP
 #CHANNEL
-cartoons media
-This is a media service about cartoons that is very media
-wow. many media. much caricature. very cartoons. what is media?
+universal art radio
+This is a radio service about art that is very art
+wow. many radio. much universal. very art. what is radio?
+1
+radio
+universal
+art
+#CHANNEL-END
+#CHANNEL
+fantastic valid legal media
+This is a media service about legal that is very valid
+wow. many media. much valid. very outlandish. many fantastic. much legal. what is media?
+5
+media
+valid
+outlandish
+fantastic
+legal
+#CHANNEL-END
+#CHANNEL
+pastime sports radio
+This is a radio service about sports that is very sports
+wow. many radio. much athletics. very pastime. many sports. what is radio?
+2
+radio
+athletics
+pastime
+sports
+#CHANNEL-END
+#CHANNEL
+legal station
+This is a station service about legal that is very station
+wow. many legal. much station. what is legal?
+5
+legal
+station
+#CHANNEL-END
+#CHANNEL
+ancient historical radio
+This is a radio service about historical that is very historical
+wow. many historical. much radio. very ancient. what is historical?
+1
+historical
+radio
+ancient
+#CHANNEL-END
+#CHANNEL
+singular courtroom network
+This is a network service about courtroom that is very courtroom
+wow. many singular. much courtroom. very network. what is singular?
+4
+singular
+courtroom
+network
+#CHANNEL-END
+#CHANNEL
+fantastic courtroom network
+This is a network service about courtroom that is very courtroom
+wow. many fantastic. much singular. very courtroom. many network. what is fantastic?
+3
+fantastic
+singular
+courtroom
+network
+#CHANNEL-END
+#CHANNEL
+universal cartoons services
+This is a services service about cartoons that is very cartoons
+wow. many sketch. much universal. very services. many cartoons. what is sketch?
+2
+sketch
+universal
+services
+cartoons
+#CHANNEL-END
+#CHANNEL
+overseas paranoid network
+This is a network service about paranoid that is very paranoid
+wow. many overseas. much paranoid. very network. what is overseas?
+2
+overseas
+paranoid
+network
+#CHANNEL-END
+#CHANNEL
+enchanting magical media
+This is a media service about magical that is very magical
+wow. many magical. much media. very enchanting. what is magical?
+3
+magical
+media
+enchanting
+#CHANNEL-END
+#CHANNEL
+international problem mystery station
+This is a station service about mystery that is very problem
+wow. many universal. much international. very station. many mystery. much problem. what is universal?
+3
+universal
+international
+station
+mystery
+problem
+#CHANNEL-END
+#CHANNEL
+surreal station
+This is a station service about surreal that is very station
+wow. many surreal. much station. what is surreal?
+5
+surreal
+station
+#CHANNEL-END
+#CHANNEL
+live fun comedy radio
+This is a radio service about comedy that is very fun
+wow. many fun. much radio. very live. many comedy. what is fun?
+2
+fun
+radio
+live
+comedy
+#CHANNEL-END
+#CHANNEL
+international fantasy channel
+This is a channel service about fantasy that is very fantasy
+wow. many fantasy. much universal. very international. many channel. what is fantasy?
+2
+fantasy
+universal
+international
+channel
+#CHANNEL-END
+#CHANNEL
+social services
+This is a services service about social that is very services
+wow. many services. much social. what is services?
+4
+services
+social
+#CHANNEL-END
+#CHANNEL
+digital surreal news
+This is a news service about surreal that is very surreal
+wow. many news. much surreal. very digital. what is news?
+1
+news
+surreal
+digital
+#CHANNEL-END
+#CHANNEL
+digital political media
+This is a media service about political that is very political
+wow. many media. much political. very digital. what is media?
 1
 media
+political
+digital
+#CHANNEL-END
+#CHANNEL
+magical services
+This is a services service about magical that is very services
+wow. many magical. much services. what is magical?
+5
+magical
+services
+#CHANNEL-END
+#CHANNEL
+fantastic speculative news
+This is a news service about speculative that is very speculative
+wow. many speculative. much weird. very fantastic. many news. what is speculative?
+5
+speculative
+weird
+fantastic
+news
+#CHANNEL-END
+#CHANNEL
+absurdist broadcasting
+This is a broadcasting service about absurdist that is very broadcasting
+wow. many absurdist. much broadcasting. what is absurdist?
+2
+absurdist
+broadcasting
+#CHANNEL-END
+#CHANNEL
+movies broadcasting
+This is a broadcasting service about movies that is very broadcasting
+wow. many movies. much broadcasting. very film. what is movies?
+5
+movies
+broadcasting
+film
+#CHANNEL-END
+#CHANNEL
+offshore docudrama network
+This is a network service about docudrama that is very docudrama
+wow. many docudrama. much offshore. very network. what is docudrama?
+3
+docudrama
+offshore
+network
+#CHANNEL-END
+#CHANNEL
+historical broadcasting
+This is a broadcasting service about historical that is very broadcasting
+wow. many historical. much broadcasting. what is historical?
+2
+historical
+broadcasting
+#CHANNEL-END
+#CHANNEL
+horror channel
+This is a channel service about horror that is very channel
+wow. many horror. much channel. what is horror?
+4
+horror
+channel
+#CHANNEL-END
+#CHANNEL
+courtroom channel
+This is a channel service about courtroom that is very channel
+wow. many courtroom. much channel. what is courtroom?
+5
+courtroom
+channel
+#CHANNEL-END
+#CHANNEL
+communal social channel
+This is a channel service about social that is very social
+wow. many channel. much social. very communal. what is channel?
+3
+channel
+social
+communal
+#CHANNEL-END
+#CHANNEL
+public horror radio
+This is a radio service about horror that is very horror
+wow. many radio. much mutual. very horror. many public. what is radio?
+3
+radio
+mutual
+horror
+public
+#CHANNEL-END
+#CHANNEL
+movies services
+This is a services service about movies that is very services
+wow. many movies. much services. very videotape. what is movies?
+3
+movies
+services
+videotape
+#CHANNEL-END
+#CHANNEL
+comic strip cartoons station
+This is a station service about cartoons that is very strip
+wow. many drawing. much station. very comic. many cartoons. much strip. what is drawing?
+5
+drawing
+station
+comic
+cartoons
+strip
+#CHANNEL-END
+#CHANNEL
+absurdist absurdist broadcasting
+This is a broadcasting service about absurdist that is very absurdist
+wow. many absurdist. much broadcasting. what is absurdist?
+5
+absurdist
+broadcasting
+#CHANNEL-END
+#CHANNEL
+trip adventure media
+This is a media service about adventure that is very adventure
+wow. many media. much trip. very adventure. what is media?
+2
+media
+trip
+adventure
+#CHANNEL-END
+#CHANNEL
+political media
+This is a media service about political that is very media
+wow. many media. much political. what is media?
+4
+media
+political
+#CHANNEL-END
+#CHANNEL
+action news
+This is a news service about action that is very news
+wow. many news. much action. what is news?
+4
+news
+action
+#CHANNEL-END
+#CHANNEL
+metaphysical philosophical services
+This is a services service about philosophical that is very philosophical
+wow. many services. much philosophical. very metaphysical. what is services?
+5
+services
+philosophical
+metaphysical
+#CHANNEL-END
+#CHANNEL
+self-reliant adult media
+This is a media service about adult that is very adult
+wow. many media. much self-reliant. very adult. what is media?
+3
+media
+self-reliant
+adult
+#CHANNEL-END
+#CHANNEL
+childrens broadcasting
+This is a broadcasting service about childrens that is very broadcasting
+wow. many childrens. much broadcasting. what is childrens?
+1
+childrens
+broadcasting
+#CHANNEL-END
+#CHANNEL
+universal fright horror radio
+This is a radio service about horror that is very fright
+wow. many horror. much radio. very universal. many fright. what is horror?
+1
+horror
+radio
+universal
+fright
+#CHANNEL-END
+#CHANNEL
+different animation cartoons broadcasting
+This is a broadcasting service about cartoons that is very animation
+wow. many drawing. much animation. very different. many broadcasting. much cartoons. what is drawing?
+4
+drawing
+animation
+different
+broadcasting
+cartoons
+#CHANNEL-END
+#CHANNEL
+foreign mystery services
+This is a services service about mystery that is very mystery
+wow. many different. much services. very mystery. many foreign. what is different?
+1
+different
+services
+mystery
+foreign
+#CHANNEL-END
+#CHANNEL
+provincial informational educational broadcasting
+This is a broadcasting service about educational that is very informational
+wow. many provincial. much educational. very informational. many broadcasting. what is provincial?
+3
+provincial
+educational
+informational
+broadcasting
+#CHANNEL-END
+#CHANNEL
+western channel
+This is a channel service about western that is very channel
+wow. many western. much channel. what is western?
+5
+western
+channel
+#CHANNEL-END
+#CHANNEL
+adult broadcasting
+This is a broadcasting service about adult that is very broadcasting
+wow. many adult. much broadcasting. what is adult?
+4
+adult
+broadcasting
+#CHANNEL-END
+#CHANNEL
+paranoid news
+This is a news service about paranoid that is very news
+wow. many news. much paranoid. what is news?
+4
+news
+paranoid
+#CHANNEL-END
+#CHANNEL
+surreal media
+This is a media service about surreal that is very media
+wow. many media. much surreal. what is media?
+5
+media
+surreal
+#CHANNEL-END
+#CHANNEL
+national animation network
+This is a network service about animation that is very animation
+wow. many national. much animation. very network. what is national?
+1
+national
+animation
+network
+#CHANNEL-END
+#CHANNEL
+thriller services
+This is a services service about thriller that is very services
+wow. many thriller. much services. what is thriller?
+3
+thriller
+services
+#CHANNEL-END
+#CHANNEL
+provincial informational educational media
+This is a media service about educational that is very informational
+wow. many media. much provincial. very educational. many informational. what is media?
+5
+media
+provincial
+educational
+informational
+#CHANNEL-END
+#CHANNEL
+digital historical channel
+This is a channel service about historical that is very historical
+wow. many historical. much digital. very channel. what is historical?
+3
+historical
+digital
+channel
+#CHANNEL-END
+#CHANNEL
+communal political services
+This is a services service about political that is very political
+wow. many services. much political. very communal. what is services?
+5
+services
+political
+communal
+#CHANNEL-END
+#CHANNEL
+action broadcasting
+This is a broadcasting service about action that is very broadcasting
+wow. many action. much broadcasting. what is action?
+3
+action
+broadcasting
+#CHANNEL-END
+#CHANNEL
+universal absurdist services
+This is a services service about absurdist that is very absurdist
+wow. many absurdist. much services. very universal. what is absurdist?
+1
+absurdist
+services
+universal
+#CHANNEL-END
+#CHANNEL
+communal social network
+This is a network service about social that is very social
+wow. many network. much social. very communal. what is network?
+5
+network
+social
+communal
+#CHANNEL-END
+#CHANNEL
+urban channel
+This is a channel service about urban that is very channel
+wow. many urban. much channel. what is urban?
+3
+urban
+channel
+#CHANNEL-END
+#CHANNEL
+valid legal news
+This is a news service about legal that is very legal
+wow. many news. much legal. very valid. what is news?
+5
+news
+legal
+valid
+#CHANNEL-END
+#CHANNEL
+cartoons media
+This is a media service about cartoons that is very media
+wow. many parody. much media. very cartoons. what is parody?
+3
+parody
+media
+cartoons
+#CHANNEL-END
+#CHANNEL
+sovereign adventure broadcasting
+This is a broadcasting service about adventure that is very adventure
+wow. many adventure. much sovereign. very broadcasting. what is adventure?
+1
+adventure
+sovereign
+broadcasting
+#CHANNEL-END
+#CHANNEL
+autonomous action media
+This is a media service about action that is very action
+wow. many media. much action. very autonomous. what is media?
+1
+media
+action
+autonomous
+#CHANNEL-END
+#CHANNEL
+public science network
+This is a network service about science that is very science
+wow. many universal. much science. very network. many public. what is universal?
+2
+universal
+science
+network
+public
+#CHANNEL-END
+#CHANNEL
+metropolitan conundrum mystery services
+This is a services service about mystery that is very conundrum
+wow. many conundrum. much metropolitan. very services. many mystery. what is conundrum?
+5
+conundrum
+metropolitan
+services
+mystery
+#CHANNEL-END
+#CHANNEL
+alive romance broadcasting
+This is a broadcasting service about romance that is very romance
+wow. many alive. much broadcasting. very romance. what is alive?
+4
+alive
+broadcasting
+romance
+#CHANNEL-END
+#CHANNEL
+ancient information science radio
+This is a radio service about science that is very information
+wow. many information. much radio. very ancient. many science. what is information?
+4
+information
+radio
+ancient
+science
+#CHANNEL-END
+#CHANNEL
+sports news
+This is a news service about sports that is very news
+wow. many news. much game. very sports. what is news?
+2
+news
+game
+sports
+#CHANNEL-END
+#CHANNEL
+regional consternation horror network
+This is a network service about horror that is very consternation
+wow. many regional. much horror. very network. many consternation. what is regional?
+3
+regional
+horror
+network
+consternation
+#CHANNEL-END
+#CHANNEL
+whimsical broadcasting
+This is a broadcasting service about whimsical that is very broadcasting
+wow. many whimsical. much broadcasting. very unusual. what is whimsical?
+2
+whimsical
+broadcasting
+unusual
+#CHANNEL-END
+#CHANNEL
+comedy channel
+This is a channel service about comedy that is very channel
+wow. many comedy. much channel. what is comedy?
+5
+comedy
+channel
+#CHANNEL-END
+#CHANNEL
+science broadcasting
+This is a broadcasting service about science that is very broadcasting
+wow. many broadcasting. much science. what is broadcasting?
+4
+broadcasting
+science
+#CHANNEL-END
+#CHANNEL
+offshore thriller news
+This is a news service about thriller that is very thriller
+wow. many thriller. much offshore. very news. what is thriller?
+2
+thriller
+offshore
+news
+#CHANNEL-END
+#CHANNEL
+independent logical philosophical news
+This is a news service about philosophical that is very logical
+wow. many logical. much independent. very news. many sovereign. much philosophical. what is logical?
+2
+logical
+independent
+news
+sovereign
+philosophical
+#CHANNEL-END
+#CHANNEL
+secrecy mystery news
+This is a news service about mystery that is very mystery
+wow. many news. much secrecy. very mystery. what is news?
+1
+news
+secrecy
+mystery
+#CHANNEL-END
+#CHANNEL
+fantasy channel
+This is a channel service about fantasy that is very channel
+wow. many fantasy. much channel. what is fantasy?
+4
+fantasy
+channel
+#CHANNEL-END
+#CHANNEL
+teen radio
+This is a radio service about teen that is very radio
+wow. many radio. much teen. what is radio?
+3
+radio
+teen
+#CHANNEL-END
+#CHANNEL
+puppetry news
+This is a news service about puppetry that is very news
+wow. many news. much puppetry. what is news?
+1
+news
+puppetry
+#CHANNEL-END
+#CHANNEL
+live response nightmare fantasy network
+This is a network service about fantasy that is very response
+wow. many live. much response. very nightmare. many fantasy. much network. what is live?
+3
+live
+response
+nightmare
+fantasy
+network
+#CHANNEL-END
+#CHANNEL
+original logical philosophical media
+This is a media service about philosophical that is very logical
+wow. many media. much logical. very initial. many original. much philosophical. what is media?
+1
+media
+logical
+initial
+original
+philosophical
+#CHANNEL-END
+#CHANNEL
+courtroom services
+This is a services service about courtroom that is very services
+wow. many services. much courtroom. what is services?
+3
+services
+courtroom
+#CHANNEL-END
+#CHANNEL
+mutual adult media
+This is a media service about adult that is very adult
+wow. many media. much mutual. very adult. what is media?
+2
+media
+mutual
+adult
+#CHANNEL-END
+#CHANNEL
+fantasy broadcasting
+This is a broadcasting service about fantasy that is very broadcasting
+wow. many fantasy. much broadcasting. what is fantasy?
+1
+fantasy
+broadcasting
+#CHANNEL-END
+#CHANNEL
+premium horror services
+This is a services service about horror that is very horror
+wow. many premium. much services. very horror. what is premium?
+4
+premium
+services
+horror
+#CHANNEL-END
+#CHANNEL
+comedy news
+This is a news service about comedy that is very news
+wow. many news. much comedy. what is news?
+5
+news
+comedy
+#CHANNEL-END
+#CHANNEL
+provincial play drama channel
+This is a channel service about drama that is very play
+wow. many play. much provincial. very channel. many drama. what is play?
+4
+play
+provincial
+channel
+drama
+#CHANNEL-END
+#CHANNEL
+national medical broadcasting
+This is a broadcasting service about medical that is very medical
+wow. many national. much broadcasting. very medical. what is national?
+5
+national
+broadcasting
+medical
+#CHANNEL-END
+#CHANNEL
+premium comedy drama network
+This is a network service about drama that is very comedy
+wow. many premium. much network. very comedy. many drama. what is premium?
+3
+premium
+network
+comedy
+drama
+#CHANNEL-END
+#CHANNEL
+digital action services
+This is a services service about action that is very action
+wow. many action. much services. very digital. what is action?
+4
+action
+services
+digital
+#CHANNEL-END
+#CHANNEL
+logical athletics sports station
+This is a station service about sports that is very athletics
+wow. many logical. much station. very game. many athletics. much sports. what is logical?
+3
+logical
+station
+game
+athletics
+sports
+#CHANNEL-END
+#CHANNEL
+national detective police radio
+This is a radio service about police that is very detective
+wow. many national. much detective. very radio. many police. what is national?
+2
+national
+detective
+radio
+police
+#CHANNEL-END
+#CHANNEL
+sovereign western station
+This is a station service about western that is very western
+wow. many western. much sovereign. very station. what is western?
+5
+western
+sovereign
+station
+#CHANNEL-END
+#CHANNEL
+conundrum mystery channel
+This is a channel service about mystery that is very mystery
+wow. many conundrum. much channel. very mystery. what is conundrum?
+5
+conundrum
+channel
+mystery
+#CHANNEL-END
+#CHANNEL
+docudrama network
+This is a network service about docudrama that is very network
+wow. many docudrama. much network. what is docudrama?
+5
+docudrama
+network
+#CHANNEL-END
+#CHANNEL
+mystery broadcasting
+This is a broadcasting service about mystery that is very broadcasting
+wow. many broadcasting. much mystery. what is broadcasting?
+1
+broadcasting
+mystery
+#CHANNEL-END
+#CHANNEL
+absurdist radio
+This is a radio service about absurdist that is very radio
+wow. many absurdist. much radio. what is absurdist?
+1
+absurdist
+radio
+#CHANNEL-END
+#CHANNEL
+premium problem thriller news
+This is a news service about thriller that is very problem
+wow. many premium. much problem. very thriller. many news. what is premium?
+2
+premium
+problem
+thriller
+news
+#CHANNEL-END
+#CHANNEL
+alive unsubstantiated speculative station
+This is a station service about speculative that is very unsubstantiated
+wow. many alive. much speculative. very station. many unsubstantiated. what is alive?
+3
+alive
+speculative
+station
+unsubstantiated
+#CHANNEL-END
+#CHANNEL
+craft art services
+This is a services service about art that is very art
+wow. many services. much craft. very art. what is services?
+2
+services
+craft
+art
+#CHANNEL-END
+#CHANNEL
+educational network
+This is a network service about educational that is very network
+wow. many educational. much academic. very network. what is educational?
+2
+educational
+academic
+network
+#CHANNEL-END
+#CHANNEL
+global historical station
+This is a station service about historical that is very historical
+wow. many historical. much global. very station. what is historical?
+2
+historical
+global
+station
+#CHANNEL-END
+#CHANNEL
+fancy fantasy broadcasting
+This is a broadcasting service about fantasy that is very fantasy
+wow. many fantasy. much fancy. very broadcasting. what is fantasy?
+1
+fantasy
+fancy
+broadcasting
+#CHANNEL-END
+#CHANNEL
+foreign western media
+This is a media service about western that is very western
+wow. many western. much media. very alien. many foreign. what is western?
+4
+western
+media
+alien
+foreign
+#CHANNEL-END
+#CHANNEL
+paranoid media
+This is a media service about paranoid that is very media
+wow. many media. much paranoid. what is media?
+3
+media
+paranoid
+#CHANNEL-END
+#CHANNEL
+international thriller channel
+This is a channel service about thriller that is very thriller
+wow. many thriller. much global. very international. many channel. what is thriller?
+4
+thriller
+global
+international
+channel
+#CHANNEL-END
+#CHANNEL
+local western media
+This is a media service about western that is very western
+wow. many regional. much local. very western. many media. what is regional?
+2
+regional
+local
+western
+media
+#CHANNEL-END
+#CHANNEL
+drama radio
+This is a radio service about drama that is very radio
+wow. many radio. much drama. what is radio?
+3
+radio
+drama
+#CHANNEL-END
+#CHANNEL
+official adventure media
+This is a media service about adventure that is very adventure
+wow. many media. much official. very valid. many adventure. what is media?
+5
+media
+official
+valid
+adventure
+#CHANNEL-END
+#CHANNEL
+digital sci-fi science-fiction station
+This is a station service about science-fiction that is very sci-fi
+wow. many science-fiction. much station. very sci-fi. many digital. what is science-fiction?
+4
+science-fiction
+station
+sci-fi
+digital
+#CHANNEL-END
+#CHANNEL
+puppetry broadcasting
+This is a broadcasting service about puppetry that is very broadcasting
+wow. many broadcasting. much puppetry. what is broadcasting?
+4
+broadcasting
+puppetry
+#CHANNEL-END
+#CHANNEL
+speculative channel
+This is a channel service about speculative that is very channel
+wow. many speculative. much channel. what is speculative?
+1
+speculative
+channel
+#CHANNEL-END
+#CHANNEL
+offshore actual adult news
+This is a news service about adult that is very actual
+wow. many actual. much news. very adult. many offshore. what is actual?
+1
+actual
+news
+adult
+offshore
+#CHANNEL-END
+#CHANNEL
+experience adventure radio
+This is a radio service about adventure that is very adventure
+wow. many experience. much radio. very adventure. what is experience?
+4
+experience
+radio
+adventure
+#CHANNEL-END
+#CHANNEL
+comical whimsical network
+This is a network service about whimsical that is very whimsical
+wow. many whimsical. much comical. very network. what is whimsical?
+1
+whimsical
+comical
+network
+#CHANNEL-END
+#CHANNEL
+initial whimsical news
+This is a news service about whimsical that is very whimsical
+wow. many whimsical. much news. very initial. many amusing. what is whimsical?
+4
+whimsical
+news
+initial
+amusing
+#CHANNEL-END
+#CHANNEL
+plan action network
+This is a network service about action that is very action
+wow. many plan. much action. very network. what is plan?
+2
+plan
+action
+network
+#CHANNEL-END
+#CHANNEL
+authoritative action broadcasting
+This is a broadcasting service about action that is very action
+wow. many action. much broadcasting. very authoritative. what is action?
+3
+action
+broadcasting
+authoritative
+#CHANNEL-END
+#CHANNEL
+adult channel
+This is a channel service about adult that is very channel
+wow. many adult. much channel. what is adult?
+2
+adult
+channel
+#CHANNEL-END
+#CHANNEL
+public police radio
+This is a radio service about police that is very police
+wow. many radio. much universal. very police. many public. what is radio?
+5
+radio
+universal
+police
+public
+#CHANNEL-END
+#CHANNEL
+civic puppetry broadcasting
+This is a broadcasting service about puppetry that is very puppetry
+wow. many broadcasting. much puppetry. very civic. what is broadcasting?
+3
+broadcasting
+puppetry
+civic
+#CHANNEL-END
+#CHANNEL
+animation radio
+This is a radio service about animation that is very radio
+wow. many radio. much animation. what is radio?
+1
+radio
+animation
+#CHANNEL-END
+#CHANNEL
+authentic enigma mystery news
+This is a news service about mystery that is very enigma
+wow. many news. much authentic. very enigma. many mystery. what is news?
+3
+news
+authentic
+enigma
+mystery
+#CHANNEL-END
+#CHANNEL
+grotesque animation channel
+This is a channel service about animation that is very animation
+wow. many animation. much grotesque. very channel. what is animation?
+3
+animation
+grotesque
+channel
+#CHANNEL-END
+#CHANNEL
+precise technique science radio
+This is a radio service about science that is very technique
+wow. many technique. much radio. very science. many precise. what is technique?
+5
+technique
+radio
+science
+precise
+#CHANNEL-END
+#CHANNEL
+national paranoid media
+This is a media service about paranoid that is very paranoid
+wow. many national. much media. very paranoid. what is national?
+2
+national
+media
+paranoid
+#CHANNEL-END
+#CHANNEL
+premium cartoons media
+This is a media service about cartoons that is very cartoons
+wow. many premium. much media. very drawing. many cartoons. what is premium?
+1
+premium
+media
+drawing
+cartoons
+#CHANNEL-END
+#CHANNEL
+original youngster teen media
+This is a media service about teen that is very youngster
+wow. many media. much initial. very original. many youngster. much teen. what is media?
+4
+media
+initial
+original
+youngster
+teen
+#CHANNEL-END
+#CHANNEL
+life action station
+This is a station service about action that is very action
+wow. many action. much life. very station. what is action?
+5
+action
+life
+station
+#CHANNEL-END
+#CHANNEL
+mystery channel
+This is a channel service about mystery that is very channel
+wow. many channel. much mystery. what is channel?
+3
+channel
+mystery
+#CHANNEL-END
+#CHANNEL
+feat adventure network
+This is a network service about adventure that is very adventure
+wow. many feat. much adventure. very network. what is feat?
+4
+feat
+adventure
+network
+#CHANNEL-END
+#CHANNEL
+live philosophical radio
+This is a radio service about philosophical that is very philosophical
+wow. many radio. much philosophical. very live. what is radio?
+3
+radio
+philosophical
+live
+#CHANNEL-END
+#CHANNEL
+picture cultural educational services
+This is a services service about educational that is very cultural
+wow. many educational. much picture. very cultural. many services. what is educational?
+3
+educational
+picture
+cultural
+services
+#CHANNEL-END
+#CHANNEL
+fantastic historical media
+This is a media service about historical that is very historical
+wow. many historical. much media. very fantastic. many imaginative. what is historical?
+1
+historical
+media
+fantastic
+imaginative
+#CHANNEL-END
+#CHANNEL
+saga broadcasting
+This is a broadcasting service about saga that is very broadcasting
+wow. many saga. much broadcasting. what is saga?
+5
+saga
+broadcasting
+#CHANNEL-END
+#CHANNEL
+mystery services
+This is a services service about mystery that is very services
+wow. many services. much mystery. what is services?
+4
+services
+mystery
+#CHANNEL-END
+#CHANNEL
+premium parody cartoons radio
+This is a radio service about cartoons that is very parody
+wow. many parody. much drawing. very premium. many radio. much cartoons. what is parody?
+2
+parody
+drawing
+premium
+radio
+cartoons
+#CHANNEL-END
+#CHANNEL
+unfamiliar sports media
+This is a media service about sports that is very sports
+wow. many game. much media. very unfamiliar. many sports. what is game?
+4
+game
+media
+unfamiliar
+sports
+#CHANNEL-END
+#CHANNEL
+official production drama radio
+This is a radio service about drama that is very production
+wow. many conclusive. much radio. very official. many drama. much production. what is conclusive?
+2
+conclusive
+radio
+official
+drama
+production
+#CHANNEL-END
+#CHANNEL
+magical network
+This is a network service about magical that is very network
+wow. many magical. much network. what is magical?
+4
+magical
+network
+#CHANNEL-END
+#CHANNEL
+thriller broadcasting
+This is a broadcasting service about thriller that is very broadcasting
+wow. many thriller. much broadcasting. what is thriller?
+1
+thriller
+broadcasting
+#CHANNEL-END
+#CHANNEL
+international surreal channel
+This is a channel service about surreal that is very surreal
+wow. many surreal. much global. very international. many channel. what is surreal?
+3
+surreal
+global
+international
+channel
+#CHANNEL-END
+#CHANNEL
+alive secrecy mystery channel
+This is a channel service about mystery that is very secrecy
+wow. many alive. much channel. very secrecy. many mystery. what is alive?
+2
+alive
+channel
+secrecy
+mystery
+#CHANNEL-END
+#CHANNEL
+juridical legal station
+This is a station service about legal that is very legal
+wow. many legal. much station. very juridical. what is legal?
+3
+legal
+station
+juridical
+#CHANNEL-END
+#CHANNEL
+foreign drama news
+This is a news service about drama that is very drama
+wow. many drama. much different. very news. many foreign. what is drama?
+1
+drama
+different
+news
+foreign
+#CHANNEL-END
+#CHANNEL
+valid legal media
+This is a media service about legal that is very legal
+wow. many media. much legal. very valid. what is media?
+4
+media
+legal
+valid
+#CHANNEL-END
+#CHANNEL
+courtroom media
+This is a media service about courtroom that is very media
+wow. many media. much courtroom. what is media?
+5
+media
+courtroom
+#CHANNEL-END
+#CHANNEL
+regional adult station
+This is a station service about adult that is very adult
+wow. many regional. much adult. very station. what is regional?
+2
+regional
+adult
+station
+#CHANNEL-END
+#CHANNEL
+premium teen radio
+This is a radio service about teen that is very teen
+wow. many premium. much radio. very teen. what is premium?
+2
+premium
+radio
+teen
+#CHANNEL-END
+#CHANNEL
+digital civil urban station
+This is a station service about urban that is very civil
+wow. many urban. much station. very civil. many digital. what is urban?
+1
+urban
+station
+civil
+digital
+#CHANNEL-END
+#CHANNEL
+original youngster force police channel
+This is a channel service about police that is very youngster
+wow. many channel. much force. very original. many youngster. much police. very authentic. what is channel?
+5
+channel
+force
+original
+youngster
+police
+authentic
+#CHANNEL-END
+#CHANNEL
+premium western services
+This is a services service about western that is very western
+wow. many premium. much western. very services. what is premium?
+3
+premium
+western
+services
+#CHANNEL-END
+#CHANNEL
+local medicinal medical channel
+This is a channel service about medical that is very medicinal
+wow. many medicinal. much channel. very medical. many local. much provincial. what is medicinal?
+4
+medicinal
+channel
+medical
+local
+provincial
+#CHANNEL-END
+#CHANNEL
+global melodrama drama media
+This is a media service about drama that is very melodrama
+wow. many melodrama. much global. very media. many drama. what is melodrama?
+2
+melodrama
+global
+media
+drama
+#CHANNEL-END
+#CHANNEL
+precise nightmare fantasy news
+This is a news service about fantasy that is very nightmare
+wow. many fantasy. much news. very nightmare. many precise. what is fantasy?
+2
+fantasy
+news
+nightmare
+precise
+#CHANNEL-END
+#CHANNEL
+animation network
+This is a network service about animation that is very network
+wow. many animation. much network. what is animation?
+5
+animation
+network
+#CHANNEL-END
+#CHANNEL
+romance network
+This is a network service about romance that is very network
+wow. many network. much romance. what is network?
+2
+network
+romance
+#CHANNEL-END
+#CHANNEL
+initial comedy network
+This is a network service about comedy that is very comedy
+wow. many initial. much network. very comedy. what is initial?
+1
+initial
+network
+comedy
+#CHANNEL-END
+#CHANNEL
+premium absurdist network
+This is a network service about absurdist that is very absurdist
+wow. many premium. much absurdist. very network. what is premium?
+4
+premium
+absurdist
+network
+#CHANNEL-END
+#CHANNEL
+cartoons services
+This is a services service about cartoons that is very services
+wow. many sketch. much services. very cartoons. what is sketch?
+5
+sketch
+services
+cartoons
+#CHANNEL-END
+#CHANNEL
+digital thriller station
+This is a station service about thriller that is very thriller
+wow. many thriller. much station. very digital. what is thriller?
+1
+thriller
+station
+digital
+#CHANNEL-END
+#CHANNEL
+public enchanting magical network
+This is a network service about magical that is very enchanting
+wow. many enchanting. much social. very public. many magical. much network. what is enchanting?
+4
+enchanting
+social
+public
+magical
+network
+#CHANNEL-END
+#CHANNEL
+cultural civil urban channel
+This is a channel service about urban that is very civil
+wow. many urban. much civil. very cultural. many channel. what is urban?
+4
+urban
+civil
+cultural
+channel
+#CHANNEL-END
+#CHANNEL
+original historical broadcasting
+This is a broadcasting service about historical that is very historical
+wow. many historical. much original. very authentic. many broadcasting. what is historical?
+2
+historical
+original
+authentic
+broadcasting
+#CHANNEL-END
+#CHANNEL
+movies news
+This is a news service about movies that is very news
+wow. many movies. much show. very news. what is movies?
+4
+movies
+show
+news
+#CHANNEL-END
+#CHANNEL
+motion picture movies services
+This is a services service about movies that is very picture
+wow. many picture. much services. very motion. many film. much movies. what is picture?
+1
+picture
+services
+motion
+film
+movies
+#CHANNEL-END
+#CHANNEL
+fun comedy news
+This is a news service about comedy that is very comedy
+wow. many fun. much news. very comedy. what is fun?
+3
+fun
+news
+comedy
+#CHANNEL-END
+#CHANNEL
+governmental secrecy mystery broadcasting
+This is a broadcasting service about mystery that is very secrecy
+wow. many governmental. much broadcasting. very secrecy. many mystery. what is governmental?
+2
+governmental
+broadcasting
+secrecy
+mystery
+#CHANNEL-END
+#CHANNEL
+unfamiliar puppetry media
+This is a media service about puppetry that is very puppetry
+wow. many media. much unfamiliar. very puppetry. what is media?
+1
+media
+unfamiliar
+puppetry
+#CHANNEL-END
+#CHANNEL
+premium eccentric whimsical radio
+This is a radio service about whimsical that is very eccentric
+wow. many eccentric. much premium. very radio. many whimsical. much funny. what is eccentric?
+1
+eccentric
+premium
+radio
+whimsical
+funny
+#CHANNEL-END
+#CHANNEL
+juvenile teen media
+This is a media service about teen that is very teen
+wow. many media. much teen. very juvenile. what is media?
+3
+media
+teen
+juvenile
+#CHANNEL-END
+#CHANNEL
+global paranoid media
+This is a media service about paranoid that is very paranoid
+wow. many media. much global. very paranoid. what is media?
+4
+media
+global
+paranoid
+#CHANNEL-END
+#CHANNEL
+authentic corruption crime radio
+This is a radio service about crime that is very corruption
+wow. many radio. much authentic. very crime. many corruption. what is radio?
+2
+radio
+authentic
+crime
+corruption
+#CHANNEL-END
+#CHANNEL
+adult station
+This is a station service about adult that is very station
+wow. many adult. much station. what is adult?
+4
+adult
+station
+#CHANNEL-END
+#CHANNEL
+provincial historical services
+This is a services service about historical that is very historical
+wow. many historical. much services. very provincial. what is historical?
+4
+historical
+services
+provincial
+#CHANNEL-END
+#CHANNEL
+independent cartoons media
+This is a media service about cartoons that is very cartoons
+wow. many media. much drawing. very self-sufficient. many independent. much cartoons. what is media?
+4
+media
+drawing
+self-sufficient
+independent
+cartoons
+#CHANNEL-END
+#CHANNEL
+live violation crime services
+This is a services service about crime that is very violation
+wow. many services. much violation. very crime. many live. what is services?
+3
+services
+violation
+crime
+live
+#CHANNEL-END
+#CHANNEL
+drama news
+This is a news service about drama that is very news
+wow. many news. much drama. what is news?
+1
+news
+drama
+#CHANNEL-END
+#CHANNEL
+adult media
+This is a media service about adult that is very media
+wow. many media. much adult. what is media?
+2
+media
+adult
+#CHANNEL-END
+#CHANNEL
+unfamiliar classical historical radio
+This is a radio service about historical that is very classical
+wow. many historical. much radio. very unfamiliar. many classical. what is historical?
+2
+historical
+radio
+unfamiliar
+classical
+#CHANNEL-END
+#CHANNEL
+cartoons broadcasting
+This is a broadcasting service about cartoons that is very broadcasting
+wow. many animation. much broadcasting. very cartoons. what is animation?
+5
+animation
+broadcasting
+cartoons
+#CHANNEL-END
+#CHANNEL
+digital satire channel
+This is a channel service about satire that is very satire
+wow. many satire. much digital. very channel. what is satire?
+4
+satire
+digital
+channel
+#CHANNEL-END
+#CHANNEL
+urban craft art network
+This is a network service about art that is very craft
+wow. many urban. much craft. very art. many network. what is urban?
+1
+urban
+craft
+art
+network
+#CHANNEL-END
+#CHANNEL
+civil urban media
+This is a media service about urban that is very urban
+wow. many urban. much media. very civil. what is urban?
+5
+urban
+media
+civil
+#CHANNEL-END
+#CHANNEL
+autonomous subtlety mystery channel
+This is a channel service about mystery that is very subtlety
+wow. many channel. much autonomous. very subtlety. many mystery. what is channel?
+5
+channel
+autonomous
+subtlety
+mystery
+#CHANNEL-END
+#CHANNEL
+feature movies channel
+This is a channel service about movies that is very movies
+wow. many movies. much feature. very flick. many channel. what is movies?
+3
+movies
+feature
+flick
+channel
+#CHANNEL-END
+#CHANNEL
+courtroom network
+This is a network service about courtroom that is very network
+wow. many courtroom. much network. what is courtroom?
+5
+courtroom
+network
+#CHANNEL-END
+#CHANNEL
+independent western news
+This is a news service about western that is very western
+wow. many western. much news. very autonomous. many independent. what is western?
+3
+western
+news
+autonomous
+independent
+#CHANNEL-END
+#CHANNEL
+sf science-fiction services
+This is a services service about science-fiction that is very science-fiction
+wow. many sf. much services. very science-fiction. what is sf?
+4
+sf
+services
+science-fiction
+#CHANNEL-END
+#CHANNEL
+public thriller radio
+This is a radio service about thriller that is very thriller
+wow. many national. much thriller. very radio. many public. what is national?
+1
+national
+thriller
+radio
+public
+#CHANNEL-END
+#CHANNEL
+premium documentary docudrama channel
+This is a channel service about docudrama that is very documentary
+wow. many premium. much docudrama. very documentary. many channel. what is premium?
+1
+premium
+docudrama
+documentary
+channel
+#CHANNEL-END
+#CHANNEL
+premium movies station
+This is a station service about movies that is very movies
+wow. many premium. much movies. very flick. many station. what is premium?
+5
+premium
+movies
+flick
+station
+#CHANNEL-END
+#CHANNEL
+juvenile teen radio
+This is a radio service about teen that is very teen
+wow. many radio. much teen. very juvenile. what is radio?
+1
+radio
+teen
+juvenile
+#CHANNEL-END
+#CHANNEL
+sovereign real historical media
+This is a media service about historical that is very real
+wow. many historical. much media. very sovereign. many real. what is historical?
+4
+historical
+media
+sovereign
+real
+#CHANNEL-END
+#CHANNEL
+fantastic cultural educational network
+This is a network service about educational that is very cultural
+wow. many crazy. much educational. very cultural. many informational. much fantastic. very network. what is crazy?
+2
+crazy
+educational
+cultural
+informational
+fantastic
+network
+#CHANNEL-END
+#CHANNEL
+urban network
+This is a network service about urban that is very network
+wow. many urban. much network. what is urban?
+2
+urban
+network
+#CHANNEL-END
+#CHANNEL
+misdeed crime network
+This is a network service about crime that is very crime
+wow. many crime. much network. very misdeed. what is crime?
+2
+crime
+network
+misdeed
+#CHANNEL-END
+#CHANNEL
+official videotape movies channel
+This is a channel service about movies that is very videotape
+wow. many proper. much channel. very official. many videotape. much movies. very show. what is proper?
+1
+proper
+channel
+official
+videotape
+movies
+show
+#CHANNEL-END
+#CHANNEL
+political channel
+This is a channel service about political that is very channel
+wow. many political. much channel. what is political?
+2
+political
+channel
+#CHANNEL-END
+#CHANNEL
+wrongdoing crime channel
+This is a channel service about crime that is very crime
+wow. many crime. much wrongdoing. very channel. what is crime?
+3
+crime
+wrongdoing
+channel
+#CHANNEL-END
+#CHANNEL
+educational radio
+This is a radio service about educational that is very radio
+wow. many scholarly. much radio. very educational. what is scholarly?
+4
+scholarly
+radio
+educational
+#CHANNEL-END
+#CHANNEL
+ancient historical services
+This is a services service about historical that is very historical
+wow. many historical. much services. very ancient. what is historical?
+5
+historical
+services
+ancient
+#CHANNEL-END
+#CHANNEL
+premium cartoons broadcasting
+This is a broadcasting service about cartoons that is very cartoons
+wow. many premium. much broadcasting. very caricature. many cartoons. what is premium?
+4
+premium
+broadcasting
 caricature
 cartoons
 #CHANNEL-END
 #CHANNEL
-offshore secrecy thriller channel
-This is a channel service about thriller that is very secrecy
-wow. many offshore. much channel. very thriller. many secrecy. what is offshore?
-4
-offshore
-channel
-thriller
-secrecy
-#CHANNEL-END
-#CHANNEL
-surreal broadcasting
-This is a broadcasting service about surreal that is very broadcasting
-wow. many broadcasting. much surreal. what is broadcasting?
-3
-broadcasting
-surreal
-#CHANNEL-END
-#CHANNEL
-premium dangerous speculative news
-This is a news service about speculative that is very dangerous
-wow. many dangerous. much news. very speculative. many premium. what is dangerous?
+ubiquitous courtroom services
+This is a services service about courtroom that is very courtroom
+wow. many services. much courtroom. very ubiquitous. what is services?
 1
-dangerous
-news
-speculative
-premium
+services
+courtroom
+ubiquitous
 #CHANNEL-END
 #CHANNEL
-police services
-This is a services service about police that is very services
-wow. many police. much services. what is police?
+initial subtlety thriller station
+This is a station service about thriller that is very subtlety
+wow. many thriller. much initial. very station. many subtlety. what is thriller?
 4
-police
+thriller
+initial
+station
+subtlety
+#CHANNEL-END
+#CHANNEL
+premium rational philosophical broadcasting
+This is a broadcasting service about philosophical that is very rational
+wow. many premium. much philosophical. very rational. many broadcasting. what is premium?
+2
+premium
+philosophical
+rational
+broadcasting
+#CHANNEL-END
+#CHANNEL
+absurdist absurdist channel
+This is a channel service about absurdist that is very absurdist
+wow. many absurdist. much channel. what is absurdist?
+1
+absurdist
+channel
+#CHANNEL-END
+#CHANNEL
+international medical channel
+This is a channel service about medical that is very medical
+wow. many channel. much global. very international. many medical. what is channel?
+5
+channel
+global
+international
+medical
+#CHANNEL-END
+#CHANNEL
+fantastic problem thriller station
+This is a station service about thriller that is very problem
+wow. many crazy. much station. very thriller. many problem. much fantastic. what is crazy?
+5
+crazy
+station
+thriller
+problem
+fantastic
+#CHANNEL-END
+#CHANNEL
+abstract philosophical broadcasting
+This is a broadcasting service about philosophical that is very philosophical
+wow. many philosophical. much abstract. very broadcasting. what is philosophical?
+4
+philosophical
+abstract
+broadcasting
+#CHANNEL-END
+#CHANNEL
+international science channel
+This is a channel service about science that is very science
+wow. many science. much universal. very international. many channel. what is science?
+3
+science
+universal
+international
+channel
+#CHANNEL-END
+#CHANNEL
+interstate comedy services
+This is a services service about comedy that is very comedy
+wow. many interstate. much services. very comedy. what is interstate?
+3
+interstate
+services
+comedy
+#CHANNEL-END
+#CHANNEL
+parody cartoons network
+This is a network service about cartoons that is very cartoons
+wow. many parody. much animation. very network. many cartoons. what is parody?
+2
+parody
+animation
+network
+cartoons
+#CHANNEL-END
+#CHANNEL
+civil childrens station
+This is a station service about childrens that is very childrens
+wow. many childrens. much civil. very station. what is childrens?
+3
+childrens
+civil
+station
+#CHANNEL-END
+#CHANNEL
+thriller station
+This is a station service about thriller that is very station
+wow. many thriller. much station. what is thriller?
+2
+thriller
+station
+#CHANNEL-END
+#CHANNEL
+fantastic medicinal medical broadcasting
+This is a broadcasting service about medical that is very medicinal
+wow. many medicinal. much odd. very medical. many broadcasting. much fantastic. what is medicinal?
+3
+medicinal
+odd
+medical
+broadcasting
+fantastic
+#CHANNEL-END
+#CHANNEL
+youngster teen channel
+This is a channel service about teen that is very teen
+wow. many youngster. much teen. very channel. what is youngster?
+4
+youngster
+teen
+channel
+#CHANNEL-END
+#CHANNEL
+art network
+This is a network service about art that is very network
+wow. many art. much network. what is art?
+4
+art
+network
+#CHANNEL-END
+#CHANNEL
+misdeed crime services
+This is a services service about crime that is very crime
+wow. many services. much crime. very misdeed. what is services?
+2
+services
+crime
+misdeed
+#CHANNEL-END
+#CHANNEL
+fitting magical media
+This is a media service about magical that is very magical
+wow. many magical. much media. very fitting. what is magical?
+3
+magical
+media
+fitting
+#CHANNEL-END
+#CHANNEL
+original exploit adventure media
+This is a media service about adventure that is very exploit
+wow. many exploit. much media. very initial. many original. much adventure. what is exploit?
+4
+exploit
+media
+initial
+original
+adventure
+#CHANNEL-END
+#CHANNEL
+live philosophical media
+This is a media service about philosophical that is very philosophical
+wow. many media. much philosophical. very live. what is media?
+1
+media
+philosophical
+live
+#CHANNEL-END
+#CHANNEL
+alien amusing whimsical services
+This is a services service about whimsical that is very amusing
+wow. many services. much droll. very whimsical. many alien. much amusing. what is services?
+4
+services
+droll
+whimsical
+alien
+amusing
+#CHANNEL-END
+#CHANNEL
+fantastic profound philosophical broadcasting
+This is a broadcasting service about philosophical that is very profound
+wow. many implausible. much broadcasting. very philosophical. many profound. much fantastic. what is implausible?
+5
+implausible
+broadcasting
+philosophical
+profound
+fantastic
+#CHANNEL-END
+#CHANNEL
+reverie fantasy radio
+This is a radio service about fantasy that is very fantasy
+wow. many fantasy. much radio. very reverie. what is fantasy?
+2
+fantasy
+radio
+reverie
+#CHANNEL-END
+#CHANNEL
+film movies channel
+This is a channel service about movies that is very movies
+wow. many movies. much flick. very film. many channel. what is movies?
+1
+movies
+flick
+film
+channel
+#CHANNEL-END
+#CHANNEL
+original action radio
+This is a radio service about action that is very action
+wow. many action. much original. very initial. many radio. what is action?
+3
+action
+original
+initial
+radio
+#CHANNEL-END
+#CHANNEL
+fantastic science-fiction news
+This is a news service about science-fiction that is very science-fiction
+wow. many science-fiction. much preposterous. very fantastic. many news. what is science-fiction?
+3
+science-fiction
+preposterous
+fantastic
+news
+#CHANNEL-END
+#CHANNEL
+international philosophical station
+This is a station service about philosophical that is very philosophical
+wow. many station. much universal. very international. many philosophical. what is station?
+2
+station
+universal
+international
+philosophical
+#CHANNEL-END
+#CHANNEL
+independent medical station
+This is a station service about medical that is very medical
+wow. many station. much separate. very independent. many medical. what is station?
+4
+station
+separate
+independent
+medical
+#CHANNEL-END
+#CHANNEL
+craft art broadcasting
+This is a broadcasting service about art that is very art
+wow. many craft. much art. very broadcasting. what is craft?
+5
+craft
+art
+broadcasting
+#CHANNEL-END
+#CHANNEL
+unfamiliar saga network
+This is a network service about saga that is very saga
+wow. many saga. much unfamiliar. very network. what is saga?
+1
+saga
+unfamiliar
+network
+#CHANNEL-END
+#CHANNEL
+civil social news
+This is a news service about social that is very social
+wow. many news. much civil. very social. what is news?
+1
+news
+civil
+social
+#CHANNEL-END
+#CHANNEL
+alive childrens services
+This is a services service about childrens that is very childrens
+wow. many alive. much childrens. very services. what is alive?
+1
+alive
+childrens
 services
 #CHANNEL-END
 #CHANNEL
-official police network
-This is a network service about police that is very police
-wow. many police. much official. very fitting. many network. what is police?
+live childrens news
+This is a news service about childrens that is very childrens
+wow. many news. much childrens. very live. what is news?
+1
+news
+childrens
+live
+#CHANNEL-END
+#CHANNEL
+political news
+This is a news service about political that is very news
+wow. many news. much political. what is news?
 2
-police
-official
-fitting
-network
-#CHANNEL-END
-#CHANNEL
-alive political network
-This is a network service about political that is very political
-wow. many political. much network. very alive. what is political?
-3
+news
 political
-network
+#CHANNEL-END
+#CHANNEL
+art media
+This is a media service about art that is very media
+wow. many media. much art. what is media?
+5
+media
+art
+#CHANNEL-END
+#CHANNEL
+fantasy station
+This is a station service about fantasy that is very station
+wow. many fantasy. much station. what is fantasy?
+2
+fantasy
+station
+#CHANNEL-END
+#CHANNEL
+fun sports news
+This is a news service about sports that is very sports
+wow. many fun. much pastime. very sports. many news. what is fun?
+3
+fun
+pastime
+sports
+news
+#CHANNEL-END
+#CHANNEL
+alive crime channel
+This is a channel service about crime that is very crime
+wow. many alive. much crime. very channel. what is alive?
+5
 alive
+crime
+channel
 #CHANNEL-END
 #CHANNEL
-official cinema youngster teen broadcasting
-This is a broadcasting service about teen that is very cinema
-wow. many teen. much broadcasting. very valid. many youngster. much official. very cinema. what is teen?
-4
-teen
-broadcasting
-valid
-youngster
-official
-cinema
+philosophical media
+This is a media service about philosophical that is very media
+wow. many media. much philosophical. what is media?
+5
+media
+philosophical
 #CHANNEL-END
 #CHANNEL
-romance radio
-This is a radio service about romance that is very radio
-wow. many radio. much romance. what is radio?
-4
-radio
+digital fantasy media
+This is a media service about fantasy that is very fantasy
+wow. many fantasy. much media. very digital. what is fantasy?
+5
+fantasy
+media
+digital
+#CHANNEL-END
+#CHANNEL
+romance news
+This is a news service about romance that is very news
+wow. many news. much romance. what is news?
+1
+news
 romance
 #CHANNEL-END
 #CHANNEL
-dread horror news
-This is a news service about horror that is very horror
-wow. many dread. much horror. very news. what is dread?
+satire media
+This is a media service about satire that is very media
+wow. many media. much satire. what is media?
+5
+media
+satire
+#CHANNEL-END
+#CHANNEL
+foreign sci-fi science-fiction station
+This is a station service about science-fiction that is very sci-fi
+wow. many overseas. much station. very science-fiction. many sci-fi. much foreign. what is overseas?
+1
+overseas
+station
+science-fiction
+sci-fi
+foreign
+#CHANNEL-END
+#CHANNEL
+classical historical station
+This is a station service about historical that is very historical
+wow. many historical. much station. very classical. what is historical?
+4
+historical
+station
+classical
+#CHANNEL-END
+#CHANNEL
+sleuth detective radio
+This is a radio service about detective that is very detective
+wow. many sleuth. much detective. very radio. what is sleuth?
+4
+sleuth
+detective
+radio
+#CHANNEL-END
+#CHANNEL
+western station
+This is a station service about western that is very station
+wow. many western. much station. what is western?
 3
-dread
-horror
+western
+station
+#CHANNEL-END
+#CHANNEL
+educational station
+This is a station service about educational that is very station
+wow. many educational. much informational. very station. what is educational?
+1
+educational
+informational
+station
+#CHANNEL-END
+#CHANNEL
+abstract philosophical services
+This is a services service about philosophical that is very philosophical
+wow. many services. much philosophical. very abstract. what is services?
+4
+services
+philosophical
+abstract
+#CHANNEL-END
+#CHANNEL
+thriller news
+This is a news service about thriller that is very news
+wow. many thriller. much news. what is thriller?
+5
+thriller
 news
+#CHANNEL-END
+#CHANNEL
+documentary docudrama broadcasting
+This is a broadcasting service about docudrama that is very docudrama
+wow. many docudrama. much documentary. very broadcasting. what is docudrama?
+4
+docudrama
+documentary
+broadcasting
+#CHANNEL-END
+#CHANNEL
+outlandish romance station
+This is a station service about romance that is very romance
+wow. many outlandish. much station. very romance. what is outlandish?
+1
+outlandish
+station
+romance
+#CHANNEL-END
+#CHANNEL
+detective channel
+This is a channel service about detective that is very channel
+wow. many detective. much channel. what is detective?
+1
+detective
+channel
+#CHANNEL-END
+#CHANNEL
+unfamiliar production drama network
+This is a network service about drama that is very production
+wow. many unfamiliar. much production. very network. many drama. what is unfamiliar?
+3
+unfamiliar
+production
+network
+drama
+#CHANNEL-END
+#CHANNEL
+animation news
+This is a news service about animation that is very news
+wow. many news. much animation. what is news?
+3
+news
+animation
+#CHANNEL-END
+#CHANNEL
+whimsical station
+This is a station service about whimsical that is very station
+wow. many whimsical. much unusual. very station. what is whimsical?
+4
+whimsical
+unusual
+station
+#CHANNEL-END
+#CHANNEL
+sketch cartoons news
+This is a news service about cartoons that is very cartoons
+wow. many news. much sketch. very cartoons. what is news?
+5
+news
+sketch
+cartoons
+#CHANNEL-END
+#CHANNEL
+national whimsical network
+This is a network service about whimsical that is very whimsical
+wow. many national. much whimsical. very network. many mischievous. what is national?
+1
+national
+whimsical
+network
+mischievous
+#CHANNEL-END
+#CHANNEL
+regional puppetry station
+This is a station service about puppetry that is very puppetry
+wow. many regional. much puppetry. very station. what is regional?
+4
+regional
+puppetry
+station
+#CHANNEL-END
+#CHANNEL
+amusing whimsical media
+This is a media service about whimsical that is very whimsical
+wow. many whimsical. much media. very amusing. many droll. what is whimsical?
+1
+whimsical
+media
+amusing
+droll
+#CHANNEL-END
+#CHANNEL
+independent political services
+This is a services service about political that is very political
+wow. many political. much services. very self-sufficient. many independent. what is political?
+4
+political
+services
+self-sufficient
+independent
+#CHANNEL-END
+#CHANNEL
+classical thoughtful philosophical station
+This is a station service about philosophical that is very thoughtful
+wow. many station. much philosophical. very thoughtful. many classical. what is station?
+5
+station
+philosophical
+thoughtful
+classical
+#CHANNEL-END
+#CHANNEL
+unlimited show movies services
+This is a services service about movies that is very show
+wow. many services. much videotape. very movies. many show. much unlimited. what is services?
+3
+services
+videotape
+movies
+show
+unlimited
+#CHANNEL-END
+#CHANNEL
+universal civil urban radio
+This is a radio service about urban that is very civil
+wow. many urban. much radio. very civil. many universal. what is urban?
+5
+urban
+radio
+civil
+universal
+#CHANNEL-END
+#CHANNEL
+nationwide action station
+This is a station service about action that is very action
+wow. many action. much nationwide. very station. what is action?
+2
+action
+nationwide
+station
+#CHANNEL-END
+#CHANNEL
+social media
+This is a media service about social that is very media
+wow. many media. much social. what is media?
+3
+media
+social
+#CHANNEL-END
+#CHANNEL
+film movies broadcasting
+This is a broadcasting service about movies that is very movies
+wow. many movies. much show. very broadcasting. many film. what is movies?
+2
+movies
+show
+broadcasting
+film
+#CHANNEL-END
+#CHANNEL
+official animation radio
+This is a radio service about animation that is very animation
+wow. many radio. much animation. very official. many definite. what is radio?
+2
+radio
+animation
+official
+definite
+#CHANNEL-END
+#CHANNEL
+local dismay horror channel
+This is a channel service about horror that is very dismay
+wow. many channel. much dismay. very horror. many local. much provincial. what is channel?
+5
+channel
+dismay
+horror
+local
+provincial
+#CHANNEL-END
+#CHANNEL
+comic strip cartoons services
+This is a services service about cartoons that is very strip
+wow. many parody. much comic. very services. many cartoons. much strip. what is parody?
+1
+parody
+comic
+services
+cartoons
+strip
+#CHANNEL-END
+#CHANNEL
+rational philosophical broadcasting
+This is a broadcasting service about philosophical that is very philosophical
+wow. many philosophical. much rational. very broadcasting. what is philosophical?
+1
+philosophical
+rational
+broadcasting
+#CHANNEL-END
+#CHANNEL
+digital whimsical services
+This is a services service about whimsical that is very whimsical
+wow. many whimsical. much services. very odd. many digital. what is whimsical?
+5
+whimsical
+services
+odd
+digital
+#CHANNEL-END
+#CHANNEL
+civil social radio
+This is a radio service about social that is very social
+wow. many radio. much civil. very social. what is radio?
+4
+radio
+civil
+social
+#CHANNEL-END
+#CHANNEL
+profession paranoid broadcasting
+This is a broadcasting service about paranoid that is very paranoid
+wow. many profession. much broadcasting. very paranoid. what is profession?
+3
+profession
+broadcasting
+paranoid
+#CHANNEL-END
+#CHANNEL
+international adventure broadcasting
+This is a broadcasting service about adventure that is very adventure
+wow. many universal. much international. very adventure. many broadcasting. what is universal?
+3
+universal
+international
+adventure
+broadcasting
+#CHANNEL-END
+#CHANNEL
+western radio
+This is a radio service about western that is very radio
+wow. many western. much radio. what is western?
+2
+western
+radio
+#CHANNEL-END
+#CHANNEL
+political station
+This is a station service about political that is very station
+wow. many political. much station. what is political?
+5
+political
+station
+#CHANNEL-END
+#CHANNEL
+offshore drawing cartoons news
+This is a news service about cartoons that is very drawing
+wow. many parody. much drawing. very offshore. many news. much cartoons. what is parody?
+5
+parody
+drawing
+offshore
+news
+cartoons
+#CHANNEL-END
+#CHANNEL
+teen station
+This is a station service about teen that is very station
+wow. many station. much teen. what is station?
+3
+station
+teen
+#CHANNEL-END
+#CHANNEL
+universal informational educational broadcasting
+This is a broadcasting service about educational that is very informational
+wow. many universal. much educational. very informational. many broadcasting. what is universal?
+3
+universal
+educational
+informational
+broadcasting
+#CHANNEL-END
+#CHANNEL
+formal reporter felony crime broadcasting
+This is a broadcasting service about crime that is very reporter
+wow. many crime. much felony. very reporter. many broadcasting. much formal. what is crime?
+2
+crime
+felony
+reporter
+broadcasting
+formal
+#CHANNEL-END
+#CHANNEL
+official political media
+This is a media service about political that is very political
+wow. many media. much official. very political. many precise. what is media?
+2
+media
+official
+political
+precise
+#CHANNEL-END
+#CHANNEL
+cultural educational broadcasting
+This is a broadcasting service about educational that is very educational
+wow. many educational. much broadcasting. very cultural. what is educational?
+2
+educational
+broadcasting
+cultural
+#CHANNEL-END
+#CHANNEL
+childrens station
+This is a station service about childrens that is very station
+wow. many childrens. much station. what is childrens?
+1
+childrens
+station
+#CHANNEL-END
+#CHANNEL
+formal satire network
+This is a network service about satire that is very satire
+wow. many network. much satire. very formal. what is network?
+1
+network
+satire
+formal
+#CHANNEL-END
+#CHANNEL
+alive exploit adventure station
+This is a station service about adventure that is very exploit
+wow. many alive. much adventure. very exploit. many station. what is alive?
+4
+alive
+adventure
+exploit
+station
+#CHANNEL-END
+#CHANNEL
+fantastic police station
+This is a station service about police that is very police
+wow. many unreal. much fantastic. very police. many station. what is unreal?
+2
+unreal
+fantastic
+police
+station
+#CHANNEL-END
+#CHANNEL
+farce drama media
+This is a media service about drama that is very drama
+wow. many media. much farce. very drama. what is media?
+5
+media
+farce
+drama
+#CHANNEL-END
+#CHANNEL
+force action station
+This is a station service about action that is very action
+wow. many force. much action. very station. what is force?
+5
+force
+action
+station
+#CHANNEL-END
+#CHANNEL
+movies station
+This is a station service about movies that is very station
+wow. many movies. much film. very station. what is movies?
+5
+movies
+film
+station
+#CHANNEL-END
+#CHANNEL
+childrens radio
+This is a radio service about childrens that is very radio
+wow. many radio. much childrens. what is radio?
+2
+radio
+childrens
+#CHANNEL-END
+#CHANNEL
+initial surreal broadcasting
+This is a broadcasting service about surreal that is very surreal
+wow. many surreal. much initial. very broadcasting. what is surreal?
+3
+surreal
+initial
+broadcasting
+#CHANNEL-END
+#CHANNEL
+mystery media
+This is a media service about mystery that is very media
+wow. many media. much mystery. what is media?
+3
+media
+mystery
+#CHANNEL-END
+#CHANNEL
+historical channel
+This is a channel service about historical that is very channel
+wow. many historical. much channel. what is historical?
+1
+historical
+channel
+#CHANNEL-END
+#CHANNEL
+skit satire station
+This is a station service about satire that is very satire
+wow. many skit. much station. very satire. what is skit?
+3
+skit
+station
+satire
+#CHANNEL-END
+#CHANNEL
+digital absurdist absurdist channel
+This is a channel service about absurdist that is very absurdist
+wow. many absurdist. much digital. very channel. what is absurdist?
+3
+absurdist
+digital
+channel
+#CHANNEL-END
+#CHANNEL
+national metropolitan urban network
+This is a network service about urban that is very metropolitan
+wow. many national. much metropolitan. very urban. many network. what is national?
+3
+national
+metropolitan
+urban
+network
+#CHANNEL-END
+#CHANNEL
+independent whimsical news
+This is a news service about whimsical that is very whimsical
+wow. many eccentric. much separate. very independent. many whimsical. much news. what is eccentric?
+2
+eccentric
+separate
+independent
+whimsical
+news
+#CHANNEL-END
+#CHANNEL
+fanciful satire cartoons media
+This is a media service about cartoons that is very satire
+wow. many media. much drawing. very cartoons. many satire. much fanciful. what is media?
+2
+media
+drawing
+cartoons
+satire
+fanciful
+#CHANNEL-END
+#CHANNEL
+medical radio
+This is a radio service about medical that is very radio
+wow. many radio. much medical. what is radio?
+1
+radio
+medical
+#CHANNEL-END
+#CHANNEL
+puppetry channel
+This is a channel service about puppetry that is very channel
+wow. many puppetry. much channel. what is puppetry?
+3
+puppetry
+channel
+#CHANNEL-END
+#CHANNEL
+live question thriller media
+This is a media service about thriller that is very question
+wow. many thriller. much live. very media. many question. what is thriller?
+3
+thriller
+live
+media
+question
+#CHANNEL-END
+#CHANNEL
+crime media
+This is a media service about crime that is very media
+wow. many media. much crime. what is media?
+2
+media
+crime
+#CHANNEL-END
+#CHANNEL
+digital absurdist radio
+This is a radio service about absurdist that is very absurdist
+wow. many absurdist. much radio. very digital. what is absurdist?
+3
+absurdist
+radio
+digital
+#CHANNEL-END
+#CHANNEL
+sports services
+This is a services service about sports that is very services
+wow. many services. much pastime. very sports. what is services?
+1
+services
+pastime
+sports
+#CHANNEL-END
+#CHANNEL
+mutual valid legal broadcasting
+This is a broadcasting service about legal that is very valid
+wow. many mutual. much broadcasting. very legal. many valid. what is mutual?
+1
+mutual
+broadcasting
+legal
+valid
 #CHANNEL-END

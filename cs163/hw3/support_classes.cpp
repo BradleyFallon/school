@@ -23,6 +23,10 @@ TextList::~TextList(void){
 
 }
 
+CharsNode * TextList::get_head(){
+    return head;
+}
+
 int TextList::insert(const char text[]){
     // Creates a new node and inserts at head, unsorted
     CharsNode * new_node;
