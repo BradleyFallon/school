@@ -15,7 +15,6 @@ Channel::Channel(void){
     // Set all pointers to null
     // Note: When deleting null pointers, don't
     name = NULL;
-    num_keys = 0;
     description = NULL;
     notes = NULL;
     rating = 0;
@@ -23,13 +22,13 @@ Channel::Channel(void){
 }
 
 Channel::~Channel(void){
-    if (name) delete name;
-    if (description) delete description;
-    if (notes) delete notes;
+    if (name) delete[] name;
+    if (description) delete[] description;
+    if (notes) delete[] notes;
 }
 
 int Channel::set_name(const char text[]){
-    if (name) delete name;
+    if (name) delete[] name;
     name = new char[strlen(text)+1];
     strcpy(name, text);
     return 1;
@@ -41,14 +40,14 @@ int Channel::get_name(char text[]){
 }
 
 int Channel::set_description(const char text[]){
-    if (description) delete description;
+    if (description) delete[] description;
     description = new char[strlen(text)+1];
     strcpy(description, text);
     return 1;
 }
 
 int Channel::set_notes(const char text[]){
-    if (notes) delete notes;
+    if (notes) delete[] notes;
     notes = new char[strlen(text)+1];
     strcpy(notes, text);
     return 1;

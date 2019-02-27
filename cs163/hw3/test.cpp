@@ -28,7 +28,7 @@ int main()
             cout << "Option 1 selected!" << endl;
             // 1: Add a new Channel to stack.
             if (define_channel(ref_chan)){
-                if (my_table.copy_channel(ref_chan)){
+                if (my_table.enter_channel(ref_chan)){
                     cout << "Channel added successfully!" << endl;
                 } else cout << "Channel by this name already exists! Not added to table." << endl;
                 ref_chan.display();
@@ -92,9 +92,21 @@ int main()
 }
 
 int auto_test(){
-    HashTable my_table;
-    cout << "In autotest." << endl;
+    int table_size;
+
+    cout << "How long should the table array be. Enter an integer:" << endl;
+    if (!(cin >> table_size)){
+        // I was annoyed with input errors, discovered clear() on a forum
+        // http://www.cplusplus.com/forum/beginner/26821/
+        cin.clear();
+        cin.ignore();
+        table_size = 0;
+    }
+    cin.ignore(SIZE_TEMP_CHARS, '\n');
+
+    HashTable my_table(table_size);
     my_table.display_stats();
+
     return 0;
 }
 
@@ -164,7 +176,7 @@ int read_task_no(){
             << "2: Search by keyword, display all matches" << endl
             << "3: Remove channel by name" << endl
             << "4: Display all." << endl
-            << "5: Run Autotest." << endl
+            << "5: Experiment with array length." << endl
             << "6: Exit." << endl
             << "\nEnter a number to enjoy an option." << endl
             << endl;

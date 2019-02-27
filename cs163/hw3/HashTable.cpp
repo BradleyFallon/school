@@ -10,24 +10,65 @@
 #include "header.h"
 
 
-HashTable::HashTable(){
+HashTable::HashTable(void){
     // Initialize the has table with null pointers
-    HashTable(SIZE_TBLARY);
+    size_table = SIZE_TBLARY;
+    // Initialize the has table with null pointers
+    key_table_array = new TableNode*[size_table];
+    name_table_array = new TableNode*[size_table];
+    for (int i=0; i<size_table; ++i){
+        key_table_array[i] = NULL;
+        name_table_array[i] = NULL;
+    }
+    _read_file();
 };
 
 HashTable::HashTable(int array_size){
     size_table = array_size;
     // Initialize the has table with null pointers
-    hash_array = new TableNode*[size_table];
-    for (int i=0; i<size_table; ++i)
-        hash_array[i] = NULL;
+    key_table_array = new TableNode*[size_table];
+    name_table_array = new TableNode*[size_table];
+    for (int i=0; i<size_table; ++i){
+        key_table_array[i] = NULL;
+        name_table_array[i] = NULL;
+    }
     _read_file();
 };
 
-HashTable::~HashTable(void){
+HashTable::~HashTable(){
+    for (int i=0; i<size_table; ++i)
+        if (key_table_array[i]){
+            // delete the channels by name for this index
+            // Trying to only delete channel once, so delete from
+            // name table and not keyword table
+            delete_channels(name_table_array[i]);
+            // Delete the keyword list
+            delete_list(key_table_array[i]);
+            // delete the name list
+            delete_list(name_table_array[i]);
+        }
+    delete[] key_table_array;
+    delete[] name_table_array;
 };
 
-int HashTable::_insert_at_index(int index, const char text[], Channel * chan_ptr){
+int HashTable::delete_list(TableNode * & head){
+    // Doesn't count. Returns 1 if deleted else 0.
+    if (!head) return 0;
+    delete_list(head->next);
+    delete[] head->keyword;
+    delete(head);
+    return 1;
+}
+
+int HashTable::delete_channels(TableNode * & head){
+    // Doesn't count. Returns 1 if deleted else 0.
+    if (!head) return 0;
+    delete(head->chan_ptr);
+    delete_channels(head->next);
+    return 1;
+}
+
+int HashTable::_insert_at_index(int index, const char text[], Channel * chan_ptr, TableNode ** & target_array){
     TableNode * new_node;
     // Create the new node and copy text
     new_node = new TableNode;
@@ -35,8 +76,8 @@ int HashTable::_insert_at_index(int index, const char text[], Channel * chan_ptr
     strcpy(new_node->keyword, text);
     new_node->chan_ptr = chan_ptr;
     // Insert at head, unsorted
-    new_node->next = hash_array[index];
-    hash_array[index] = new_node;
+    new_node->next = target_array[index];
+    target_array[index] = new_node;
 };
 
 int HashTable::_add_channel(Channel * ref_chan){
@@ -44,23 +85,22 @@ int HashTable::_add_channel(Channel * ref_chan){
     char text[SIZE_TEMP_CHARS];
     CharsNode * current_key;
 
-    
     ref_chan->get_name(text);
     index = get_hash(text) % size_table;
 
-    _insert_at_index(index, text, ref_chan);
+    _insert_at_index(index, text, ref_chan, name_table_array);
 
     current_key = ref_chan->get_head_search_key();
     while (current_key){
         index = get_hash(current_key->txt) % size_table;
-        _insert_at_index(index, current_key->txt, ref_chan);
+        _insert_at_index(index, current_key->txt, ref_chan, key_table_array);
         current_key = current_key->next;
     }
 
     return 1;
 };
 
-int HashTable::copy_channel(Channel & ref_chan){
+int HashTable::enter_channel(Channel & ref_chan){
     Channel * new_channel;
     new_channel = new Channel;
     if (new_channel->clone(ref_chan)){
@@ -93,7 +133,7 @@ int HashTable::search_keyword(const char searched[], Channel found[], int max_hi
     int hit_count = 0;
 
     index = get_hash(searched) % size_table;
-    current = hash_array[index];
+    current = key_table_array[index];
 
     while (current && hit_count < max_hits){
         if (!strcmp(current->keyword, searched)){
@@ -117,7 +157,7 @@ int HashTable::display_matches(const char searched[]){
     int any_hits = false;
 
     index = get_hash(searched) % size_table;
-    current = hash_array[index];
+    current = key_table_array[index];
 
     while (current){
         if (!strcmp(current->keyword, searched)){
@@ -140,7 +180,7 @@ int HashTable::display_all(){
     cout << "This is your table:" << endl;
     for (int i=0; i<size_table; ++i){
         cout << "In column " << i << endl;
-        current = hash_array[i];
+        current = key_table_array[i];
         while (current){
             current->chan_ptr->display();
             current = current->next;
@@ -160,7 +200,7 @@ int HashTable::remove_by_name(const char searched_name[]){
     CharsNode * current_key;
 
     index = get_hash(searched_name) % size_table;
-    current = hash_array[index];
+    current = name_table_array[index];
 
     while (current && !channel_found){
         if (!strcmp(current->keyword, searched_name)){
@@ -174,17 +214,18 @@ int HashTable::remove_by_name(const char searched_name[]){
             current = current->next;
         }
     }
+
     if (channel_found){
         prev->next = current->next;
-        the_channel = current->chan_ptr; // Delete after iterating keywords
-        delete current->keyword;
-        delete current;
+        the_channel = current->chan_ptr; // delete after iterating keywords
+        delete[] current->keyword;
+        delete(current);
 
 
         current_key = the_channel->get_head_search_key();
         while (current_key){
             index = get_hash(current_key->txt) % size_table;
-            current = hash_array[index];
+            current = key_table_array[index];
             prev = NULL;
             while(current){
                 if (!strcmp(current->keyword, searched_name)){
@@ -192,9 +233,9 @@ int HashTable::remove_by_name(const char searched_name[]){
                     if (!strcmp(current->keyword, current_name)){
                         if (prev){
                             prev->next = current->next;
-                        } else hash_array[index] = current;
-                        delete current->keyword;
-                        delete current;    
+                        } else key_table_array[index] = current;
+                        delete[] current->keyword;
+                        delete(current);    
                     }
                 }
                 prev = current;
@@ -202,7 +243,7 @@ int HashTable::remove_by_name(const char searched_name[]){
             }
             current_key = current_key->next;
         }
-        delete the_channel;
+        delete(the_channel);
         return 1;
     }
     // No channel found
@@ -213,11 +254,13 @@ int HashTable::display_stats(){
     TableNode * current;
     int col_count = 0;
 
-    cout << "This is your table:" << endl;
+
+    cout << "TABLE LLL LENGTH PER ARRAY ELEMENT:" << endl;
+    cout << "(Common search keys will make an array element fill more.)" << endl;
 
     for (int i=0; i<size_table; ++i){
         col_count = 0;
-        current = hash_array[i];
+        current = key_table_array[i];
         while (current){
             ++col_count;
             current = current->next;

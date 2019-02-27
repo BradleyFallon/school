@@ -23,6 +23,12 @@ using namespace std;
 const int SIZE_TBLARY = 79;
 const int SIZE_TEMP_CHARS = 256;
 
+const char DATA_PATH[13] = "channels.txt";
+const char FILE_HEADER[15] = "#CHANNELS-DUMP";
+const char CHANNEL_HEADER[15] = "#CHANNEL";
+const char CHANNEL_FOOTER[13] = "#CHANNEL-END";
+const char DELIM = '\n';
+
 
 struct CharsNode{
 	CharsNode * next;
@@ -63,14 +69,12 @@ class Channel{
 
 		void display();
 
-        TextList search_keys_list;
-
 	private:
         char * name;
-        int num_keys;
 		char * description;
 		char * notes;
         int rating;
+        TextList search_keys_list;
 };
 
 struct TableNode{
@@ -86,7 +90,7 @@ class HashTable{
         ~HashTable(void);
 
         // This is the public add_channel method, which makes a copy of the channel and adds to table
-        int copy_channel(Channel & ref_chan); 
+        int enter_channel(Channel & ref_chan); 
         int get_hash(const char text[]);
         int search_keyword(const char text[], Channel found[], int max_hits);
         int display_matches(const char searched[]);
@@ -95,18 +99,16 @@ class HashTable{
         int display_stats();
 
     private:
-        const char DATA_PATH[13] = "channels.txt";
-        const char FILE_HEADER[15] = "#CHANNELS-DUMP";
-        const char CHANNEL_HEADER[15] = "#CHANNEL";
-        const char CHANNEL_FOOTER[13] = "#CHANNEL-END";
-        const char DELIM = '\n';
 
-        int _insert_at_index(int index, const char text[], Channel * chan_ptr);
+        int _insert_at_index(int index, const char text[], Channel * chan_ptr, TableNode ** & target_array);
         int _add_channel(Channel * ref_chan); // This is the private add_channel method, which does not make a copy of the channel
+        int delete_list(TableNode * & head);
+        int delete_channels(TableNode * & head);
 
         void _read_file();
         
-        TableNode ** hash_array; // This is the array of the table, the top level
+        TableNode ** key_table_array; // This is the array of the table, the top level
+        TableNode ** name_table_array; // This is the array of the table, the top level
         int size_table; // This is the size of the array
         
 };

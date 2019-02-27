@@ -20,7 +20,7 @@ TextList::TextList(void){
 }
 
 TextList::~TextList(void){
-
+    delete_all();
 }
 
 CharsNode * TextList::get_head(){
@@ -69,7 +69,7 @@ int TextList::delete_all(){
 int TextList::delete_all_rec(CharsNode * head){
     if (!head) return 0;
     delete_all_rec(head->next);
-    delete head->txt;
-    delete head;
+    delete[] head->txt;
+    delete(head);
     return 1;
 } 
