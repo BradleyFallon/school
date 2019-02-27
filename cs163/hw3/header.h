@@ -82,6 +82,7 @@ struct TableNode{
 class HashTable{
     public:
         HashTable(void);
+        HashTable(int array_size);
         ~HashTable(void);
 
         // This is the public add_channel method, which makes a copy of the channel and adds to table
@@ -90,7 +91,7 @@ class HashTable{
         int search_keyword(const char text[], Channel found[], int max_hits);
         int display_matches(const char searched[]);
         int display_all();
-        int remove_by_name();
+        int remove_by_name(const char searched_name[]);
         int display_stats();
 
     private:
@@ -106,5 +107,6 @@ class HashTable{
         void _read_file();
         
         TableNode ** hash_array; // This is the array of the table, the top level
+        int size_table; // This is the size of the array
         
 };

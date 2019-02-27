@@ -10,10 +10,16 @@
 #include "header.h"
 
 
-HashTable::HashTable(void){
+HashTable::HashTable(){
     // Initialize the has table with null pointers
-    hash_array = new TableNode*[SIZE_TBLARY];
-    for (int i=0; i<SIZE_TBLARY; ++i)
+    HashTable(SIZE_TBLARY);
+};
+
+HashTable::HashTable(int array_size){
+    size_table = array_size;
+    // Initialize the has table with null pointers
+    hash_array = new TableNode*[size_table];
+    for (int i=0; i<size_table; ++i)
         hash_array[i] = NULL;
     _read_file();
 };
@@ -40,13 +46,13 @@ int HashTable::_add_channel(Channel * ref_chan){
 
     
     ref_chan->get_name(text);
-    index = get_hash(text) % SIZE_TBLARY;
+    index = get_hash(text) % size_table;
 
     _insert_at_index(index, text, ref_chan);
 
     current_key = ref_chan->get_head_search_key();
     while (current_key){
-        index = get_hash(current_key->txt) % SIZE_TBLARY;
+        index = get_hash(current_key->txt) % size_table;
         _insert_at_index(index, current_key->txt, ref_chan);
         current_key = current_key->next;
     }
@@ -86,7 +92,7 @@ int HashTable::search_keyword(const char searched[], Channel found[], int max_hi
     TableNode * current;
     int hit_count = 0;
 
-    index = get_hash(searched) % SIZE_TBLARY;
+    index = get_hash(searched) % size_table;
     current = hash_array[index];
 
     while (current && hit_count < max_hits){
@@ -110,7 +116,7 @@ int HashTable::display_matches(const char searched[]){
     TableNode * current;
     int any_hits = false;
 
-    index = get_hash(searched) % SIZE_TBLARY;
+    index = get_hash(searched) % size_table;
     current = hash_array[index];
 
     while (current){
@@ -132,7 +138,7 @@ int HashTable::display_all(){
     TableNode * current;
 
     cout << "This is your table:" << endl;
-    for (int i=0; i<SIZE_TBLARY; ++i){
+    for (int i=0; i<size_table; ++i){
         cout << "In column " << i << endl;
         current = hash_array[i];
         while (current){
@@ -143,8 +149,64 @@ int HashTable::display_all(){
     return 1;
 };
 
-int HashTable::remove_by_name(){
-    return 1;
+
+int HashTable::remove_by_name(const char searched_name[]){
+    bool channel_found = false;
+    int index;
+    char current_name[SIZE_TEMP_CHARS];
+    TableNode * current;
+    TableNode * prev;
+    Channel * the_channel;
+    CharsNode * current_key;
+
+    index = get_hash(searched_name) % size_table;
+    current = hash_array[index];
+
+    while (current && !channel_found){
+        if (!strcmp(current->keyword, searched_name)){
+            current->chan_ptr->get_name(current_name);
+            if (!strcmp(current->keyword, current_name)){
+                channel_found = true;
+            }
+        }
+        if (!channel_found){
+            prev = current;
+            current = current->next;
+        }
+    }
+    if (channel_found){
+        prev->next = current->next;
+        the_channel = current->chan_ptr; // Delete after iterating keywords
+        delete current->keyword;
+        delete current;
+
+
+        current_key = the_channel->get_head_search_key();
+        while (current_key){
+            index = get_hash(current_key->txt) % size_table;
+            current = hash_array[index];
+            prev = NULL;
+            while(current){
+                if (!strcmp(current->keyword, searched_name)){
+                    current->chan_ptr->get_name(current_name);
+                    if (!strcmp(current->keyword, current_name)){
+                        if (prev){
+                            prev->next = current->next;
+                        } else hash_array[index] = current;
+                        delete current->keyword;
+                        delete current;    
+                    }
+                }
+                prev = current;
+                current = current->next;
+            }
+            current_key = current_key->next;
+        }
+        delete the_channel;
+        return 1;
+    }
+    // No channel found
+    return 0;
 };
 
 int HashTable::display_stats(){
@@ -153,7 +215,7 @@ int HashTable::display_stats(){
 
     cout << "This is your table:" << endl;
 
-    for (int i=0; i<SIZE_TBLARY; ++i){
+    for (int i=0; i<size_table; ++i){
         col_count = 0;
         current = hash_array[i];
         while (current){

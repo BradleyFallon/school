@@ -55,6 +55,12 @@ int main()
         {
             cout << "Option 3 selected!" << endl;
             // 3: Remove channel by name
+            cout << "Enter the name of the channel to remove:" << endl;
+            cin.get(text, SIZE_TEMP_CHARS, '\n');
+            cin.ignore(SIZE_TEMP_CHARS,'\n');
+            if (my_table.remove_by_name(text)){
+                cout << "Channel removed successfully!" << endl;
+            } else cout << "No matches found!" << endl;
         }
         else if (task_no == 4)
         {
