@@ -1,8 +1,9 @@
-//====================================================================
-// Homework 2 for CS163
+// ====================================================================
+// Homework 3 for CS163
 // Bradley Fallon
 // bfallon@pdx.edu
-// 2/8/2019
+// 2/28/2019
+//
 // ====================================================================
 
 // This is the Channel class. It is for storing, retreiving and displaying Channel data.
