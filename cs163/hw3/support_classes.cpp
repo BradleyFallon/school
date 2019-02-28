@@ -66,10 +66,10 @@ int TextList::delete_all(){
     return 1;
 }
 
-int TextList::delete_all_rec(CharsNode * head){
-    if (!head) return 0;
-    delete_all_rec(head->next);
-    delete[] head->txt;
-    delete(head);
+int TextList::delete_all_rec(CharsNode * & current){
+    if (!current) return 0;
+    delete_all_rec(current->next);
+    delete[] current->txt;
+    delete(current);
     return 1;
 } 

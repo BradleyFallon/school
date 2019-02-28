@@ -33,7 +33,6 @@ int main()
                 } else cout << "Channel by this name already exists! Not added to table." << endl;
                 ref_chan.display();
             } else cout << "Failed to create channel!" << endl;
-
         }
         else if (task_no == 2)
         {

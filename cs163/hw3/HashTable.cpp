@@ -36,35 +36,34 @@ HashTable::HashTable(int array_size){
 };
 
 HashTable::~HashTable(){
-    for (int i=0; i<size_table; ++i)
-        if (key_table_array[i]){
-            // delete the channels by name for this index
-            // Trying to only delete channel once, so delete from
-            // name table and not keyword table
-            delete_channels(name_table_array[i]);
-            // Delete the keyword list
-            delete_list(key_table_array[i]);
-            // delete the name list
-            delete_list(name_table_array[i]);
+    for (int i=0; i<size_table; ++i){
+        // delete the channels by name for this index
+        // Trying to only delete channel once, so delete from
+        // name table and not keyword table
+        _delete_channels(name_table_array[i]);
+        // Delete the keyword list
+        _delete_list(key_table_array[i]);
+        // delete the name list
+        _delete_list(name_table_array[i]);
         }
     delete[] key_table_array;
     delete[] name_table_array;
 };
 
-int HashTable::delete_list(TableNode * & head){
+int HashTable::_delete_list(TableNode * & head){
     // Doesn't count. Returns 1 if deleted else 0.
     if (!head) return 0;
-    delete_list(head->next);
+    _delete_list(head->next);
     delete[] head->keyword;
-    delete(head);
+    delete head ;
     return 1;
 }
 
-int HashTable::delete_channels(TableNode * & head){
+int HashTable::_delete_channels(TableNode * & head){
     // Doesn't count. Returns 1 if deleted else 0.
     if (!head) return 0;
-    delete(head->chan_ptr);
-    delete_channels(head->next);
+    delete head->chan_ptr;
+    _delete_channels(head->next);
     return 1;
 }
 
@@ -253,8 +252,7 @@ int HashTable::remove_by_name(const char searched_name[]){
 int HashTable::display_stats(){
     TableNode * current;
     int col_count = 0;
-
-
+    
     cout << "TABLE LLL LENGTH PER ARRAY ELEMENT:" << endl;
     cout << "(Common search keys will make an array element fill more.)" << endl;
 

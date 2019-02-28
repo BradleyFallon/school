@@ -233,7 +233,7 @@ def generate_synonyms_dict(words_list):
     return synonyms_dict
 
 
-def main(number_channels=300):
+def main(number_channels=100):
     syns_dict = generate_synonyms_dict(DESCRIPTORS + GENRES)
 
     names_set = set()
