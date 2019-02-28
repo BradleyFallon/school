@@ -4,6 +4,7 @@ const int SIZE = 256;
 
 // Prototypes - See definitions below
 int auto_test();
+bool prompt_bool();
 int read_task_no();
 int define_channel(Channel & ref_chan);
 
@@ -109,6 +110,34 @@ int auto_test(){
     return 0;
 }
 
+bool prompt_bool(){
+	// This repeatedly prompts the user for a yes or no response until valid input is provided.
+	int i = 0;
+	char response;
+	while (i=0, i++, i<5)
+	{
+		// Prompt user for boolean response.
+		cout << "Please respond with 'y' (yes) or 'n' (no)." << endl;
+		cin >> response;
+		cin.ignore(100, '\n');
+		// Process input and return true or false if input was valid.
+		if (response=='y')
+		{
+			return true;
+		} else if (response=='n')
+		{
+			return false;
+		} else
+		{
+			// Invalid response. Inform user and try again.
+			cout << "Invalid response..." << endl;
+		}
+	}
+	// Give up because user has exceeded tries limit. Assume the assignment was graded.
+	cout << "This is taking too long. I'll answer for you... 'y'." << endl;
+	return true;
+}
+
 // This is used to prompt user for ref_chan propeties and set them to the ref_chan
 int define_channel(Channel & ref_chan){
     char text[SIZE_TEMP_CHARS];
@@ -147,10 +176,13 @@ int define_channel(Channel & ref_chan){
     cin.ignore(SIZE_TEMP_CHARS,'\n');
     ref_chan.set_rating(int_get);
 
-    cout <<"Enter a channel search keyword (text for cstring):" << endl;
-    cin.get(text, SIZE_TEMP_CHARS, '\n');
-    cin.ignore(SIZE_TEMP_CHARS,'\n');
-    ref_chan.add_search_key(text);
+    do {
+        cout <<"Enter a channel search keyword (text for cstring):" << endl;
+        cin.get(text, SIZE_TEMP_CHARS, '\n');
+        cin.ignore(SIZE_TEMP_CHARS,'\n');
+        ref_chan.add_search_key(text);
+        cout << "Do you want to add another keyword?" << endl;
+    } while(prompt_bool());
 
     return 1;
 }
@@ -171,9 +203,9 @@ int read_task_no(){
         failed = true;
         // Give instructions and get response
         cout << "\n\nWhat do you want?" << endl
-            << "1: Add a new Channel to stack." << endl
-            << "2: Search by keyword, display all matches" << endl
-            << "3: Remove channel by name" << endl
+            << "1: Add a new Channel to the table." << endl
+            << "2: Search by keyword, display all matches." << endl
+            << "3: Remove channel by name." << endl
             << "4: Display all." << endl
             << "5: Experiment with array length." << endl
             << "6: Exit." << endl
