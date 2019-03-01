@@ -2,7 +2,7 @@
 // Homework 3 for CS163
 // Bradley Fallon
 // bfallon@pdx.edu
-// 1/31/2019
+// 2/28/2019
 //
 // Main header file. Used for all classes and ADT prototypes.
 // ====================================================================
@@ -43,7 +43,7 @@ class TextList{
         int insert(const char text[]);
         int copy(TextList & other);
         int delete_all();
-        int delete_all_rec(CharsNode * head);
+        int delete_all_rec(CharsNode * & current);
         CharsNode * get_head();
 
     private:
@@ -102,8 +102,8 @@ class HashTable{
 
         int _insert_at_index(int index, const char text[], Channel * chan_ptr, TableNode ** & target_array);
         int _add_channel(Channel * ref_chan); // This is the private add_channel method, which does not make a copy of the channel
-        int delete_list(TableNode * & head);
-        int delete_channels(TableNode * & head);
+        int _delete_list(TableNode * & head);
+        int _delete_channels(TableNode * & head);
 
         void _read_file();
         

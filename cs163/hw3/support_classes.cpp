@@ -1,15 +1,14 @@
-//====================================================================
-// Homework 2 for CS163
+// ====================================================================
+// Homework 3 for CS163
 // Bradley Fallon
 // bfallon@pdx.edu
-// 2/8/2019
+// 2/28/2019
+//
+// This file is for defining supporting classes that do not deserve 
+// their own file... Turned out to just be a list.
 // ====================================================================
 
-// This file is for defining supporting classes that do not deserve 
-// their own file..
-
 #include "header.h"
-
 
 /*
 This class is a linear linked list of character arrays.
@@ -66,10 +65,10 @@ int TextList::delete_all(){
     return 1;
 }
 
-int TextList::delete_all_rec(CharsNode * head){
-    if (!head) return 0;
-    delete_all_rec(head->next);
-    delete[] head->txt;
-    delete(head);
+int TextList::delete_all_rec(CharsNode * & current){
+    if (!current) return 0;
+    delete_all_rec(current->next);
+    delete[] current->txt;
+    delete current;
     return 1;
 } 

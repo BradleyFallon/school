@@ -1,0 +1,53 @@
+Efficiency Review
+
+My ADT is built using two tables. Each table is an array of linear linked lists.
+It seems inefficient to use two tables. Having two tables means we need more memory,
+but the cost isn't that large. The cost is pretty small to make a new array, since the
+items of the array are just pointers. The reason I have two tables, is that one is for
+the search keywords and the other is for the names. I did try putting both of these
+keys (name and search keyword) into the same table. I had two concerns with this.
+My first concern was that we might run into confusion if we allow a channel to have the
+name as a search key. There would have been a way to work with this, which is to only
+consider a match when searching for a name if the name property is a match, and not just
+the key that was used in the table. The other reason, which is more compelling, to use two
+tables is to make deleting channels simple. With two tables, if I want to delete all channels,
+then I can delete all nodes of the keyword table, without deleting channels, then I can delete
+all channels from the name table, which should only have one entry per channel object. I do not
+want my program to attempt deleting the same channel more than once, so this is important. 
+
+One thing that is inefficient computationally, is that I traverse my whole name table to delete channels,
+then I traverse again to delete nodes. This should have been done in one pass. The reason it does two
+passes, is just that I wrote it that way and I can't spend weeks rewriting every function until it
+is absolutely perfect. There is no justification for it other than it works and is implemented.
+
+One concern I have with this program, is that I have not implemented any strategy for detecting duplicates.
+This means, that if the client defined channels with the same name, that would be allowed. This could cause
+confusion. This is one limitation of using hash tables.
+
+Hash tables are very efficient. It is great that there is no need to traverse over all channels
+when searching for a match to a given keyword. This means the program can be very computationally
+efficient. This does require a bit of memory overhead, compared to a sorted linear linked list.
+A linear linked list would not require the memory of the array, but searching would be much more complex.
+Searching would require traversing all channel nodes, and then checking each keyword member value.
+For what this program's main strength is, searching for objects according to a keyword, it is very efficient.
+The cost, is that we miss out on the ability to sort our data, which is important when checking for duplicates.
+
+My hashing function is pretty good for the size of my data-set. I do not think my hashing function would work
+very well if I had an array of more than 100 elements. I made an effort to ensure that my hashing function
+works well for scattering the hashes. This is done by ensuring that odd and even numbers are possible, and ensuring
+that the same prime factors are not present within all hash values. I was concerned about adding the value of each character,
+because the hash value would be too small. I tried multiplying each character by its index, and then summing this,
+and that was better, but still not large enough. I did not want to multiply all characters, because this will give
+very large numbers, which is good, but there will be similar prime factors, which limits the possibilities
+of effective array lengths. I settled on multiplying each character by the index by the index plus one. I then
+did some other junk to try and add noise, but I don't know if that helped.
+
+In testing my hashing function with a variety of array sizes, I found that it works pretty well now. My first iteration
+of my hashing function seemed to make waves and have peaks at every ten or so elements. Multiplying characters by the
+next character added enough noise that the distribution seemed quite random. Now for most array sizes less than 100 I
+get a pretty good distribution. My hashing function can behave well with round even numbers for array length such as
+20, 30, 40. I noticed that at 50 I started to see some empty lists. Also at 64, I saw clustered empty lists. Even a list
+length of 73, a prime number, seemed to have some empty lists next to each other. I think this will be very difficult to
+avoid, because it is uncommon to get some letters, and common to get others, so hash values may cluster since inputs
+cluster. This may be improved by making my hashing function output much larger numbers and hope that modding by
+a prime number array length causes us to avoid this.

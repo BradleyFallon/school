@@ -2,7 +2,7 @@
 // Homework 3 for CS163
 // Bradley Fallon
 // bfallon@pdx.edu
-// 1/31/2019
+// 2/28/2019
 //
 // Hash Table Class Definition File.
 // ====================================================================
@@ -36,35 +36,34 @@ HashTable::HashTable(int array_size){
 };
 
 HashTable::~HashTable(){
-    for (int i=0; i<size_table; ++i)
-        if (key_table_array[i]){
-            // delete the channels by name for this index
-            // Trying to only delete channel once, so delete from
-            // name table and not keyword table
-            delete_channels(name_table_array[i]);
-            // Delete the keyword list
-            delete_list(key_table_array[i]);
-            // delete the name list
-            delete_list(name_table_array[i]);
+    for (int i=0; i<size_table; ++i){
+        // delete the channels by name for this index
+        // Trying to only delete channel once, so delete from
+        // name table and not keyword table
+        _delete_channels(name_table_array[i]);
+        // Delete the keyword list
+        _delete_list(key_table_array[i]);
+        // delete the name list
+        _delete_list(name_table_array[i]);
         }
     delete[] key_table_array;
     delete[] name_table_array;
 };
 
-int HashTable::delete_list(TableNode * & head){
+int HashTable::_delete_list(TableNode * & head){
     // Doesn't count. Returns 1 if deleted else 0.
     if (!head) return 0;
-    delete_list(head->next);
+    _delete_list(head->next);
     delete[] head->keyword;
-    delete(head);
+    delete head ;
     return 1;
 }
 
-int HashTable::delete_channels(TableNode * & head){
+int HashTable::_delete_channels(TableNode * & head){
     // Doesn't count. Returns 1 if deleted else 0.
     if (!head) return 0;
-    delete(head->chan_ptr);
-    delete_channels(head->next);
+    delete head->chan_ptr;
+    _delete_channels(head->next);
     return 1;
 }
 
@@ -137,7 +136,6 @@ int HashTable::search_keyword(const char searched[], Channel found[], int max_hi
 
     while (current && hit_count < max_hits){
         if (!strcmp(current->keyword, searched)){
-            current->chan_ptr->display();
             found[hit_count].clone(*current->chan_ptr);
             ++hit_count;
         }
@@ -202,6 +200,8 @@ int HashTable::remove_by_name(const char searched_name[]){
     index = get_hash(searched_name) % size_table;
     current = name_table_array[index];
 
+    // Search name table for a matchiing name
+    prev = NULL;
     while (current && !channel_found){
         if (!strcmp(current->keyword, searched_name)){
             current->chan_ptr->get_name(current_name);
@@ -215,13 +215,19 @@ int HashTable::remove_by_name(const char searched_name[]){
         }
     }
 
+    // If we found a match, remove node from name table, 
+    // then remove all matches from key table, and delete channel
     if (channel_found){
-        prev->next = current->next;
+        if (prev)
+            prev->next = current->next;
+        else
+            name_table_array[index] = current->next;
+
         the_channel = current->chan_ptr; // delete after iterating keywords
         delete[] current->keyword;
-        delete(current);
+        delete current;
 
-
+        // Traverse through the search keys list, and search for each in the key table
         current_key = the_channel->get_head_search_key();
         while (current_key){
             index = get_hash(current_key->txt) % size_table;
@@ -233,9 +239,9 @@ int HashTable::remove_by_name(const char searched_name[]){
                     if (!strcmp(current->keyword, current_name)){
                         if (prev){
                             prev->next = current->next;
-                        } else key_table_array[index] = current;
+                        } else key_table_array[index] = current->next;
                         delete[] current->keyword;
-                        delete(current);    
+                        delete current;    
                     }
                 }
                 prev = current;
@@ -243,7 +249,7 @@ int HashTable::remove_by_name(const char searched_name[]){
             }
             current_key = current_key->next;
         }
-        delete(the_channel);
+        delete the_channel;
         return 1;
     }
     // No channel found
@@ -253,8 +259,7 @@ int HashTable::remove_by_name(const char searched_name[]){
 int HashTable::display_stats(){
     TableNode * current;
     int col_count = 0;
-
-
+    
     cout << "TABLE LLL LENGTH PER ARRAY ELEMENT:" << endl;
     cout << "(Common search keys will make an array element fill more.)" << endl;
 
