@@ -136,7 +136,6 @@ int HashTable::search_keyword(const char searched[], Channel found[], int max_hi
 
     while (current && hit_count < max_hits){
         if (!strcmp(current->keyword, searched)){
-            current->chan_ptr->display();
             found[hit_count].clone(*current->chan_ptr);
             ++hit_count;
         }
@@ -201,6 +200,8 @@ int HashTable::remove_by_name(const char searched_name[]){
     index = get_hash(searched_name) % size_table;
     current = name_table_array[index];
 
+    // Search name table for a matchiing name
+    prev = NULL;
     while (current && !channel_found){
         if (!strcmp(current->keyword, searched_name)){
             current->chan_ptr->get_name(current_name);
@@ -214,13 +215,19 @@ int HashTable::remove_by_name(const char searched_name[]){
         }
     }
 
+    // If we found a match, remove node from name table, 
+    // then remove all matches from key table, and delete channel
     if (channel_found){
-        prev->next = current->next;
+        if (prev)
+            prev->next = current->next;
+        else
+            name_table_array[index] = current->next;
+
         the_channel = current->chan_ptr; // delete after iterating keywords
         delete[] current->keyword;
-        delete(current);
+        delete current;
 
-
+        // Traverse through the search keys list, and search for each in the key table
         current_key = the_channel->get_head_search_key();
         while (current_key){
             index = get_hash(current_key->txt) % size_table;
@@ -232,9 +239,9 @@ int HashTable::remove_by_name(const char searched_name[]){
                     if (!strcmp(current->keyword, current_name)){
                         if (prev){
                             prev->next = current->next;
-                        } else key_table_array[index] = current;
+                        } else key_table_array[index] = current->next;
                         delete[] current->keyword;
-                        delete(current);    
+                        delete current;    
                     }
                 }
                 prev = current;
@@ -242,7 +249,7 @@ int HashTable::remove_by_name(const char searched_name[]){
             }
             current_key = current_key->next;
         }
-        delete(the_channel);
+        delete the_channel;
         return 1;
     }
     // No channel found

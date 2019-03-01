@@ -69,6 +69,6 @@ int TextList::delete_all_rec(CharsNode * & current){
     if (!current) return 0;
     delete_all_rec(current->next);
     delete[] current->txt;
-    delete(current);
+    delete current;
     return 1;
 } 

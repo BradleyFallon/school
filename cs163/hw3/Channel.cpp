@@ -78,6 +78,7 @@ int Channel::clone(Channel & ref_chan){
     if (ref_chan.notes){
         set_notes(ref_chan.notes);
     } else return 0;
+    set_rating(ref_chan.rating);
     search_keys_list.copy(ref_chan.search_keys_list);
     return 1;
 }
