@@ -1,3 +1,12 @@
+// ====================================================================
+// Homework 3 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 2/28/2019
+//
+// ====================================================================
+
+
 Efficiency Review
 
 My ADT is built using two tables. Each table is an array of linear linked lists.
