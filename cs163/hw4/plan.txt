@@ -64,3 +64,95 @@ we reach a null pointer, calling the display method on each nodes data Term obje
 Display all with names starting with characters within a given range.
 Returns an integer with the number of matches.
 
+=====================================
+Test Plan
+=====================================
+
+int make_lower(char text[]);
+    Case: Empty array 
+    Return 0
+    Case: Normal
+    Input array changed so all chars are lower, return 1
+
+Term Class
+
+int clone(Term & ref_term);
+    Case: Ref object missing member values
+    Return 0
+    Case: Normal
+    Copy all values, return 1
+int set_word(const char text[]);
+    Case: Pre existing value
+    Deallocate, copy, return 1
+    Case: Empty member on target
+    Copy value, return 1
+    Case: Empty member on ref object
+    return 0 
+int set_description(const char text[]);
+    Case: Pre existing value
+    Deallocate, copy, return 1
+    Case: Empty member on target
+    Copy value, return 1
+    Case: Empty member on ref object
+    return 0 
+int set_category(const char text[]);
+    Case: Pre existing value
+    Deallocate, copy, return 1
+    Case: Empty member on target
+    Copy value, return 1
+    Case: Empty member on ref object
+    return 0 
+int get_word(char text[]);
+    Case: Empty member on target
+    Return 0
+    Case: Normal
+    Copy value to input array, return 1
+bool is_less(const char text[]);
+    Case: Name of ref is less
+    Return true
+    Case: Name of ref is equal
+    Return false
+    Case: Name of ref is greater
+    Return false
+    Case: Any name is undefined
+    Return False
+bool is_less(const Term & other);
+    Case: Name of ref is less
+    Return true
+    Case: Name of ref is equal
+    Return false
+    Case: Name of ref is greater
+    Return false
+    Case: Any name is undefined
+    Return False
+void display();
+    Case: Always
+    Display any member calues which are defined, return void
+
+BST Class
+
+int insert(Term & ref_term);
+    Case: New term has no name
+    return 0
+    Case: Root is null
+    Case insert at root
+    Case: Normal
+    Insert sorted as a new leaf
+int remove(const char word[]);
+    Case: Word not found
+    Return 0
+    Case: Normal
+    Return number of deleted. Make sure tree is attached and memory deallocated.
+int retrieve(const char word[], Term found[], int max_hits);
+int get_height();
+bool is_efficient();
+void display_all();
+int display_range(char min_val, char max_val);
+void _read_file();
+void _deallocate_all(node * & root);
+int _insert(node * & root, Term & ref_term);
+int _remove(node * & root, const char word[]);
+int _retrieve(node * & root, const char word[], Term found[], int max_hits);
+int _get_height(node * & root);
+void _display_all(node * & root);
+int _display_range(node * & root, char min_val, char max_val);
