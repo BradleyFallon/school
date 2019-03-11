@@ -9,7 +9,6 @@
 
 #include "header.h"
 
-
 // Initialize all of the member values of a newly created Term
 Term::Term(void){
     // Set all pointers to null
@@ -29,6 +28,7 @@ int Term::set_word(const char text[]){
     if (word) delete[] word;
     word = new char[strlen(text)+1];
     strcpy(word, text);
+    make_lower(word);
     return 1;
 }
 
@@ -41,6 +41,7 @@ int Term::set_description(const char text[]){
     if (description) delete[] description;
     description = new char[strlen(text)+1];
     strcpy(description, text);
+    make_lower(description);
     return 1;
 }
 
@@ -48,19 +49,19 @@ int Term::set_category(const char text[]){
     if (category) delete[] category;
     category = new char[strlen(text)+1];
     strcpy(category, text);
+    make_lower(category);
     return 1;
 }
 
 bool Term::is_less(const char text[]){
-    if (strcmp(text, word) < 0) return true;
+    if (strcmp(word, text) < 0) return true;
     return false;
 }
 
 bool Term::is_less(const Term & other){
-    if (strcmp(other.word, word) < 0) return true;
+    if (strcmp(word, other.word) < 0) return true;
     return false;
 }
-
 
 int Term::clone(Term & ref_chan){
     // If the ref Term was poorly defined, return 0

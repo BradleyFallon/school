@@ -1,0 +1,54 @@
+// ====================================================================
+// Homework 4 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 3/11/2019
+//
+// Efficiency Review write-up.
+// ====================================================================
+
+The main data structure that was used to theis project was a Binary Search Tree, BST.
+With most of the past data structures, one would probably not be caring about searching
+for an item specifically based on the value of the data. For something like a linear
+linked list, a stack, or a queue, the intention should be that items are searched for
+based on chronology of creation. For a stack, for example, one can only access the most
+recently added item. For the more recent data structures we have been focusing, the purpose
+is to be able to search for a specific item by value. A hash table is very efficient for
+getting a specific value. What if one is required to find items within a range? In this
+case, a linear linked list might be better than a hash table, because a hash table is not
+sorted in any fashion. Traversing an entire linear linked list though is a heavy burden.
+Rather than traversing an entire list, we can make a BST which will enable us to half the list
+with each step.
+
+The efficiency of a binary search tree is not gauranteed. The efficiency is completely dependent
+on the order in which items were inserted. The insertion algorithm of a binary search tree 
+always adds a new leaf, and this new leaf is not enforced into a balanced position. 
+In this assignment, I made a file that had terms to use to populate the tree with. These
+terms were not sorted alphabetically, they were sorted by conceptual complexity. This means
+that the value of the words themselves were somewhat random. This resulted in a tree that was
+not ideal, but also much better than a linear linked list, somewhere in the middle.
+
+If this were to be improved, I would use a 2-3 tree. The benefit of a 2-3 tree is that
+it is rebalanced as it is built. Insertion does not simply add a leaf, it rearranges the
+tree and then grows taller from the root up, by popping values up the tree to make room
+for the new insertion. This would be better because the tree would always be balanced
+and for large trees, we would consistently have a great improvement in searching over a
+linear linked list.
+
+I would say that even better than a 2-3 tree is a hash table, but only if displaying data 
+within a range is not a requirement. Since displaying data within a range was a requirement
+for this project, a hash table is not a viable option.
+
+A binary search tree is most efficient when the algorithms of the functions to interact with
+it leverage the qualities of the data structure. An example of this is searching. When searching
+recursively for a particular value, it would be wasteful to search the left side subtree if we know
+that the value we are searching for is greater than the current node's value. This is because
+all values that are left side children are lesser by definition of a binary search tree. I kept this
+in mind in my algorithm designs, and I believe I leveraged this to the fullest extent. 
+
+One algorithm that I would have liked to improve, but can not justify the effort, is to make the 
+display all draw a tree that is similar to what I would draw on paper. This could be done by using
+slash or pipe characters to make lines and by printing breadth first. Displaying breadth first is not
+an obvious task. This may require parallel processes with shared memory. I have not figured out how this
+would be done, but I think that a similar problem will be extra credit on the next assignment, so I will
+be working on it soon enough.

@@ -1,4 +1,11 @@
-
+// ====================================================================
+// Homework 4 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 3/5/2019
+//
+// Design write-up and test plan.
+// ====================================================================
 
 
 The data structure to be used for this assignment is a Binary Search Tree.
@@ -13,31 +20,31 @@ data into a new structure.
 
 The efficiency of a binary search tree is not to be taken for granted. There is a 
 problem with binary search trees, which is that they will be unbalanced if there is
-a pettern to the data being inserted. If a sorted list is made into a binary search
+a pattern to the data being inserted. If a sorted list is made into a binary search
 tree, then the binary search tree will end up looking like a linear linked list.
 
 I will make a Term class, which will contain dynamically allocated arrays for the
 word and the description and category. This class will have member functions to
 make actions to clone a reference, setting the dynamic array member values, and
-to display the term information, and to comare if one term is less than another term.
+to display the term information, and to compare if one term is less than another term.
 
 The clone function will take a reference to another Term object, and use the setter methods
 to copy each member value from the reference to itself. 
 
-The setter functions will take in a charaacter array as a constant, and use strcpy to
+The setter functions will take in a character array as a constant, and use strcpy to
 copy over the values. The setters will also delete any preexisting array and reallocate
 for the appropriate length using strlen to determine the required length. 
 
 I will implement a member function to compare if one Term is less that another Term.
 This ill be done using strcmp on the term's word compared against another term. This will
-be used by the binary search tree for deciding whether to go lefet or right.
+be used by the binary search tree for deciding whether to go left or right.
 
 The Binary Search Tree will be a class, BST. This will use nodes with three members,
 the term object, the left node pointer, and the right node pointer. The BST will have
 member functions to do the following:
 
 Insert a copy of a referenced term object, sorted by name. Return 1 for success else 0.
-This will be implemented by recursivly traversing left if the insert value is les than 
+This will be implemented by recursively traversing left if the insert value is less than 
 current root, or right if equal or greater. If we arrive at a null pointer, then insert here.
 The pointers must be passed by reference so that we can change the value from null to new.
 
@@ -46,17 +53,21 @@ recursively. This will use the same strategy as insert, but when if we find our 
 the way we will return true. If we reach a dead end null pointer we return false.
 
 Retrieve all with matching name. Return number of objects found,
-whice are copied into "found" arrays.
+which are copied into "found" arrays.
 
 Return the int height - Get the height of the longest branch of the tree. There
 is no way to know he height of the tree without checking each branch. One way around
 this would be to set the depth of the new leaf upon each insert, this would go into
 a member value of the BST. This would be a good approach in my opinion, but this exercise
-is more about recursive algoriths, so instead I will do that. This will be accomplished
-by recursively travering the tree and returning the max depth of the two subproblems, plus
+is more about recursive algorithms, so instead I will do that. This will be accomplished
+by recursively traversing the tree and returning the max depth of the two sub-problems, plus
 one. 
 
-Determine if the tree is efficient, analytically using math. 
+Determine if the tree is efficient, analytically using math. This will be done by comparing
+the height of the tree to the number of nodes. First, height and node count must be determined
+recursively. Then, in the wrapper, we can calculate the minimum possible height for the number
+of nodes. If this is equal to the actual height, return true.
+Min Height = log_2(N) + 1
 
 Display all nodes of the tree. This will be done by recursively traversing until
 we reach a null pointer, calling the display method on each nodes data Term object.
@@ -127,7 +138,7 @@ bool is_less(const Term & other);
     Return False
 void display();
     Case: Always
-    Display any member calues which are defined, return void
+    Display any member values which are defined, return void
 
 BST Class
 
@@ -144,15 +155,31 @@ int remove(const char word[]);
     Case: Normal
     Return number of deleted. Make sure tree is attached and memory deallocated.
 int retrieve(const char word[], Term found[], int max_hits);
+    Case: No root node
+    return 0
+    Case: Normal
+    Return the number of matches found. These should be copied in to the first elements of the array.
+    Case: No hits 
+    Return 0
+    Case: No room in array
+    Stop searching when max reached, return as normal.
 int get_height();
+    Case: No root node
+    return 0
+    Case: Normal
+    Return int height of the longest branch.
 bool is_efficient();
+    Case: No root node
+    return 0
+    Case: Normal
+    Return true if the efficiency value is above criteria else false.
 void display_all();
+    All items displayed.
 int display_range(char min_val, char max_val);
-void _read_file();
-void _deallocate_all(node * & root);
-int _insert(node * & root, Term & ref_term);
-int _remove(node * & root, const char word[]);
-int _retrieve(node * & root, const char word[], Term found[], int max_hits);
-int _get_height(node * & root);
-void _display_all(node * & root);
-int _display_range(node * & root, char min_val, char max_val);
+    Case: No root node
+    return 0
+    Case: Normal
+    Return the number of matches found. These should be displayed by the ADT.
+    Case: No hits 
+    Return 0
+

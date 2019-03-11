@@ -1,0 +1,53 @@
+1
+Genaral Tree
+A set of one or more nodes, partitioned into a root node and subsets that are general subtrees of the root.
+Trees
+1
+parent
+the node directly above node n in the Tree
+Trees
+1
+Child
+A nde direcetly below node n in the tree
+Trees
+1
+Leaf
+A node with no children.
+Trees
+1
+Height
+The number of nodes on the longest path from the root to a leaf.
+Trees
+1
+Siblings
+Nodes with a common parent.
+Trees
+1
+Ancestor
+A node on the path from the root to n .
+Trees
+1
+Descendant
+A node on a path from n to a leaf.
+Trees
+1
+Subtree
+A tree that consists of a child (if any) of n and the child’s descendants.
+Trees
+1
+Binary tree
+A set of nodes that is either empty or partitioned into a root node and one or two subsets that are binary subtrees of the root. Each node has at most two children, the left child and the right child.
+Trees
+1
+Binary search tree
+A binary tree in which the value in any node n is greater than the value in every node in n’s left subtree but less than the value in every node in n ’s right subtree. 
+trees
+5
+a
+b
+3
+Subtree
+4
+2
+Descendant
+6
