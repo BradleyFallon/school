@@ -21,7 +21,6 @@ Graph::~Graph(){
     edge_node * current;
     edge_node * prev;
 
-    vertex_array = new vertex[LIST_SIZE];
     for (int i=0; i<LIST_SIZE; ++i){
         if (vertex_array[i].description) delete[] vertex_array[i].description;
         // Deallocate the edge list
@@ -37,6 +36,7 @@ Graph::~Graph(){
         vertex_array[i].description = NULL;
         vertex_array[i].head = NULL;
     }
+    delete [] vertex_array;
 }
 
 int Graph::insert_vertex(const char text[]){
@@ -166,13 +166,13 @@ int Graph::display_adjacency(){
     while (vertex_array[i].description && i < LIST_SIZE){
         cout << "======================================" << endl
             << "Decision:" << endl
-            << '\t' << vertex_array[i].description << endl;
+            << "\t[" << i << "]: " << vertex_array[i].description << endl;
 
         if (vertex_array[i].head){
             cout << "Adjacent to: " << endl;
             current = vertex_array[i].head;
             while (current){
-                cout << '\t' << "-- " << vertex_array[current->adjacent].description << endl; 
+                cout << "\t[" << current->adjacent << "]: " << vertex_array[current->adjacent].description << endl; 
                 cout << '\t' << '\t' << "via: " << current->description << endl;
                 current = current->next;
             }
