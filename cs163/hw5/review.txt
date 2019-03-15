@@ -1,0 +1,57 @@
+// ====================================================================
+// Homework 5 for CS163
+// Bradley Fallon
+// bfallon@pdx.edu
+// 3/15/2019
+//
+// My efficiency review for hw 5.
+// ====================================================================
+
+In most of my efficiency reviews, I have compared the data structure used to an alternative.
+For example, I could compare a sorted linear linked list to a binary search tree
+and also to a hash table. In the case of this project, that is a little less clear.
+A graph is a graph, and I don,t think that any of the other data structures we have learned
+about (LLL, stack, queue, BST, hash table etc.) could really stand as a replacement for a graph.
+A graph is a graph and cannot be simply replaced by another structure we have studied,
+however a graph could be implemented in a more feature-rich way by combining many of the
+data structures we have learned. The way the graph is implemented could 
+be done in many ways. I will discuss other potential implementations that I will make up,
+and consider what their advantages or disadvantages could be.
+
+This implementation used an array of vertices. Each vertex has a linear linked list
+in which each node is an attached edge. The edges are weighted. The edges point to 
+another vertex not directly, but by containing the index of the element in the vertex
+array. This edge to vertex reference could have been handled by having a pointer to 
+the vertex directly. I don't think that would have been beneficial. This would require
+more memory, because a pointer is larger than an int. Also, I like having indexes rather
+than pointers, because of my is_connected method. I this method, I am making a temporary
+array where I keep track of whether each vertex has been visited by the algorithm. It
+is very convenient to be able to put a true flag in the is_visited array at the index
+of the edges vertex reference. Otherwise, I would need to search the array do something
+else to keep track of is_visited, like maintaining flags on the vertex structs themselves.
+Yuck. That would require too much maintenance. I'd rather just dump the is_visited array in the
+garbage when I'm done than clean up a bunch of struct properties. With the approach I used,
+memory is only reserved while I am actively using it, then it is freed up for more important things. 
+
+The array used to store the vertices is very efficient at storage, and for the given 
+assignment, that is perfect. If we had been asked to do more complicated things with
+the vertices, it may have been useful t o store the vertices in another way. For example,
+If we wanted to be able to search for decisions (vertex data) in a very large graph,
+we could cut corners by having a hash table, rather than checking every single vertex on the
+way, we could jump straight to a secondary array and avoid potentially searching
+the vast majority of the array.
+
+I avoided recursive functions for the most part. Recursive functions were very useful
+when dealing with node-to-node structures such as search trees and linear linked lists.
+Since my vertices were in arrays, I didn't use recursion since I have all data in the array
+without needing to traverse. I could have used recursion for the operations done upon the edge lists,
+but I didn't feel the need. All of my interactions with the edge list were simple one-pass
+traversals. If I had to make complicated modifications or calculations on the edge list I would have used
+recursion, but if all I am doing is displaying and appending, I'd rather traverse in the what 
+would have been the wrapper.
+
+There is one problem in which I used recursion, which is the is_connected check. In this case,
+I used recursion to hop from vertex to vertex, always taking the first edge. After returning
+up the stack, if the graph is yet to be proven connected, then I will keep on searching on the second
+edges, then third and so on, until I have exhausted all edges or visited every vertex.
+
