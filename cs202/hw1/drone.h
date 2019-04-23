@@ -50,41 +50,6 @@ class Contestant: public Controller{
 
 };
 
-class Route{
-    // This is a graph edge data
-    public:
-        Route();
-    private:
-    protected:
-};
-
-class RouteNode: public Route{
-    // This is a graph edge node
-    public:
-        RouteNode();
-    private:
-    protected:
-};
-
-class Vertex: public Obstacle{
-    // This is a graph vertex
-    private:
-        RouteNode * head;
-};
-
-class Course{
-    // This is a graph
-    public:
-        Course();
-        // ~Course();
-        int add_obstacle(const Location &, int type_code);
-        // Specifying vertices by index is much easier
-        int create_route(int i_from, int i_to);
-        void display_adjacency();
-        void display_vertices();
-    protected:
-        Vertex * vertex_array;
-};
 
 class Race: public Course{
 

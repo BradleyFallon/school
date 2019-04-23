@@ -17,14 +17,40 @@ const int LIST_SIZE = 20;
 class Location{
     public:
         Location();
+        Location(const Location & ref);
         void display();
+        void set_name(const char[]);
+        void set_xyz(int, int, int);
     private:
     protected:
         char* name;
         int x;
         int y;
         int z;
+};
 
+
+class Route{
+    // This is a graph edge data
+    public:
+        Route();
+        void set_destination(int);
+        void set_distance(float);
+        void get_distance();
+    private:
+    protected:
+        float distance;
+        int destination;
+};
+
+class RouteNode: public Route{
+    // This is a graph edge node
+    public:
+        RouteNode();
+        void connect(RouteNode *);
+    private:
+    protected:
+        RouteNode * next;
 };
 
 class Obstacle: public Location{
@@ -33,7 +59,9 @@ class Obstacle: public Location{
         // Constructor that copies location props from a location ref
         Obstacle(const Location & placement);
     private:
+    // This is a graph vertex
     protected:
+        RouteNode * head;
 };
 
 class BlackHole: public Obstacle{
@@ -59,3 +87,19 @@ class WindMill: public Obstacle{
     private:
     protected:
 };
+
+
+class Course{
+    // This is a graph
+    public:
+        Course();
+        // ~Course();
+        int add_obstacle(const Location &, int type_code);
+        // Specifying vertices by index is much easier
+        int create_route(int i_from, int i_to);
+        void display_adjacency();
+        void display_vertices();
+    protected:
+        Obstacle ** vertex_array;
+};
+
