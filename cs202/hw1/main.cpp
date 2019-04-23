@@ -34,5 +34,7 @@ int main(){
     race.create_route(0, 1);
     race.create_route(1, 2);
 
+    race.display_course();
+
     return 0;
 }

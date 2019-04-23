@@ -37,6 +37,7 @@ class Route{
         void set_destination(int);
         void set_distance(float);
         void get_distance();
+        void display();
     private:
     protected:
         float distance;
@@ -47,7 +48,8 @@ class RouteNode: public Route{
     // This is a graph edge node
     public:
         RouteNode();
-        void connect(RouteNode *);
+        void append_node(RouteNode * to_add);
+        void display_all();
     private:
     protected:
         RouteNode * next;
@@ -58,6 +60,8 @@ class Obstacle: public Location{
         Obstacle();
         // Constructor that copies location props from a location ref
         Obstacle(const Location & placement);
+        void add_route(RouteNode * to_add);
+        void display_routes();
     private:
     // This is a graph vertex
     protected:
@@ -97,7 +101,7 @@ class Course{
         int add_obstacle(const Location &, int type_code);
         // Specifying vertices by index is much easier
         int create_route(int i_from, int i_to);
-        void display_adjacency();
+        void display_course();
         void display_vertices();
     protected:
         Obstacle ** vertex_array;

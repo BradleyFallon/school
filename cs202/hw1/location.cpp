@@ -42,6 +42,17 @@ Obstacle::Obstacle(const Location & placement): Location(placement){
 
 };
 
+void Obstacle::add_route(RouteNode * to_add){
+    if (head)
+        head->append_node(to_add);
+    else head = to_add;
+};
+
+void Obstacle::display_routes(){
+    display();
+    head->display_all();
+}
+
 BlackHole::BlackHole(): Obstacle(){
 
 };
