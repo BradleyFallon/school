@@ -6,7 +6,7 @@
 // 
 // ====================================================================
 
-#include "location.h"
+#include "course.h"
 
 
 class Drone: public Location{
@@ -60,8 +60,6 @@ class Race: public Course{
         // returns contestant id on success else NULL
         int enter_drone(Drone &);
         
-        
-
     private:
         DroneNode * head_finishers;
         DroneNode * head_active;

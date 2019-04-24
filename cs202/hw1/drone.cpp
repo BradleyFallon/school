@@ -2,7 +2,8 @@
 
 #include "drone.h"
 
-Race::Race(){
+Race::Race(): Course(){
+    cout << "in race()" << endl;
     contestants = 0;
     is_complete = false;
     is_started = false;
