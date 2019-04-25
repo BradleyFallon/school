@@ -18,8 +18,8 @@ class Course{
         void finish_course();
     protected:
         void display_course(int i);
-        Obstacle ** vertex_array;
-        // Waypoint start;
-        // Waypoint finish;
+        Waypoint ** vertex_array;
+        Waypoint start;
+        Waypoint finish;
 };
 

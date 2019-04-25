@@ -9,29 +9,17 @@ int main(){
     Location obstacle_placement;
     int racer_id;
 
-    obstacle_placement.set_xyz(0, 0, 0);
-    obstacle_placement.set_name("Cool Obstacle");
-    cout << "Placement: " << endl;
-    obstacle_placement.display();
 
-    BlackHole blk(obstacle_placement);
-    blk.display();
-
-
-    cout << "Setting up race." << endl;
-
+    
+    cout << "Adding Contestant" << endl;
     sanic_fast.display();
-
     racer_id = race.enter_drone(sanic_fast);
     sanic_fast.attach_id(racer_id);
 
-
+    cout << "Adding Obstacle" << endl;
+    obstacle_placement.set_xyz(2, 10, 0);
+    obstacle_placement.set_name("Cool Obstacle");
     race.add_obstacle(obstacle_placement, 1);
-
-
-
-
-    race.display_course();
 
     obstacle_placement.set_xyz(2, 10, 0);
     obstacle_placement.set_name("Cooler Obstacle");

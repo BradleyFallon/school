@@ -72,31 +72,53 @@ class Obstacle: public Waypoint{
         Obstacle();
         // Constructor that copies location props from a location ref
         Obstacle(const Location & placement);
+        // Race uses this to check if drone has satisfied obstacle
+        virtual bool is_completed(const Location &);
+        // Race uses this to check if drone gets removed from race
+        virtual bool is_failed(const Location &);
     private:
-    // This is a graph vertex
     protected:
 };
 
 class BlackHole: public Obstacle{
+    // Drone must pass x,y == obstacle x,y
+    // If too close in z, drone is consumed
     public:
         BlackHole();
         BlackHole(const Location & placement);
+        // Race uses this to check if drone has satisfied obstacle
+        bool is_completed(const Location &);
+        // Race uses this to check if drone gets removed from race
+        bool is_failed(const Location &);
     private:
     protected:
 };
 
 class TouchAndGo: public Obstacle{
+    // Drone must pass x,y == obstacle x,y
+    // drone must have z == 0 to pass
+    // This obstacle is always at z=0
     public:
         TouchAndGo();
         TouchAndGo(const Location & placement);
+        // Race uses this to check if drone has satisfied obstacle
+        bool is_completed(const Location &);
+        // Race uses this to check if drone gets removed from race
+        bool is_failed(const Location &);
     private:
     protected:
 };
 
 class WindMill: public Obstacle{
+    // Drone must pass x,y,z == obstacle x,y,z
+    // there is a random chance of being destroyed
     public:
         WindMill();
         WindMill(const Location & placement);
+        // Race uses this to check if drone has satisfied obstacle
+        bool is_completed(const Location &);
+        // Race uses this to check if drone gets removed from race
+        bool is_failed(const Location &);
     private:
     protected:
 };

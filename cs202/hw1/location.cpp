@@ -1,17 +1,11 @@
-
-
 #include "location.h"
 
-Location::Location(){
-    name = NULL;
-    x = 0;
-    y = 0;
-    z = 0;
-};
+Location::Location(): x(0), y(0), z(0){
+    name = new char[10];
+    strcpy(name, "Anonymous");
+}
 
 Location::Location(const Location & ref){
-    cout << "In Location placaement constructor" << endl;
-    
     name = new char[strlen(ref.name)+1];
     strcpy(name, ref.name);
     x = ref.x;
@@ -32,14 +26,11 @@ void Location::set_xyz(int xin, int yin, int zin){
 };
 
 void Location::display(){
-    cout << "I'm a location" << endl;
+    cout << "Name: " << name << endl;
     cout << "Location: (" << x << "," << y << "," << z << ")" << endl;
 };
 
-Route::Route(){
-    destination = 0;
-    distance = 0.0;
-};
+Route::Route(): destination(0), distance(0.0) {}
 
 void Route::set_destination(const int target){
     destination = target;
@@ -50,15 +41,10 @@ void Route::set_distance(const float value){
 };
 
 void Route::display(){
-    cout << destination;
-    cout << distance;
-
     cout << "Route to obstacle #" << destination << " distance: " << distance << " meters." << endl;
 };
 
-RouteNode::RouteNode(): Route(), next(NULL){
-    next = NULL;
-};
+RouteNode::RouteNode(): Route(), next(NULL) {}
 
 void RouteNode::display_all(){
     display();
@@ -66,25 +52,16 @@ void RouteNode::display_all(){
 };
 
 void RouteNode::append_node(RouteNode * to_add){
-    cout << "next: " << next << endl;
     if (next)
         next->append_node(to_add);
     else
         next = to_add;
 }
 
-Waypoint::Waypoint(): Location(){
-    head = NULL;
-    cout << "in constructor 1" << endl;
-};
-
-Waypoint::Waypoint(const Location & placement): Location(placement){
-    head = NULL;
-    cout << "In Waypoint placaement constructor" << endl;
-};
+Waypoint::Waypoint(): Location(), head(NULL) {}
+Waypoint::Waypoint(const Location & placement): Location(placement), head(NULL) {}
 
 void Waypoint::add_route(RouteNode * to_add){
-    cout << "head: " << head;
     if (head){
         head->append_node(to_add);
     }
@@ -92,45 +69,21 @@ void Waypoint::add_route(RouteNode * to_add){
 };
 
 void Waypoint::display_routes(){
-
     Location::display();
-    cout << "I am a waypoint" << endl;
-
-
     if (head) head->display_all();
+    else cout << "Dead end!" << endl;
 }
 
-Obstacle::Obstacle(): Waypoint(){
-
-};
-
-Obstacle::Obstacle(const Location & placement): Waypoint(placement){
-    cout << "In obstacle placaement constructor" << endl;
-};
+Obstacle::Obstacle(): Waypoint(){}
+Obstacle::Obstacle(const Location & placement): Waypoint(placement) {}
 
 
-BlackHole::BlackHole(): Obstacle(){
+BlackHole::BlackHole(): Obstacle(){}
+BlackHole::BlackHole(const Location & placement): Obstacle(placement) {}
 
-};
+TouchAndGo::TouchAndGo(): Obstacle(){}
+TouchAndGo::TouchAndGo(const Location & placement): Obstacle(placement) {}
 
-BlackHole::BlackHole(const Location & placement): Obstacle(placement) {
-    cout << "created blackhole: " << endl;
-    display();
-};
-
-TouchAndGo::TouchAndGo(): Obstacle(){
-
-};
-
-TouchAndGo::TouchAndGo(const Location & placement): Obstacle(placement) {
-
-};
-
-WindMill::WindMill(): Obstacle(){
-
-};
-
-WindMill::WindMill(const Location & placement): Obstacle(placement) {
-
-};
+WindMill::WindMill(): Obstacle(){}
+WindMill::WindMill(const Location & placement): Obstacle(placement) {}
 

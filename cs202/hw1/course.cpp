@@ -2,18 +2,17 @@
 #include "course.h"
 
 Course::Course(){
-    cout << "in course()" << endl;
-    vertex_array = new Obstacle*[LIST_SIZE];
-    for (int i=0; i<LIST_SIZE; ++i){
+    int i=0;
+
+    vertex_array = new Waypoint*[LIST_SIZE];
+    while (i<LIST_SIZE){
         vertex_array[i] = NULL;
+        ++i;
     }
 };
 
 int Course::add_obstacle(const Location & placement, int type_code){
     int i = 0;
-
-    cout << "adding obstacle. vertex array 0 is" << endl;
-    cout << vertex_array[i] << endl;
 
     // Go to next free slot in array or return 0 if full
     while (vertex_array[i] && i < LIST_SIZE){
@@ -43,8 +42,6 @@ int Course::create_route(int i_from, int i_to){
 
     RouteNode * created_route;
 
-    cout << "in created route." << endl;
-
     // I do not want my graph to have zero-length edges / loops
     if (i_from == i_to) return 0;
     // Check if index in valid range
@@ -55,9 +52,9 @@ int Course::create_route(int i_from, int i_to){
     // Make the new edge
     created_route = new RouteNode;
     // Set distance
+    
     created_route->set_distance(10);
     created_route->set_destination(i_to);
-
 
     // Append the new edge to the list
     vertex_array[i_from]->add_route(created_route);
@@ -65,6 +62,8 @@ int Course::create_route(int i_from, int i_to){
     return 1;
 };
 
+// I think it is really pointless and proabably hurtful to make this recursive
+// Only recursive to show it can be
 void Course::display_course(int i){
     if (vertex_array[i] && i < LIST_SIZE){
         cout << "======================================" << endl
@@ -73,7 +72,6 @@ void Course::display_course(int i){
         display_course(i+1);
     }
 }
-
 void Course::display_course(){
     display_course(0);
 }
