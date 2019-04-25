@@ -5,6 +5,11 @@ Location::Location(): x(0), y(0), z(0){
     strcpy(name, "Anonymous");
 }
 
+Location::Location(const char to_name[]): x(0), y(0), z(0){
+    name = NULL;
+    set_name(to_name);
+}
+
 Location::Location(const Location & ref){
     name = new char[strlen(ref.name)+1];
     strcpy(name, ref.name);
@@ -76,14 +81,21 @@ void Waypoint::display_routes(){
 
 Obstacle::Obstacle(): Waypoint(){}
 Obstacle::Obstacle(const Location & placement): Waypoint(placement) {}
-
+// bool Obstacle::is_completed(const Location &) 0;
+// bool Obstacle::is_failed(const Location &) 0;
 
 BlackHole::BlackHole(): Obstacle(){}
 BlackHole::BlackHole(const Location & placement): Obstacle(placement) {}
+bool BlackHole::is_completed(const Location &) {return true;}
+bool BlackHole::is_failed(const Location &) {return false;}
 
 TouchAndGo::TouchAndGo(): Obstacle(){}
 TouchAndGo::TouchAndGo(const Location & placement): Obstacle(placement) {}
+bool TouchAndGo::is_completed(const Location &) {return true;}
+bool TouchAndGo::is_failed(const Location &) {return false;}
 
 WindMill::WindMill(): Obstacle(){}
 WindMill::WindMill(const Location & placement): Obstacle(placement) {}
+bool WindMill::is_completed(const Location &) {return true;}
+bool WindMill::is_failed(const Location &) {return false;}
 

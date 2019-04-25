@@ -16,10 +16,11 @@ class Course{
         void display_course();
         void display_vertices();
         void finish_course();
+        Location get_start_location();
     protected:
         void display_course(int i);
         Waypoint ** vertex_array;
-        Waypoint start;
-        Waypoint finish;
+        Waypoint * start;
+        Waypoint * finish;
 };
 

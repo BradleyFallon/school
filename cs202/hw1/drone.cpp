@@ -3,6 +3,7 @@
 #include "drone.h"
 
 Drone::Drone(): Location(){}
+Drone::Drone(const char to_name[]): Location(to_name){}
 Drone::Drone(const Drone & drone_entry): Location(drone_entry){}
 
 void Drone::display(){
@@ -27,11 +28,15 @@ void DroneNode::display_all(){
 }
 
 Controller::Controller(): Drone() {}
+Controller::Controller(const char to_name[]): Drone(to_name) {}
 
-Contestant::Contestant(): Controller(), contestant_id(0) {}
+Contestant::Contestant(): Controller(), id(0) {}
+Contestant::Contestant(const char to_name[]): Controller(to_name), id(0) {}
 
-void Contestant::attach_id(int id_no){
-    contestant_id = id_no;
+void Contestant::enter_race(Race * race_ref){
+    race_ptr = race_ref;
+    id = race_ptr->enter_drone(this);
+    drive(race_ptr->get_start_location());
 }
 
 Race::Race(): Course(), contestants(0), is_complete(false), is_started(false), head_finishers(NULL), head_active(NULL) {}

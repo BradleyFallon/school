@@ -3,12 +3,22 @@
 
 Course::Course(){
     int i=0;
+    Location placement;
 
     vertex_array = new Waypoint*[LIST_SIZE];
     while (i<LIST_SIZE){
         vertex_array[i] = NULL;
         ++i;
     }
+
+    placement.set_xyz(0, 0, 0);
+    placement.set_name("Race Start");
+    start = new Waypoint(placement);
+
+    placement.set_xyz(100, 100, 100);
+    placement.set_name("Race Finish");
+    finish = new Waypoint(placement);
+
 };
 
 int Course::add_obstacle(const Location & placement, int type_code){
@@ -74,4 +84,12 @@ void Course::display_course(int i){
 }
 void Course::display_course(){
     display_course(0);
+}
+
+int Course:connect_start_finish(){
+
+}
+
+Location Course::get_start_location(){
+    return Location(start);
 }

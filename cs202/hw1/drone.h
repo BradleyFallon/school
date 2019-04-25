@@ -12,6 +12,7 @@
 class Drone: public Location{
     public:
         Drone();
+        Drone(const char[]);
         Drone(const Drone &);
         void display();
         void drive(const Location &);
@@ -35,7 +36,8 @@ class DroneNode: public Drone{
 class Controller: public Drone{
     public:
         Controller();
-        void set_target(const Location &, int)
+        Controller(const char[]);
+        void set_target(const Location &, int);
         void take_off();
         void land();
     private:
@@ -48,10 +50,11 @@ class Contestant: public Controller{
 
     public:
         Contestant();
-        void attach_id(int);
+        Contestant(const char[]);
+        enter_race(Race *);
 
     private:
-        int contestant_id;
+        int id;
 
 };
 

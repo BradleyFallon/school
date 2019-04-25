@@ -17,6 +17,7 @@ const int LIST_SIZE = 20;
 class Location{
     public:
         Location();
+        Location(const char[]);
         Location(const Location & ref);
         void display();
         void set_name(const char[]);
@@ -73,9 +74,9 @@ class Obstacle: public Waypoint{
         // Constructor that copies location props from a location ref
         Obstacle(const Location & placement);
         // Race uses this to check if drone has satisfied obstacle
-        virtual bool is_completed(const Location &);
+        virtual bool is_completed(const Location &) = 0;
         // Race uses this to check if drone gets removed from race
-        virtual bool is_failed(const Location &);
+        virtual bool is_failed(const Location &) = 0;
     private:
     protected:
 };

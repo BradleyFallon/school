@@ -5,16 +5,12 @@
 int main(){
 
     Race race;
-    Contestant sanic_fast;
+    Contestant sanic_fast("Sanic Fast");
+    Contestant other_guy("Loser Slowpoke");
     Location obstacle_placement;
     int racer_id;
 
 
-    
-    cout << "Adding Contestant" << endl;
-    sanic_fast.display();
-    racer_id = race.enter_drone(sanic_fast);
-    sanic_fast.attach_id(racer_id);
 
     cout << "Adding Obstacle" << endl;
     obstacle_placement.set_xyz(2, 10, 0);
@@ -33,6 +29,28 @@ int main(){
     race.create_route(1, 2);
 
     race.display_course();
+
+
+    if (!race.connect_start_finish()){
+        cout << "Could not create start and finish for this course." 
+        << endl << "Make sure there are some obstacles that lead nowhere, for finish"
+        << endl << "Make sure there are some obstacles that have no incoming leads, for start."
+        << endl;
+        return 0;
+    }
+
+    cout << "Adding Contestants" << endl;
+    sanic_fast.display();
+    racer_id = race.enter_drone(sanic_fast);
+    sanic_fast.attach_id(racer_id);
+
+    sanic_fast.enter_race(& race);
+    other_guy.enter_race(& race);
+
+    return 0;
+
+
+    race.start();
 
     return 0;
 }
