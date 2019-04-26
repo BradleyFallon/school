@@ -86,8 +86,26 @@ void Course::display_course(){
     display_course(0);
 }
 
-int Course:connect_start_finish(){
+int Course::connect_start_finish(){
+    RouteNode * created_route;
 
+    // Make the new edge
+    created_route = new RouteNode;
+    // Set distance
+    created_route->set_distance(10);
+    created_route->set_destination(0);
+
+    // Append the new edge to the list
+    start->add_route(created_route);
+
+    // Make the new edge
+    created_route = new RouteNode;
+    // Set distance
+    created_route->set_distance(10);
+    created_route->set_destination(1);
+
+    finish->add_route(created_route);
+    return 1;
 }
 
 Location Course::get_start_location(){
