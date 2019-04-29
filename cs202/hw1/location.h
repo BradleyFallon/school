@@ -1,10 +1,15 @@
-// ====================================================================
-// Homework 1 for CS163
-// Bradley Fallon
-// bfallon@pdx.edu
-// 4/16/2019
-// 
-// ====================================================================
+/*
+================================================================================
+Homework 1 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+4/29/2019
+
+This contains the class definitions for Locations and also classes
+which are derived to create race waypoints and obstacle waypoints along
+with the list derivations for managing them.
+================================================================================
+*/
 
 #include <iostream>
 #include <fstream>

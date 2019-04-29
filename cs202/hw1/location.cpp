@@ -1,3 +1,16 @@
+/*
+================================================================================
+Homework 1 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+4/29/2019
+
+This contains the class implementations for Locations and also classes
+which are derived to create race waypoints and obstacle waypoints along
+with the list derivations for managing them.
+================================================================================
+*/
+
 #include "location.h"
 
 Location::Location(): x(0), y(0), z(0){

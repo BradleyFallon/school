@@ -1,10 +1,15 @@
-// ====================================================================
-// Homework 1 for CS202
-// Bradley Fallon
-// bfallon@pdx.edu
-// 4/16/2019
-// 
-// ====================================================================
+/*
+================================================================================
+Homework 1 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+4/29/2019
+
+This is contains the class definitions for Drones and also classes
+used to manage the drone contestants and their interaction in the
+race event.
+================================================================================
+*/
 
 #include "course.h"
 

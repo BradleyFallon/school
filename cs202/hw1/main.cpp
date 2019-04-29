@@ -1,4 +1,13 @@
+/*
+================================================================================
+Homework 1 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+4/29/2019
 
+This is a test client used to verify that the classes work.
+================================================================================
+*/
 
 #include "drone.h"
 

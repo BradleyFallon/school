@@ -1,4 +1,15 @@
+/*
+================================================================================
+Homework 1 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+4/29/2019
 
+This contains the implementation for Drones and also classes
+used to manage the drone contestants and their interaction in the
+race event.
+================================================================================
+*/
 
 #include "drone.h"
 

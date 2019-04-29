@@ -1,25 +1,50 @@
+/*
+================================================================================
+Homework 1 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+4/29/2019
+
+This contains the implementation for the course, which is implemented as a
+graph of waypoints connected via weighted edges which are called routes.
+A waypoint is a location a drone must pass through in order to proceed to the 
+next leg of the course. An obstacle is a waypoint with special requirements
+that must be satisfied in order to pass through to the next leg.
+================================================================================
+*/
+
 
 #include "course.h"
 
 Course::Course(){
+    /*
+    This initializes a course graph. It has an array of adjacency lists
+    which describes what the route opions are from each waypoint vertex.
+    A waypoint may or may not be an obstacle. An obstacle is a waypoint
+    with special requirements required to pass.
+    There are two special waypoints that are not part of the vertex array,
+    these are the start and finish, and they have their own dedicated pointer variables.
+    */
     int i=0;
     Location placement;
 
+    // initialize vertex array
     vertex_array = new Waypoint*[LIST_SIZE];
     while (i<LIST_SIZE){
         vertex_array[i] = NULL;
         ++i;
     }
 
+    // create start waypoint
     placement.set_xyz(0, 0, 0);
     placement.set_name("Race Start");
     start = new Waypoint(placement);
 
+    // create finish waypoint
     placement.set_xyz(100, 100, 100);
     placement.set_name("Race Finish");
     finish = new Waypoint(placement);
-
-};
+}
 
 int Course::add_obstacle(const Location & placement, int type_code){
     int i = 0;
@@ -28,10 +53,13 @@ int Course::add_obstacle(const Location & placement, int type_code){
     while (vertex_array[i] && i < LIST_SIZE){
         ++i;
     }
-    // Ouchies, the array is full
+    // Bummer, the array is full, course is at max complexity allowed
     if (i == LIST_SIZE) return 0;
 
-    if (type_code==1){
+    if (type_code==0){
+        // Create a plain waypoint with no obstacle
+        vertex_array[i] = new Waypoint(placement);
+    } else if (type_code==1){
         // Create a black hole
         vertex_array[i] = new BlackHole(placement);
     } else if (type_code==2) {
@@ -43,12 +71,13 @@ int Course::add_obstacle(const Location & placement, int type_code){
     } else {
         return 0;
     }
-
 };
 
 int Course::create_route(int i_from, int i_to){
-    // This creates a graph edge that represents
-    // a route in course between two obstacles
+    /*
+    This creates a graph edge that represents
+    a route in course between two waypoints
+    */
 
     RouteNode * created_route;
 
@@ -69,9 +98,12 @@ int Course::create_route(int i_from, int i_to){
     return 1;
 };
 
-// I think it is really pointless and proabably hurtful to make this recursive
-// Only recursive to show it can be
+
 void Course::display_course(int i){
+    /*
+    I think it is proabably hurtful to make this recursive.
+    This is recursive just to demonstrate how it could be done.
+    */
     if (vertex_array[i] && i < LIST_SIZE){
         cout << "======================================" << endl
             << "Obstacle [" << i << "]:" << endl;
