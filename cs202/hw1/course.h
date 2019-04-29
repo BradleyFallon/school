@@ -14,7 +14,8 @@ class Course{
         void display_course();
         void display_vertices();
         void finish_course();
-        void get_start_location(Location *);
+        // Copies the location of the start location and return pointer to waypoint
+        Waypoint * get_start_location(Location &);
         int connect_start_finish();
     protected:
         void display_course(int i);

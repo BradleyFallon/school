@@ -61,9 +61,6 @@ int Course::create_route(int i_from, int i_to){
 
     // Make the new edge
     created_route = new RouteNode;
-    // Set distance
-    
-    created_route->set_distance(10);
     created_route->set_destination(i_to);
 
     // Append the new edge to the list
@@ -88,26 +85,27 @@ void Course::display_course(){
 
 int Course::connect_start_finish(){
     RouteNode * created_route;
+    int i = 0;
 
     // Make the new edge
     created_route = new RouteNode;
-    // Set distance
-    created_route->set_distance(10);
     created_route->set_destination(0);
 
     // Append the new edge to the list
     start->add_route(created_route);
 
-    // Make the new edge
-    created_route = new RouteNode;
-    // Set distance
-    created_route->set_distance(10);
-    created_route->set_destination(1);
+    while (vertex_array[i] && i < LIST_SIZE){
+        // If any wp is a dead end, make rout to finish
+        if (!vertex_array[i]->get_next_wp(0)){
+            vertex_array[i]->add_route(created_route);
+        }
+        ++i;
+    }
 
-    finish->add_route(created_route);
     return 1;
 }
 
-Location Course::get_start_location(){
-    return Location(start);
+Waypoint * Course::get_start_location(Location & loca_dest){
+    loca_dest.copy_location(*start);
+    return start;
 }

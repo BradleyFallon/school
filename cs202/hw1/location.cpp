@@ -10,13 +10,13 @@ Location::Location(const char to_name[]): x(0), y(0), z(0){
     set_name(to_name);
 }
 
-Location::Location(const Location & ref){
-    name = new char[strlen(ref.name)+1];
-    strcpy(name, ref.name);
-    x = ref.x;
-    y = ref.y;
-    z = ref.z;
-};
+Location::Location(const Location & loca_ref) {
+    name = new char[strlen(loca_ref.name)+1];
+    strcpy(name, loca_ref.name);
+    x = loca_ref.x;
+    y = loca_ref.y;
+    z = loca_ref.z;
+}
 
 void Location::set_name(const char text[]){
     if (name) delete[] name;
@@ -30,31 +30,55 @@ void Location::set_xyz(int xin, int yin, int zin){
     z = zin;
 };
 
+int Location::get_z(){
+    return z;
+}
+
 void Location::display(){
     cout << "Name: " << name << endl;
     cout << "Location: (" << x << "," << y << "," << z << ")" << endl;
 };
 
-Route::Route(): destination(0), distance(0.0) {}
+void Location::copy_location(const Location & loca_ref) {
+    name = new char[strlen(loca_ref.name)+1];
+    strcpy(name, loca_ref.name);
+    x = loca_ref.x;
+    y = loca_ref.y;
+    z = loca_ref.z;
+}
+
+Route::Route(): destination(0){}
 
 void Route::set_destination(const int target){
     destination = target;
 };
 
-void Route::set_distance(const float value){
-    distance = value;
-};
-
 void Route::display(){
-    cout << "Route to obstacle #" << destination << " distance: " << distance << " meters." << endl;
+    cout << "Route to obstacle #" << destination << endl;
 };
 
-RouteNode::RouteNode(): Route(), next(NULL) {}
+RouteNode::RouteNode(): Route(), next(NULL), dest_wp(NULL) {}
 
 void RouteNode::display_all(){
     display();
     if (next) next->display_all();
 };
+
+
+Waypoint * RouteNode::get_dest(int route_opt){
+    /*
+    This recursively tics down route_opt as it traverses,
+    then returns id of when opt==0.
+    */
+    if (route_opt){
+        // If we picked too high a number, just return the last node id
+        // It's just a game...
+        if (next){
+            return next->get_dest(--route_opt);
+        }
+    }
+    return dest_wp;
+}
 
 void RouteNode::append_node(RouteNode * to_add){
     if (next)
@@ -79,10 +103,17 @@ void Waypoint::display_routes(){
     else cout << "Dead end!" << endl;
 }
 
+Waypoint * Waypoint::get_next_wp(int route_opt){
+    if (!head) return 0;
+    return head->get_dest(route_opt);
+}
+
+Waypoint::~Waypoint(){
+    1;
+}
+
 Obstacle::Obstacle(): Waypoint(){}
 Obstacle::Obstacle(const Location & placement): Waypoint(placement) {}
-// bool Obstacle::is_completed(const Location &) 0;
-// bool Obstacle::is_failed(const Location &) 0;
 
 BlackHole::BlackHole(): Obstacle(){}
 BlackHole::BlackHole(const Location & placement): Obstacle(placement) {}

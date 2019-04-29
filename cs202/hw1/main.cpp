@@ -6,22 +6,21 @@ int main(){
 
     Race race;
     Contestant sanic_fast("Sanic Fast");
-    Contestant other_guy("Loser Slowpoke");
+    Contestant other_guy("Dr. Roflcopter");
     Location obstacle_placement;
     int racer_id;
 
 
-
     cout << "Adding Obstacle" << endl;
-    obstacle_placement.set_xyz(2, 10, 0);
+    obstacle_placement.set_xyz(1, 2, 3);
     obstacle_placement.set_name("Cool Obstacle");
     race.add_obstacle(obstacle_placement, 1);
 
-    obstacle_placement.set_xyz(2, 10, 0);
+    obstacle_placement.set_xyz(9, 11, 1);
     obstacle_placement.set_name("Cooler Obstacle");
     race.add_obstacle(obstacle_placement, 2);
 
-    obstacle_placement.set_xyz(10, 12, 0);
+    obstacle_placement.set_xyz(420, 69, 7);
     obstacle_placement.set_name("Coolest Obstacle");
     race.add_obstacle(obstacle_placement, 3);
 
@@ -41,16 +40,33 @@ int main(){
 
     cout << "Adding Contestants" << endl;
     sanic_fast.display();
-    racer_id = race.enter_drone(sanic_fast);
-    sanic_fast.attach_id(racer_id);
 
-    sanic_fast.enter_race(& race);
-    other_guy.enter_race(& race);
+    sanic_fast.enter_race(race);
+    other_guy.enter_race(race);
 
-    return 0;
+    race.begin();
 
+    while (race.check_if_active()){
+        // Should have user get to go up/down here but I dont want to implement that.
+        // This is the game-like interactve part where user needs to satisfy the obstacle.
+        // Implementing that is not important to the learning purpose of this assignment,
+        // so for now it just lands and takes route 0.
+        sanic_fast.land();
+        sanic_fast.display_route_options();
+        sanic_fast.pick_route(0);
+        sanic_fast.take_off();
+        sanic_fast.navigate_route();
+    
+        sanic_fast.display_route_options();
+        // Should have user get to go up/down here but I dont want to implement that
+        other_guy.pick_route(0);
+        other_guy.navigate_route();
 
-    race.start();
+        cout << "Press enter to continue." << endl;
+        cin.get();
+    }
+
+    race.display_results();
 
     return 0;
 }

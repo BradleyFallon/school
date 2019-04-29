@@ -18,10 +18,12 @@ class Location{
     public:
         Location();
         Location(const char[]);
-        Location(const Location & ref);
+        Location(const Location &);
         void display();
         void set_name(const char[]);
         void set_xyz(int, int, int);
+        int get_z();
+        void copy_location(const Location &);
     private:
     protected:
         char* name;
@@ -36,7 +38,7 @@ class Route{
         Route();
         void set_destination(int);
         void set_distance(float);
-        void get_distance();
+        //void get_distance();
         void display();
     private:
     protected:
@@ -44,14 +46,21 @@ class Route{
         int destination;
 };
 
+// Pre-declare Waypoint so we can have a ptr in RouteNode
+class Waypoint;
+
 class RouteNode: public Route{
     // This is a graph edge node
     public:
         RouteNode();
         void append_node(RouteNode * to_add);
         void display_all();
+        // This recursively tics down route_opt as it traverses,
+        // then returns id of when opt==0.
+        Waypoint * get_dest(int route_opt);
     private:
     protected:
+        Waypoint * dest_wp;
         RouteNode * next;
 };
 
@@ -61,6 +70,8 @@ class Waypoint: public Location{
         Waypoint(const Location & placement);
         void add_route(RouteNode * to_add);
         void display_routes();
+        Waypoint * get_next_wp(int route_opt);
+        virtual ~Waypoint();
     private:
     // This is a graph vertex
     protected:
