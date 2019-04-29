@@ -66,9 +66,10 @@ int main(){
         sanic_fast.take_off();
         sanic_fast.navigate_route();
     
-        sanic_fast.display_route_options();
-        // Should have user get to go up/down here but I dont want to implement that
+        other_guy.land();
+        other_guy.display_route_options();
         other_guy.pick_route(0);
+        other_guy.take_off();
         other_guy.navigate_route();
 
         cout << "Press enter to continue." << endl;

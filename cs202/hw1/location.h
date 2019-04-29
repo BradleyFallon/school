@@ -29,6 +29,7 @@ class Location{
         void set_xyz(int, int, int);
         int get_z();
         void copy_location(const Location &);
+        ~Location();
     private:
     protected:
         char* name;
@@ -37,22 +38,23 @@ class Location{
         int z;
 };
 
+// Pre-declare Waypoint so we can have a ptr in RouteNode
+class Waypoint;
+
 class Route{
     // This is a graph edge data
     public:
         Route();
-        void set_destination(int);
-        void set_distance(float);
-        //void get_distance();
+        void set_destination(Waypoint * wp_ptr, int wp_id);
         void display();
+        // No destructor because the only dynamic memory
+        // is the destination pointer, but that memory is managed by
+        // the Course class.
     private:
     protected:
-        float distance;
-        int destination;
+        int dest_id;
+        Waypoint * dest_wp_ptr;
 };
-
-// Pre-declare Waypoint so we can have a ptr in RouteNode
-class Waypoint;
 
 class RouteNode: public Route{
     // This is a graph edge node
@@ -63,9 +65,9 @@ class RouteNode: public Route{
         // This recursively tics down route_opt as it traverses,
         // then returns id of when opt==0.
         Waypoint * get_dest(int route_opt);
+        RouteNode * pop(RouteNode * & head);
     private:
     protected:
-        Waypoint * dest_wp;
         RouteNode * next;
 };
 

@@ -46,6 +46,22 @@ Course::Course(){
     finish = new Waypoint(placement);
 }
 
+Course::~Course(){
+    int i=0;
+
+    // destroy vertex array
+    while (i<LIST_SIZE){
+        if (vertex_array[i]) delete vertex_array[i];
+        vertex_array[i] = NULL;
+        ++i;
+    }
+    delete [] vertex_array;
+    if (start) delete start;
+    start = NULL;
+    if (finish) delete finish;
+    finish = NULL;
+};
+
 int Course::add_obstacle(const Location & placement, int type_code){
     int i = 0;
 
@@ -90,7 +106,7 @@ int Course::create_route(int i_from, int i_to){
 
     // Make the new edge
     created_route = new RouteNode;
-    created_route->set_destination(i_to);
+    created_route->set_destination(vertex_array[i_to], i_to);
 
     // Append the new edge to the list
     vertex_array[i_from]->add_route(created_route);
@@ -119,12 +135,18 @@ int Course::connect_start_finish(){
     RouteNode * created_route;
     int i = 0;
 
-    // Make the new edge
+    // Make the new edge as route from start to waypoint 0
+    // I would intend to make this pick all inaccessable waypoints,
+    // but not a priority for assignment
     created_route = new RouteNode;
-    created_route->set_destination(0);
+    created_route->set_destination(vertex_array[0], 0);
 
     // Append the new edge to the list
     start->add_route(created_route);
+
+    // Make the new edge to get from dead ends to finish
+    created_route = new RouteNode;
+    created_route->set_destination(finish, 0);
 
     while (vertex_array[i] && i < LIST_SIZE){
         // If any wp is a dead end, make rout to finish

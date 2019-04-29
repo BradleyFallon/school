@@ -53,30 +53,47 @@ void Location::display(){
 };
 
 void Location::copy_location(const Location & loca_ref) {
-    name = new char[strlen(loca_ref.name)+1];
-    strcpy(name, loca_ref.name);
     x = loca_ref.x;
     y = loca_ref.y;
     z = loca_ref.z;
 }
 
-Route::Route(): destination(0){}
+Location::~Location(){
+    delete[] name;
+}
 
-void Route::set_destination(const int target){
-    destination = target;
+Route::Route(): dest_id(0), dest_wp_ptr(NULL){}
+
+void Route::set_destination(Waypoint * wp_ptr, int wp_id){
+    dest_wp_ptr = wp_ptr;
+    dest_id = wp_id;
 };
 
 void Route::display(){
-    cout << "Route to obstacle #" << destination << endl;
+    cout << "Route to obstacle #" << dest_id << endl;
 };
 
-RouteNode::RouteNode(): Route(), next(NULL), dest_wp(NULL) {}
+RouteNode::RouteNode(): Route(), next(NULL){
+    cout << "Created RouteNode and dest_id initially is: " << dest_id << endl;
+}
 
 void RouteNode::display_all(){
     display();
     if (next) next->display_all();
 };
 
+void RouteNode::append_node(RouteNode * to_add){
+    if (next)
+        next->append_node(to_add);
+    else
+        next = to_add;
+}
+
+RouteNode * RouteNode::pop(RouteNode * & head){
+    head = next;
+    next = NULL;
+    return this;
+}
 
 Waypoint * RouteNode::get_dest(int route_opt){
     /*
@@ -90,14 +107,7 @@ Waypoint * RouteNode::get_dest(int route_opt){
             return next->get_dest(--route_opt);
         }
     }
-    return dest_wp;
-}
-
-void RouteNode::append_node(RouteNode * to_add){
-    if (next)
-        next->append_node(to_add);
-    else
-        next = to_add;
+    return dest_wp_ptr;
 }
 
 Waypoint::Waypoint(): Location(), head(NULL) {}
@@ -122,7 +132,11 @@ Waypoint * Waypoint::get_next_wp(int route_opt){
 }
 
 Waypoint::~Waypoint(){
-    1;
+    RouteNode * popped = NULL;
+    while (head){
+        popped = head->pop(head);
+        if (popped) delete popped;
+    }
 }
 
 Obstacle::Obstacle(): Waypoint(){}

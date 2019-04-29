@@ -19,7 +19,7 @@ class Course{
     // This is a graph
     public:
         Course();
-        // ~Course();
+        ~Course();
         int add_obstacle(const Location &, int type_code);
         // Specifying vertices by index is much easier
         int create_route(int i_from, int i_to);

@@ -71,6 +71,7 @@ class DroneNode: public Drone{
         void append(DroneNode * other_ptr);
         void display_all();
         DroneNode * pop_id(int drone_id, DroneNode * & head);
+        DroneNode * pop(DroneNode * & head);
         void display_rank(int rank);
         // Id is used to track drone contestant race stats
         const int id;
@@ -88,7 +89,6 @@ class Race: public Course{
     */
     public:
         Race();
-
         // This takes a reference to a drone, copies it into a new node,
         // and appends to active list.
         // returns contestant id on success else NULL.
@@ -100,6 +100,7 @@ class Race: public Course{
         bool is_location_illegal(Location &);
         void record_finisher(int drone_id);
         void display_results();
+        ~Race();
     private:
         DroneNode * head_finishers;
         DroneNode * head_active;

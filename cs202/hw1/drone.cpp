@@ -46,12 +46,19 @@ void DroneNode::append(DroneNode * other_ptr){
 DroneNode * DroneNode::pop_id(int drone_id, DroneNode * & head){
     if (id == drone_id){
         head = next;
+        next = NULL;
         return this;
     }
     if (!next){
         // Could not find any node with this id :(
         return NULL;
     }
+}
+
+DroneNode * DroneNode::pop(DroneNode * & head){
+    head = next;
+    next = NULL;
+    return this;
 }
 
 void DroneNode::display_rank(int rank){
@@ -105,9 +112,10 @@ int Contestant::pick_route(int route_opt){
 }
 
 void Contestant::display_route_options(){
-    cout << "These are the available routes for your drone:" << endl;
-    
+    cout << "-----------------------------------------------------" << endl;
+    cout << "These are the available routes for  [" << id << "] " << name << ":" << endl;
     target_waypoint_ptr->display_routes();
+    cout << "-----------------------------------------------------" << endl;
 }
 
 Race::Race(): Course(), contestants(0), is_complete(false), is_started(false), head_finishers(NULL), head_active(NULL) {}
@@ -161,8 +169,14 @@ Waypoint * Race::progress_drone(int drone_id, Location & drone_loca, Waypoint * 
         }
     }
 
+    cout << "Drone gets to progress to next route." << endl;
+
     // Get the next waypoint from current, according to the route option
     next_wp = current_wp->get_next_wp(route_opt);
+
+    cout << "Next waypoint is at: " << endl;
+    cout << "pointer: " << next_wp << endl;
+    next_wp->display();
     return next_wp;
 }
 
@@ -190,10 +204,26 @@ void Race::record_finisher(int drone_id){
 
 void Race::disqualify_drone(int drone_id){
     // Remove the drone from active list without adding to finishers list
+    DroneNode * popped = NULL;
     if (head_active){
-        head_active->pop_id(drone_id, head_active);
+        popped = head_active->pop_id(drone_id, head_active);
+        if (popped) delete popped;
     }
 };
+
+Race::~Race(){
+    DroneNode * popped = NULL;
+    while (head_active){
+        popped = head_active->pop(head_active);
+        if (popped) delete popped;
+    }
+    // Congratulations to all head finishers
+    // It is now time to go home
+    while (head_finishers){
+        popped = head_active->pop(head_finishers);
+        if (popped) delete popped;
+    }
+}
 
 void Race::display_results(){
     if (is_complete){
