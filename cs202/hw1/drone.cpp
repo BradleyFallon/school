@@ -53,6 +53,7 @@ DroneNode * DroneNode::pop_id(int drone_id, DroneNode * & head){
         // Could not find any node with this id :(
         return NULL;
     }
+    return next->pop_id(drone_id, head);
 }
 
 DroneNode * DroneNode::pop(DroneNode * & head){
@@ -220,7 +221,7 @@ Race::~Race(){
     // Congratulations to all head finishers
     // It is now time to go home
     while (head_finishers){
-        popped = head_active->pop(head_finishers);
+        popped = head_finishers->pop(head_finishers);
         if (popped) delete popped;
     }
 }

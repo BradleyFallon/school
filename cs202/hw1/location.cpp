@@ -73,9 +73,7 @@ void Route::display(){
     cout << "Route to obstacle #" << dest_id << endl;
 };
 
-RouteNode::RouteNode(): Route(), next(NULL){
-    cout << "Created RouteNode and dest_id initially is: " << dest_id << endl;
-}
+RouteNode::RouteNode(): Route(), next(NULL){}
 
 void RouteNode::display_all(){
     display();

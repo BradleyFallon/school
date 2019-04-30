@@ -77,6 +77,7 @@ int main(){
     }
 
     race.display_results();
+    cout << "Main is Done" << endl;
 
     return 0;
 }
