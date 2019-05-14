@@ -1,0 +1,102 @@
+
+================================================================================
+Homework 3 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+5/10/2019
+
+DESIGN WRITEUP
+================================================================================
+
+
+This is a text adventure game. It is very simple. Your hero is an up and coming 
+dragon trainer. The user reads a paragraph at a time of the story. The User
+makes decisions of how much to feed their dragon and makes judgement calls
+to make alliances and engage in battles. The goal of the game is to become the
+keeper of the realm. To become the keeper of the realm, you must achieve the
+highest commanding power of any being of existence in the realm. To gain 
+commanding power, you build a hierarchy of followers. In addition, you can 
+increase your own personal power and the power of your pets. 
+One strategy to win could be to train a dragon to be stronger than the 
+greatest leader of the realm. Another strategy could be to take out other
+leaders and take control by inspiring their followers to convert to your cause.
+Best of luck on your endeavors adventurer.
+
+There are blessing bonuses to hero power, which will require configuration constants.
+If a hero is imminent danger, they may receive this blessing power
+If a privileged named character is imminent danger, they may receive this blessing power
+(e.g. wealthy attractive English speaking support characters)
+If a named character is imminent danger, they may receive this blessing power
+
+The data management class for all characters in the world is the Realm.
+Things that the realm can do follow.
+Display the most powerful leaders of the realm and their follower info.
+Cause two leaders to battle, a character to victor is returned.
+Characters can pledge or commit treason to gain and lose leaders and followers.
+These will utilize operator overloads for merging armies and adding power.
+The battle will compare power of the contending leaders and destroy the loser.
+The victor may take control of some followers.
+The entire population of the realm is tracked here, in an array of character pointers 
+independent of social standing and relation ships. This is a dynamic array which 
+will be taking inspiration from python list implementation. This means
+it will be an array that will reallocate and copy to a new larger array
+whenever full. The size increase is a function of old size. As population
+dies off, the array may be reallocated to a smaller size.
+The single inhabitant with the greatest commanding_power is the keeper of
+the realm. Commanding power is the sum of self power and all followers
+recursively. A wizard or dragon may have greater power than an army,
+so population alone does not make a character the keeper of the realm.
+The keeper of the realm is a character pointer.
+
+There is a derivation from the Realm class which is the story. This
+takes user input and displays the story. 
+This is a protected derivation because we want to hide the inner workings from the client.
+The Story class creates a guided interaction rather than an open ended experiment.
+The Story tracks one particular MainCharacter which is the protagonist that
+the player is meant to control toward ruling the realm becoming the Keeper of the Realm.
+
+A character is a node of a tree.
+The characters have a single leader and a list of followers.
+( = )
+The LHS becomes an exact deepcopy of the RHS.
+( + ) (character)
+The result of adding characters, is the LHS character copied and gaining
+the RHS followers. This does not affect the LHS and RHS, it creates a copy.
+( + ) (int)
+If a int is added to a character, the result is the 
+LHS character adopts the followers of the RHS.
+( ++ ) (pre-increment)
+Add one character to the character's power.
+( += ) (character)
+The character on the LHS inherits all rights and followers of the RHS.
+Name and any identification info is not affected.
+( += ) (int)
+The character gains power equal to the int.
+( [] )
+This will recursively fetch the follower of the nth position.
+Followers are sorted by head being the oldest and most trusted.
+( == ) (int, Character)
+( != ) (int, Character)
+( >, >= ) (int, Character)
+( <, <= ) (int, Character)
+All of the comparisons will use integer comparison upon the commanding_power
+after both RHS and LHS have been updated. This can be also used with an integer
+and only the Character will be updated and commanding_power compared with the int.
+
+Named characters get a blessing to personal power whenever their
+commanding power is significantly low. Change the configuration constant
+values to adjust the intensity of this feature. For a JR Tolkien realm, 
+this feature should be so intense that it is virtually impossible for
+a named character to perish. For a GRR Martin realm this is almost negligible
+unless adapted to television. This blessing is more significant for privileged characters.
+
+There is a hierarchy of creatures derived from the character class.
+A Creature eats and can provide energy if consumed. Creatures eat each other.
+A mountable creature can be mounted by a character as a pet. Characters
+can have a list of pets. Some crude creatures are goats and horses, they
+are private derivations, so that a higher being must make decisions for them.
+
+There is a public creature which is a Dragon. A Dragon is public so it can
+think for itself. The Dragon will lay an egg if it consumes enough energy.
+The egg is a private Dragon, which will spawn a new dragon if given enough heat.
+
