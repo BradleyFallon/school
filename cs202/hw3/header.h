@@ -1,7 +1,8 @@
 #include <iostream>
-#include <ostream>
 #include <fstream>
 #include <cstring>
+
+using namespace std;
 
 /*
 This is a text adventure game. It is very simple. Your hero is an up and coming 
@@ -28,9 +29,19 @@ const int NAMED_BLESSING = 200;
 // Threshold power to trigger blessing.
 const int BLESSINGS_THRESHOLD = 50;
 
+class Realm;
+class Story;
+class Character;
+class MainCharacter;
+class Creature;
+class Goat;
+class Horse;
+class Dragon;
+class DragonEgg;
 
 class Realm {
     public:
+        Realm();
         // Display the most powerful leaders of the realm and their follower info
         void display_top();
         // Cause two leaders to battle, a characterer to victor is returned
@@ -57,6 +68,7 @@ class Realm {
 // The Story class creates a guided interaction rather than an open ended experiment.
 class Story: protected Realm {
     public:
+        Story();
         // displays the nexet paragraph and returns 0 if end of story, else 1
         int read_next_paragraph();
     private:
@@ -94,33 +106,12 @@ and only the Character will be updated and commanding_power compared with the in
 */
 class Character {
     public:
+        Character();
+        virtual ~Character();
+
         void display();
         // Take an individual follower to be 
         int adopt(Character *);
-    protected:
-        // Name is remained as NULL for some characters if they are not important as individual to story
-        char * name;
-        // The power of this individual regardless of followers
-        int personal_power;
-        // The result sum of personal power and recursive sum of all followers
-        int commanding_power;
-        // The higher this property, the less likely to change sides in face of defeat
-        int loyalty;
-        Character * leader;
-        // This is the highest rank follower, which is probably
-        Character * followers_head;
-        Creature * pets_head;
-        // Characters have a next and prev so that they can independently
-        // change teams without the command of their leader. Otherwise the leader
-        // would need to command traversal in order to give away followers.
-        // If prev is NULL, then this is a top rank follower, and leaving is not
-        // so easy. A head follower simply deciding to change teams would cause
-        // much confusion in the realm (see Jamie Lannister).
-        Character * next;
-        Character * prev;
-        // Recursively sum power of all followers and update commanding_power
-        // Main characters get an even greater blessing
-        virtual int update_commanding_power();
 
         //The LHS becomes an exact deepcopy of the RHS.
         Character& operator = (const Character&);
@@ -161,7 +152,34 @@ class Character {
         bool operator >= (const Character&)const;
         bool operator >= (const int)const;
         
-        friend ostream& operator << (ostream&, const Character&);
+        // friend ostream& operator << (ostream&, const Character&);
+
+        // Recursively sum power of all followers and update commanding_power
+        // Main characters get an even greater blessing
+        virtual int update_commanding_power();
+
+    protected:
+        // Name is remained as NULL for some characters if they are not important as individual to story
+        char * name;
+        // The power of this individual regardless of followers
+        int personal_power;
+        // The result sum of personal power and recursive sum of all followers
+        int commanding_power;
+        // The higher this property, the less likely to change sides in face of defeat
+        int loyalty;
+        Character * leader;
+        // This is the highest rank follower, which is probably
+        Character * followers_head;
+        Creature * pets_head;
+        // Characters have a next and prev so that they can independently
+        // change teams without the command of their leader. Otherwise the leader
+        // would need to command traversal in order to give away followers.
+        // If prev is NULL, then this is a top rank follower, and leaving is not
+        // so easy. A head follower simply deciding to change teams would cause
+        // much confusion in the realm (see Jamie Lannister).
+        Character * next;
+        Character * prev;
+
 
         // Named characters get a blessing to personal power whenever their
         // commanding power is significantly low. Change the configuration constant
@@ -169,21 +187,25 @@ class Character {
         // this feature should be so intense that it is virtually impossible for
         // a named character to perish. For a GRR Martin realm this is almost negligible
         // unless adapted to television. This blessing is more significant for privileged characters.
-        bool is_priveleged;
+        bool is_privileged;
 
     private:
 };
 
 class MainCharacter: public Character {
     public:
+        MainCharacter();
+        ~MainCharacter();
+        void display();
+        int update_commanding_power();
     protected:
         
-        int update_commanding_power();
     private:
 };
 
 class Creature: public Character {
     public:
+        Creature();
         // will attempt to delete a character and consume its calories,
         // not possible if power of other is higher than self.
         int eat(Creature *);
@@ -209,16 +231,16 @@ class Goat: private Creature {
 
 class Horse: private Creature {
     public:
+        Horse();
         // This spawns another Horse, requires and consumes energy
         Horse * produce_offspring();
     protected:
     private:
 };
 
-class DragonEgg;
-
 class Dragon: public Creature {
     public:
+        Dragon();
         // This may destroy target and friends depending on energy levels
         int incinerate(Character * & target);
         // If a dragon is fed enough, it may lay an egg
@@ -228,13 +250,14 @@ class Dragon: public Creature {
         DragonEgg * lay_egg();
 };
 
-class DragonEgg: private Dragon {
+class DragonEgg: protected Dragon {
     public:
+        DragonEgg();
         Dragon * heat();
     protected:
     private:
         // When heated, the egg may hatch if the energy has surpassed threshold
         Dragon * hatch();
-}
+};
 
 
