@@ -39,8 +39,9 @@ Character& Character::operator = (const Character& other){
 
 // The result of adding characters, is the LHS character copied and gaining
 // the RHS followers. This does not affect the LHS and RHS, it creates a copy.
-Character  Character::operator + (const Character&) const{
-    
+Character  Character::operator + (const Character& other) const{
+    Character temp;
+    temp.commanding_power = other.commanding_power;
 }
 
 // If a int is added to a character, the result is the gains the int to self power.
