@@ -13,6 +13,18 @@ Character::Character():
 
 }
 
+Character::Character(char * name, int personal_power):
+    loyalty(0), leader(NULL), followers_head(NULL), pets_head(NULL), next(NULL),
+    prev(NULL), is_privileged(false) {
+    
+    cout << "in the character constructor" << endl;
+
+    this->name = new char[strlen(name) + 1];
+    strcpy(this->name, name);
+
+    this->personal_power = personal_power;
+}
+
 Character::~Character(){}
 
 int Character::update_commanding_power(){};
@@ -31,7 +43,11 @@ int Character::adopt(Character *){
 
 
 //The LHS becomes an exact deepcopy of the RHS.
-Character& Character::operator = (const Character& other){
+Character& Character::operator=(const Character& other){
+    // If assigned to self, do nothing
+    if (this == &other)
+        return *this; 
+
     commanding_power = other.commanding_power;
     personal_power = other.personal_power;
     return *this;
@@ -39,25 +55,30 @@ Character& Character::operator = (const Character& other){
 
 // The result of adding characters, is the LHS character copied and gaining
 // the RHS followers. This does not affect the LHS and RHS, it creates a copy.
-Character  Character::operator + (const Character& other) const{
+Character Character::operator+(const Character& other) const{
     Character temp;
-    temp.commanding_power = other.commanding_power;
+    temp.commanding_power = this->commanding_power + other.commanding_power;
+    return temp;
 }
 
 // If a int is added to a character, the result is the gains the int to self power.
-Character  Character::operator + (const int) const{
-    
+Character Character::operator+(const int val) const{
+    Character temp;
+    temp.commanding_power = this->commanding_power + val;
+    return temp;
 }
 
 // The character on the LHS inherits all rights and followers of the RHS.
 // Name and any identification info is not affected.
-Character& Character::operator += (const Character&){
-    
+Character& Character::operator+=(const Character& other){
+    this->commanding_power += other.commanding_power;
+    return *this;
 }
 
 // The character gains power equal to the int.
-Character& Character::operator += (const int){
-    
+Character& Character::operator+=(const int val){
+    this->commanding_power += val;
+    return *this;
 }
 
 
@@ -66,7 +87,7 @@ Character& Character::operator += (const int){
 This will recursively fetch the follower of the nth position.
 Followers are sorted by head being the oldest and most trusted.
 */
-Character& Character::operator [] (int){
+Character& Character::operator[](int){
     
 }
 
@@ -77,52 +98,52 @@ Character& Character::operator [] (int){
 ( >, >= ) (int, Character)
 ( <, <= ) (int, Character)
 */
-bool Character::operator == (const Character& other)const{
+bool Character::operator==(const Character& other)const{
     return (this->commanding_power == other.commanding_power);
 }
 
-bool Character::operator == (const int)const{
-    return true;
+bool Character::operator==(const int val)const{
+    return (this->commanding_power == val);
 }
 
-bool Character::operator != (const Character&)const{
-    return true;
+bool Character::operator!=(const Character& other)const{
+    return !(*this == other);
 }
 
-bool Character::operator != (const int)const{
-    return true;
+bool Character::operator!=(const int val)const{
+    return !(*this == val);
 }
 
-bool Character::operator < (const Character&)const{
-    return true;
+bool Character::operator<(const Character& other)const{
+    return (this->commanding_power < other.commanding_power);
 }
 
-bool Character::operator < (const int)const{
-    return true;
+bool Character::operator<(const int val)const{
+    return (this->commanding_power < val);
 }
 
-bool Character::operator > (const Character&)const{
-    return true;
+bool Character::operator>(const Character& other)const{
+    return (this->commanding_power > other.commanding_power);
 }
 
-bool Character::operator > (const int)const{
-    return true;
+bool Character::operator>(const int val)const{
+    return (this->commanding_power > val);
 }
 
-bool Character::operator <= (const Character&)const{
-    return true;
+bool Character::operator<=(const Character& other)const{
+    return (this->commanding_power <= other.commanding_power);
 }
 
-bool Character::operator <= (const int)const{
-    return true;
+bool Character::operator<=(const int val)const{
+    return (this->commanding_power <= val);
 }
 
-bool Character::operator >= (const Character&)const{
-    return true;
+bool Character::operator>=(const Character& other)const{
+    return (this->commanding_power > other.commanding_power);
 }
 
-bool Character::operator >= (const int)const{
-    return true;
+bool Character::operator>=(const int val)const{
+    return (this->commanding_power > val);
 }
 
 
@@ -130,10 +151,12 @@ bool Character::operator >= (const int)const{
 //     return true;
 // }
 
-MainCharacter::MainCharacter(): Character(){
+MainCharacter::MainCharacter(): Character("Masked", 1){
     personal_power = 1;
     cout << "In the mainchar constructor" << endl;
 };
+
+MainCharacter::MainCharacter(char * name, int personal_power): Character(name, personal_power){};
 
 MainCharacter::~MainCharacter(){
     cout << "Deleting main character" << endl;

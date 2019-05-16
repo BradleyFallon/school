@@ -16,7 +16,7 @@ increase your own personal power and the power of your pets.
 One strategy to win could be to train a dragon to be stronger than the 
 greatest leader of the realm. Another strategy could be to take out other
 leaders and take control by inspiring their followers to convert to your cause.
-Best of luck on your endeavors adveneturer.
+Best of luck on your endeavors adventurer.
 */
 
 // If a hero is imminent danger, they may recieve this blessing power
@@ -107,6 +107,7 @@ and only the Character will be updated and commanding_power compared with the in
 class Character {
     public:
         Character();
+        Character(char * name, int personal_power);
         virtual ~Character();
 
         void display();
@@ -133,12 +134,6 @@ class Character {
         */
         Character& operator [] (int);
 
-        /*
-        ( == ) (int, Character)
-        ( != ) (int, Character)
-        ( >, >= ) (int, Character)
-        ( <, <= ) (int, Character)
-        */
         bool operator == (const Character&)const;
         bool operator == (const int)const;
         bool operator != (const Character&)const;
@@ -152,7 +147,8 @@ class Character {
         bool operator >= (const Character&)const;
         bool operator >= (const int)const;
         
-        // friend ostream& operator << (ostream&, const Character&);
+        friend ostream & operator << (ostream &, const Character &);
+        friend istream & operator >> (istream &, Character &);
 
         // Recursively sum power of all followers and update commanding_power
         // Main characters get an even greater blessing
@@ -195,6 +191,7 @@ class Character {
 class MainCharacter: public Character {
     public:
         MainCharacter();
+        MainCharacter(char * name, int personal_power);
         ~MainCharacter();
         void display();
         int update_commanding_power();

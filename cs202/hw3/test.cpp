@@ -3,9 +3,9 @@
 
 int main() {
 
-    Character minion;
-    MainCharacter hero;
-
+    Character minion("Gronk", 5);
+    MainCharacter hero("Danny", 20);
+    
     minion.display();
     hero.display();
     cout << (minion == hero) << endl;
@@ -27,7 +27,7 @@ int main() {
     cout << (hero < 0) << endl;
     cout << (hero < 4) << endl;
 
-
+    
 
 
     return 0;
