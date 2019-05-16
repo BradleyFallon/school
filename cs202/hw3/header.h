@@ -111,8 +111,9 @@ class Character {
         virtual ~Character();
 
         void display();
+        int secede();
         // Take an individual follower to be 
-        int adopt(Character *);
+        int adopt(Character & other);
 
         //The LHS becomes an exact deepcopy of the RHS.
         Character& operator = (const Character&);
@@ -166,7 +167,9 @@ class Character {
         Character * leader;
         // This is the highest rank follower, which is probably
         Character * followers_head;
+        Character * followers_tail;
         Creature * pets_head;
+        Creature * pets_tail;
         // Characters have a next and prev so that they can independently
         // change teams without the command of their leader. Otherwise the leader
         // would need to command traversal in order to give away followers.
@@ -205,7 +208,8 @@ class Creature: public Character {
         Creature();
         // will attempt to delete a character and consume its calories,
         // not possible if power of other is higher than self.
-        int eat(Creature *);
+        int eat(Creature &);
+        int eat(int energy);
     protected:
         // The amount of energy a creature has, dies if 0
         // Higher energy may enable special features of derived classes
@@ -218,20 +222,21 @@ class Creature: public Character {
 };
 
 // This is a private creature because it is to be controlled by an owner
-class Goat: private Creature {
+class Goat: public Creature {
     public:
+        Goat();
+    protected:
         // This spawns another goat, requires and consumes energy
         Goat * produce_offspring();
-    protected:
     private:
 };
 
-class Horse: private Creature {
+class Horse: public Creature {
     public:
         Horse();
+    protected:
         // This spawns another Horse, requires and consumes energy
         Horse * produce_offspring();
-    protected:
     private:
 };
 
@@ -250,7 +255,7 @@ class Dragon: public Creature {
 class DragonEgg: protected Dragon {
     public:
         DragonEgg();
-        Dragon * heat();
+        Dragon * heat(int energy);
     protected:
     private:
         // When heated, the egg may hatch if the energy has surpassed threshold

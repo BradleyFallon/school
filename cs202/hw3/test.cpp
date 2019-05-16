@@ -4,31 +4,39 @@
 int main() {
 
     Character minion("Gronk", 5);
-    MainCharacter hero("Danny", 20);
+    MainCharacter danny("Danny", 20);
+    DragonEgg mysterious_gift;
+    // mysterious_gift = new Character();
+
+    if (danny.adopt(mysterious_gift))
+        cout << "Danny has acquired a mysterious gift." << endl;
+
+
+
+
     
     minion.display();
-    hero.display();
-    cout << (minion == hero) << endl;
+    danny.display();
+    cout << (minion == danny) << endl;
 
-    hero.update_commanding_power();
+    danny.update_commanding_power();
     minion.display();
-    hero.display();
-    cout << (minion == hero) << endl;
+    danny.display();
+    cout << (minion == danny) << endl;
 
 
-    minion = hero;
+    minion = danny;
     minion.update_commanding_power();
     minion.display();
-    hero.display();
-    cout << (minion == hero) << endl;
+    danny.display();
+    cout << (minion == danny) << endl;
 
-    cout << (hero > 1) << endl;
-    cout << (hero > 2) << endl;
-    cout << (hero < 0) << endl;
-    cout << (hero < 4) << endl;
+    cout << (danny > 1) << endl;
+    cout << (danny > 2) << endl;
+    cout << (danny < 0) << endl;
+    cout << (danny < 4) << endl;
 
     
-
 
     return 0;
 }

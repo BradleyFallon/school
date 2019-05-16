@@ -35,10 +35,25 @@ void Character::display(){
         << "Power: " << commanding_power << endl;
 }
 
+// Break away from current alliance. Keep followers
+int Character::secede(){
+    if (prev)
+        prev->next = next;
+    if (next)
+        next->prev = prev;
+    if (leader)
+        leader = NULL;
+}
 
 // Take an individual follower to be 
-int Character::adopt(Character *){
-    
+int Character::adopt(Character & other){
+    cout << "hello" << endl;
+    other.secede();
+    other.leader = this;
+    other.next = NULL;
+    other.prev = followers_tail;
+    followers_tail = &other;
+    return 1;
 }
 
 
@@ -154,13 +169,13 @@ bool Character::operator>=(const int val)const{
 MainCharacter::MainCharacter(): Character("Masked", 1){
     personal_power = 1;
     cout << "In the mainchar constructor" << endl;
-};
+}
 
 MainCharacter::MainCharacter(char * name, int personal_power): Character(name, personal_power){};
 
 MainCharacter::~MainCharacter(){
     cout << "Deleting main character" << endl;
-};
+}
 
 void MainCharacter::display(){
     cout << "Hero ";
@@ -169,5 +184,30 @@ void MainCharacter::display(){
 
 int MainCharacter::update_commanding_power(){
     commanding_power = personal_power;
-};
+}
+
+Creature::Creature(){}
+
+int Creature::eat(Creature & prey){
+    int absorbed;
+    if (*this > prey){
+        absorbed = prey.calories;
+        energy += absorbed;
+        delete &prey;
+        return 1;
+    }
+    else return 0;
+}
+
+int Creature::eat(int energy){
+    this->energy += energy;
+    return 1;
+}
+
+Goat::Goat(){
+    cout << "hello goat" << endl;
+}
+Horse::Horse(){}
+Dragon::Dragon(){}
+DragonEgg::DragonEgg(){}
 
