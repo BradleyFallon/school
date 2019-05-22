@@ -5,6 +5,8 @@ int main() {
 
     Realm the_realm;
 
+    the_realm.leaderboard();
+
     // MainCharacter* jimmy = new MainCharacter("Jimmy", "Flake", 20);
 
     // for (int i = 0; i<30; ++i){

@@ -2,41 +2,34 @@
 #include "header.h"
 
 
-Realm::Realm(){
-    inhabitants_head = NULL;
-    size = 0;
-    index = 0;
-
+Realm::Realm(): inhabitants_head(NULL), keeper_of_realm(NULL){
+    Character* new_character = NULL;
 
     // A Character can be added to the realm and the pointer can be retained from return value
-    Character* jimmy = add_character(new MainCharacter("Jimmy", "Flake", 20));
+    Character* jimmy = add_character(new MainCharacter((char *)"Jimmy", (char *)"Flake", 20));
 
     // Character additions can be nested in adoptions
     // Adoptions cause the argument character to become a follower of the caller
-    jimmy->adopt(
-        add_character(new MainCharacter("Flynn", "Stronk", 20))->adopt(
-            add_character(new MainCharacter("Flynn", "Stronk", 20))
-        )
-    );
+    new_character = add_character(new MainCharacter((char *)"Flynn", (char *)"Stronk", 20));
+    jimmy->adopt(new_character);
 
     // Adoptions can be made by using the += operator with a character or creature pointer
     // Jimmy really likes goats
     for (int i = 0; i<30; ++i){
-        jimmy->adopt(add_character(new Goat()));
+        new_character = add_character(new Goat());
+        jimmy->adopt(new_character);
         // Jimmy likes goats so much, he gains personal strength from their presence
-        jimmy += 1;
+        *jimmy += 1;
     }
 
     // A Character can be added to the realm and the pointer can be retained from return value
-    Character* danise = add_character(new MainCharacter("Danise", "Dragonian", 20));
-    danise->adopt(
-        add_character(new Character("Gronk", 5))
-        );
-    danise->adopt(
-        add_character(new Dragon("Vesuvius", 300))
-        );
+    Character* danise = add_character(new MainCharacter((char *)"Danise", (char *)"Dragonian", 20));
+    new_character = add_character(new Dragon((char *)"Vesuvius", 300));
+    danise->adopt(new_character);
+    new_character = add_character(new Character((char *)"Gronk", 5));
+    danise->adopt(new_character);
 
-    
+    danise->display();
 }
 
 
@@ -79,16 +72,25 @@ Character * Realm::leaderboard(){
     CharacterNode* current = inhabitants_head;
     while (current) {
         // only top level leaders can be keeper of he realm
-        if (*(current->character) > *keeper_of_realm){
-            keeper_of_realm = current->character;
+        if (current->character->is_root()){
+            // If no keeper, become keeper
+            if (!keeper_of_realm)
+                keeper_of_realm = current->character;
+            // If greater than current keeper, become keeper
+            else if (*(current->character) > *keeper_of_realm){
+                keeper_of_realm = current->character;
+            }
         }
+        current = current->next;
     }
+    if (!keeper_of_realm) return NULL;
     cout << ".oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.\n\n"
-        <<  "     Behold, Ye Keeper of the Realm:\n\n";
+        <<  "     Behold, Ye Keeper of Ye Realm:\n\n";
     keeper_of_realm->display();
-    cout << "     May thine reign be long," << "\n"
-        <<  "        thy rains be wet," << "\n"
-        <<  "            and thine thighs clap loud with thickness." << endl;
+    cout << "     May Ye reignf of thine reign be lengthy," << "\n"
+        <<  "        thy rainf be wet," << "\n"
+        <<  "            and thine thighf clap loud with thickneff." << "\n\n"
+        << ".oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.\n" << endl;
     return keeper_of_realm;
 }
 

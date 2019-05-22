@@ -59,9 +59,10 @@ class Realm {
         // The entire population of the realm is tracked here, independent of
         // social standing and relationships.
         // Character ** inhabitants;
+        // int index;
+        // int size;
         CharacterNode * inhabitants_head;
-        int index;
-        int size;
+
         // The single inhabitant with the greatest cmd_pwr is the keeper of
         // the realm. Commanding power is the sum of self power and all followers
         // recursively. A wizard or dragon may have greater power than an army,
@@ -113,15 +114,18 @@ and only the Character will be updated and cmd_pwr compared with the int.
 class Character {
     public:
         Character();
-        Character(char * name, int self_pwr);
+        Character(const char * name, int self_pwr);
         Character(const Character &);
         virtual ~Character();
 
         void display();
         int secede();
+        // Check if this is root of a tree
+        bool is_root();
         // Take an individual follower to be 
         Character * adopt(Character * other);
-        Character * adopt(Creature * other);
+        // Character * adopt(Creature * other);
+        Character * battle(character * other);
 
         //The LHS becomes an exact deepcopy of the RHS.
         Character& operator = (const Character&);
@@ -145,18 +149,18 @@ class Character {
         */
         Character& operator [] (int);
 
-        bool operator == (const Character&)const;
-        bool operator == (const int)const;
-        bool operator != (const Character&)const;
-        bool operator != (const int)const;
-        bool operator < (const Character&)const;
-        bool operator < (const int)const;
-        bool operator > (const Character&)const;
-        bool operator > (const int)const;
-        bool operator <= (const Character&)const;
-        bool operator <= (const int)const;
-        bool operator >= (const Character&)const;
-        bool operator >= (const int)const;
+        bool operator == (Character&);
+        bool operator == (const int);
+        bool operator != (Character&);
+        bool operator != (const int);
+        bool operator < (Character&);
+        bool operator < (const int);
+        bool operator > (Character&);
+        bool operator > (const int);
+        bool operator <= (Character&);
+        bool operator <= (const int);
+        bool operator >= (Character&);
+        bool operator >= (const int);
         
         friend ostream & operator << (ostream &, const Character &);
         friend istream & operator >> (istream &, Character &);
@@ -177,8 +181,8 @@ class Character {
         // This is the highest rank follower, which is probably
         Character * followers_head;
         Character * followers_tail;
-        Creature * pets_head;
-        Creature * pets_tail;
+        // Creature * pets_head;
+        // Creature * pets_tail;
         // Characters have a next and prev so that they can independently
         // change teams without the command of their leader. Otherwise the leader
         // would need to command traversal in order to give away followers.
@@ -212,7 +216,7 @@ class Character {
 class MainCharacter: public Character {
     public:
         MainCharacter();
-        MainCharacter(char * name, char * house, int self_pwr);
+        MainCharacter(const char * name, const char * house, int self_pwr);
         ~MainCharacter();
         // void display();
     protected:
@@ -224,7 +228,7 @@ class MainCharacter: public Character {
 class Creature: public Character {
     public:
         Creature();
-        Creature(char * name, int self_pwr);
+        Creature(const char * name, int self_pwr);
         Creature(const Creature &);
         // will attempt to delete a character and consume its calories,
         // not possible if power of other is higher than self.
@@ -274,7 +278,7 @@ class Horse: public Creature {
 class Dragon: public Creature {
     public:
         Dragon();
-        Dragon(char * name, int self_pwr);
+        Dragon(const char * name, int self_pwr);
         Dragon(const DragonEgg &);
         // This may destroy target and friends depending on energy levels
         int incinerate(Character * & target);
@@ -297,7 +301,7 @@ class DragonEgg: public Creature {
         static char species[];
     private:
         DragonEgg();
-        DragonEgg(char * name, int self_pwr);
+        DragonEgg(const char * name, int self_pwr);
         // When heated, the egg may hatch if the energy has surpassed threshold
         Dragon * hatch();
         const char* get_species();
