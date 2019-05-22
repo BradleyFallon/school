@@ -30,7 +30,8 @@ const int NAMED_BLESSING = 200;
 const int BLESSINGS_THRESHOLD = 50;
 
 class Realm;
-class Story;
+class Story; // Is a Realm
+
 class Character;
 class MainCharacter;
 class Creature;
@@ -39,24 +40,29 @@ class Horse;
 class Dragon;
 class DragonEgg;
 
+struct CharacterNode{
+    Character * character;
+    CharacterNode * next;
+};
+
 class Realm {
     public:
         Realm();
         // Display the most powerful leaders of the realm and their follower info
-        void display_top();
+        Character * leaderboard();
         // Cause two leaders to battle, a characterer to victor is returned
-        Character * battle(Character * & leader_a, Character * & leader_b);
+        Character * battle(Character * leader_a, Character * leader_b);
         int pledge(Character * & leader_hi, Character * & leader_low);
         int treason(Character * & traitor);
     protected:
+        Character * add_character(Character *);
         // The entire population of the realm is tracked here, independent of
-        // social standing and relation ships. This is a dynamic array which 
-        // will be taking inspiration from python list implementation. This means
-        // it will be an array that will reallocate and copy to a new larger array
-        // whenever full. The size increase is a function of old size. As population
-        // dies off, the array may be reallocated to a smaller size.
-        Character * inhabitants[];
-        // The single inhabitant with the greatest commanding_power is the keeper of
+        // social standing and relationships.
+        // Character ** inhabitants;
+        CharacterNode * inhabitants_head;
+        int index;
+        int size;
+        // The single inhabitant with the greatest cmd_pwr is the keeper of
         // the realm. Commanding power is the sum of self power and all followers
         // recursively. A wizard or dragon may have greater power than an army,
         // so population alone does not make a character the keeper of the realm.
@@ -100,31 +106,35 @@ Followers are sorted by head being the oldest and most trusted.
 ( != ) (int, Character)
 ( >, >= ) (int, Character)
 ( <, <= ) (int, Character)
-All of the comparisons will use integer comparison upon the commanding_power
+All of the comparisons will use integer comparison upon the cmd_pwr
 after both RHS and LHS have been updated. This can be also used with an integer
-and only the Character will be updated and commanding_power compared with the int.
+and only the Character will be updated and cmd_pwr compared with the int.
 */
 class Character {
     public:
         Character();
-        Character(char * name, int personal_power);
+        Character(char * name, int self_pwr);
+        Character(const Character &);
         virtual ~Character();
 
         void display();
         int secede();
         // Take an individual follower to be 
-        int adopt(Character & other);
+        Character * adopt(Character * other);
+        Character * adopt(Creature * other);
 
         //The LHS becomes an exact deepcopy of the RHS.
         Character& operator = (const Character&);
         // The result of adding characters, is the LHS character copied and gaining
         // the RHS followers. This does not affect the LHS and RHS, it creates a copy.
-        Character  operator + (const Character&) const;
+        int operator + (const Character&) const;
         // If a int is added to a character, the result is the gains the int to self power.
-        Character  operator + (const int) const;
+        int operator + (const int) const;
         // The character on the LHS inherits all rights and followers of the RHS.
         // Name and any identification info is not affected.
         Character& operator += (const Character&);
+        // To adopt a character as a follower
+        Character* operator+= (Character* other);
         // The character gains power equal to the int.
         Character& operator += (const int);
 
@@ -151,19 +161,18 @@ class Character {
         friend ostream & operator << (ostream &, const Character &);
         friend istream & operator >> (istream &, Character &);
 
-        // Recursively sum power of all followers and update commanding_power
-        // Main characters get an even greater blessing
-        virtual int update_commanding_power();
+        // // Recursively sum power of all followers and update cmd_pwr
+        // // Main characters get an even greater blessing
+        // virtual int update_cmd_pwr();
 
     protected:
         // Name is remained as NULL for some characters if they are not important as individual to story
         char * name;
         // The power of this individual regardless of followers
-        int personal_power;
+        int self_pwr;
         // The result sum of personal power and recursive sum of all followers
-        int commanding_power;
-        // The higher this property, the less likely to change sides in face of defeat
-        int loyalty;
+        int cmd_pwr;
+        
         Character * leader;
         // This is the highest rank follower, which is probably
         Character * followers_head;
@@ -188,28 +197,39 @@ class Character {
         // unless adapted to television. This blessing is more significant for privileged characters.
         bool is_privileged;
 
+        // Update the power rating of self and all followers
+        int update_cmd_pwr();
+        // Return the power of self plus all lesser commrades
+        int rally_power();
+        // Displays name, without endl. For recursion or inline insertion in cout
+        virtual void display_name();
+        // Displays all commrades names
+        int display_rally();
+
     private:
 };
 
 class MainCharacter: public Character {
     public:
         MainCharacter();
-        MainCharacter(char * name, int personal_power);
+        MainCharacter(char * name, char * house, int self_pwr);
         ~MainCharacter();
-        void display();
-        int update_commanding_power();
+        // void display();
     protected:
-        
+        char * house;
+        void display_name();
     private:
 };
 
 class Creature: public Character {
     public:
         Creature();
+        Creature(char * name, int self_pwr);
+        Creature(const Creature &);
         // will attempt to delete a character and consume its calories,
         // not possible if power of other is higher than self.
-        int eat(Creature &);
-        int eat(int energy);
+        virtual int eat(Creature &);
+        virtual int eat(int);
     protected:
         // The amount of energy a creature has, dies if 0
         // Higher energy may enable special features of derived classes
@@ -218,6 +238,8 @@ class Creature: public Character {
         int calories;
         // This is the weight capacity a creature can support for cargo/rider
         int mount_capacity;
+        virtual const char* get_species() = 0;
+        void display_name();
     private:
 };
 
@@ -225,41 +247,60 @@ class Creature: public Character {
 class Goat: public Creature {
     public:
         Goat();
+        int eat(Creature &);
+        int eat(int);
     protected:
+        static char species[];
+    private:
         // This spawns another goat, requires and consumes energy
         Goat * produce_offspring();
-    private:
+        const char* get_species();
 };
 
 class Horse: public Creature {
     public:
         Horse();
+        int eat(Creature &);
+        int eat(int);
     protected:
+        static char species[];
+    private:
         // This spawns another Horse, requires and consumes energy
         Horse * produce_offspring();
-    private:
+        const char* get_species();
 };
+
 
 class Dragon: public Creature {
     public:
         Dragon();
+        Dragon(char * name, int self_pwr);
+        Dragon(const DragonEgg &);
         // This may destroy target and friends depending on energy levels
         int incinerate(Character * & target);
         // If a dragon is fed enough, it may lay an egg
-        DragonEgg * eat();
+        int eat(Creature &);
+        int eat(int);
     protected:
+        static char species[];
     private:
         DragonEgg * lay_egg();
+        const char* get_species();
+        
 };
 
-class DragonEgg: protected Dragon {
+class DragonEgg: public Creature {
     public:
-        DragonEgg();
-        Dragon * heat(int energy);
+        int eat(Creature &); // always fails, cannot eat
+        int eat(int);
     protected:
+        static char species[];
     private:
+        DragonEgg();
+        DragonEgg(char * name, int self_pwr);
         // When heated, the egg may hatch if the energy has surpassed threshold
         Dragon * hatch();
+        const char* get_species();
 };
 
 

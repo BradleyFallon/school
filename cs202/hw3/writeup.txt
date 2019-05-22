@@ -42,7 +42,7 @@ will be taking inspiration from python list implementation. This means
 it will be an array that will reallocate and copy to a new larger array
 whenever full. The size increase is a function of old size. As population
 dies off, the array may be reallocated to a smaller size.
-The single inhabitant with the greatest commanding_power is the keeper of
+The single inhabitant with the greatest cmd_pwr is the keeper of
 the realm. Commanding power is the sum of self power and all followers
 recursively. A wizard or dragon may have greater power than an army,
 so population alone does not make a character the keeper of the realm.
@@ -79,9 +79,9 @@ Followers are sorted by head being the oldest and most trusted.
 ( != ) (int, Character)
 ( >, >= ) (int, Character)
 ( <, <= ) (int, Character)
-All of the comparisons will use integer comparison upon the commanding_power
+All of the comparisons will use integer comparison upon the cmd_pwr
 after both RHS and LHS have been updated. This can be also used with an integer
-and only the Character will be updated and commanding_power compared with the int.
+and only the Character will be updated and cmd_pwr compared with the int.
 
 Named characters get a blessing to personal power whenever their
 commanding power is significantly low. Change the configuration constant
