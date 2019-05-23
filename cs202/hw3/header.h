@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <stdlib.h>  // for rand()
 
 using namespace std;
 
@@ -73,7 +74,7 @@ class Realm {
 
 // This is a protected derivation because we want to hide the inner workings from the client.
 // The Story class creates a guided interaction rather than an open ended experiment.
-class Story: protected Realm {
+class Story: public Realm {
     public:
         Story();
         // displays the nexet paragraph and returns 0 if end of story, else 1
@@ -124,8 +125,14 @@ class Character {
         bool is_root();
         // Take an individual follower to be 
         Character * adopt(Character * other);
+        Character * adopt_followers(Character * recruiter);
         // Character * adopt(Creature * other);
-        Character * battle(character * other);
+        Character * battle(Character * other);
+        CharacterNode * get_battle_order();
+        CharacterNode * get_battle_order(CharacterNode* & tail_node);
+        CharacterNode * attack(CharacterNode * enemies_head);
+        bool attack(Character * enemy);
+        int strike();
 
         //The LHS becomes an exact deepcopy of the RHS.
         Character& operator = (const Character&);

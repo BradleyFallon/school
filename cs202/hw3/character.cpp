@@ -122,6 +122,13 @@ Character * Character::adopt(Character * recruit){
     return this;
 }
 
+Character * Character::adopt_followers(Character * recruiter){
+    followers_tail->next = recruiter->followers_head;
+    if (recruiter->followers_tail)
+        recruiter->followers_tail = recruiter->followers_tail;
+    return this;
+}
+
 // // Take an individual follower to be 
 // Character * Character::adopt(Creature * pet){
 //     pet->secede();
@@ -146,6 +153,14 @@ Character * Character::battle(Character * other){
     // This is meant to simulate sending lowest rank followers into battle first
     CharacterNode * defenders_head;
 
+    // Make each character temporarily independent during battle,
+    // At the end, if characters are still alive, re-assign to leader
+    Character * above_this = leader;
+    Character * above_other = other->leader;
+
+    secede();
+    other->secede();
+
     // Build LLL of defending characters sequence
     defenders_head = other->get_battle_order();
 
@@ -156,36 +171,80 @@ Character * Character::battle(Character * other){
     // Benifit of having many direct reports as leaves is better defense, only direct report leaves contribute to defense in an attack
     attack(defenders_head);
 
+    // What if this character is defeated during the attack?
+    // return a flag that says to delete
+
     // Delete defenders LLL, but not the characters
 }
 
+int Character::strike(){
+    return rand() % cmd_pwr;
+}
+
+bool Character::attack(Character * enemy){
+    // int strike = rand() % cmd_pwr;
+    Character * prisoner;
+
+    if (*enemy < strike()){
+        // Deal with followers
+        if (enemy->followers_tail) {
+            if (enemy->leader){
+                // If this enemy had a leader, capture follower tail
+                adopt(enemy->followers_tail);
+                // Other followers go up to follow leader
+                enemy->leader->adopt_followers(enemy->followers_head);
+            } else {
+                // If enemy had no leader, capture all followers
+                adopt_followers(enemy->followers_head);
+            }
+        }
+        delete enemy;
+        return true;
+    } else
+        return false;
+}
+
 CharacterNode * Character::attack(CharacterNode * enemies_head){
+    // returns next target head node
+
     CharacterNode * current_target = enemies_head;
 
-    // Job done... You lucked out this time, buddy!
-    if (!enemies_head) return;
+    if (!current_target)
+        // Job done... You lucked out this time, buddy!
+        return NULL;
 
     // This character sends next commrade to fight first, then sends followers second, then self
-
     // first sent next commrade to fight
     if (next)
         // Let the next guy attack current_target,
         // then update current_target to point at whover he reports is the next target
         current_target = next->attack(current_target);
+        if (!current_target)
+            // Job done... You lucked out this time, buddy!
+            return NULL;
 
     // after next commrade, send followers to fight
     if (followers_head)
-        current_target = followers_head->attack(current_target);    
+        current_target = followers_head->attack(current_target);
+        if (!current_target)
+            // Job done... You lucked out this time, buddy!
+            return NULL;
 
     // after next and followers have been sent, send self
     // Now that all delegation has been done, make this guy the next tail
     // Whoever is more powerful gets to make the call attack
     update_cmd_pwr(); // Update power because followers may have been defeated
     enemies_head->character->update_cmd_pwr();
+
+    // More powerful strikes first
     if (*this > *enemies_head->character){
-        this->attack(enemies_head->character);
+        if (! this->attack(enemies_head->character) )
+            // Countersrike
+            enemies_head->character->attack(this);
     } else {
-        enemies_head->character->attack(this);
+        if (! enemies_head->character->attack(this) )
+            // Countersrike
+            this->attack(enemies_head->character);
     }
 
     // Tell whover is above in stack to attack next target

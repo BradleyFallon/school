@@ -3,33 +3,6 @@
 
 
 Realm::Realm(): inhabitants_head(NULL), keeper_of_realm(NULL){
-    Character* new_character = NULL;
-
-    // A Character can be added to the realm and the pointer can be retained from return value
-    Character* jimmy = add_character(new MainCharacter((char *)"Jimmy", (char *)"Flake", 20));
-
-    // Character additions can be nested in adoptions
-    // Adoptions cause the argument character to become a follower of the caller
-    new_character = add_character(new MainCharacter((char *)"Flynn", (char *)"Stronk", 20));
-    jimmy->adopt(new_character);
-
-    // Adoptions can be made by using the += operator with a character or creature pointer
-    // Jimmy really likes goats
-    for (int i = 0; i<30; ++i){
-        new_character = add_character(new Goat());
-        jimmy->adopt(new_character);
-        // Jimmy likes goats so much, he gains personal strength from their presence
-        *jimmy += 1;
-    }
-
-    // A Character can be added to the realm and the pointer can be retained from return value
-    Character* danise = add_character(new MainCharacter((char *)"Danise", (char *)"Dragonian", 20));
-    new_character = add_character(new Dragon((char *)"Vesuvius", 300));
-    danise->adopt(new_character);
-    new_character = add_character(new Character((char *)"Gronk", 5));
-    danise->adopt(new_character);
-
-    danise->display();
 }
 
 
@@ -102,10 +75,41 @@ Character * Realm::leaderboard(){
 //     return leader_b;
 // }
 
-// Character * Realm::battle(Character * leader_a, Character * leader_b){
-//     if (leader_a > leader_b)
-//             penalty();
-//         return leader_a;
-    
-//     return leader_b;
-// }
+Character * Realm::battle(Character * leader_a, Character * leader_b){
+
+    leader_a->battle(leader_b);
+}
+
+
+Story::Story(): Realm(){
+    Character* new_character = NULL;
+
+    // A Character can be added to the realm and the pointer can be retained from return value
+    Character* jimmy = add_character(new MainCharacter("Jimmy", "Flake", 20));
+
+    // Character additions can be nested in adoptions
+    // Adoptions cause the argument character to become a follower of the caller
+    new_character = add_character(new MainCharacter("Flynn", "Stronk", 20));
+    new_character->adopt(add_character(new Horse()));
+    jimmy->adopt(new_character);
+
+    // Adoptions can be made by using the += operator with a character or creature pointer
+    // Jimmy really likes goats
+    for (int i = 0; i<30; ++i){
+        new_character = add_character(new Goat());
+        jimmy->adopt(new_character);
+        // Jimmy likes goats so much, he gains personal strength from their presence
+        *jimmy += 1;
+    }
+
+    jimmy->display();
+
+    // A Character can be added to the realm and the pointer can be retained from return value
+    Character* danise = add_character(new MainCharacter("Danise", "Dragonian", 20));
+    new_character = add_character(new Dragon("Vesuvius", 300));
+    danise->adopt(new_character);
+    new_character = add_character(new Character("Gronk", 5));
+    danise->adopt(new_character);
+
+    danise->display();
+}
