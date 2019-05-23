@@ -5,6 +5,9 @@
 
 using namespace std;
 
+const int SIZE_SMALL = 64;
+const int SIZE_LARGE = 1024;
+
 /*
 This is a text adventure game. It is very simple. Your hero is an up and coming 
 dragon trainer. The user reads a paragrah at a time of the story. The User
@@ -41,9 +44,18 @@ class Horse;
 class Dragon;
 class DragonEgg;
 
-struct CharacterNode{
-    Character * character;
-    CharacterNode * next;
+
+class CharacterList{
+    public:
+        CharacterList();
+        CharacterList(Character * character);
+        Character * append(Character * to_add);
+        CharacterList * append(CharacterList * to_add);
+        Character * get_top();
+    protected:
+        void get_top(Character * & current_best);
+        Character * character;
+        CharacterList * next;
 };
 
 class Realm {
@@ -51,18 +63,17 @@ class Realm {
         Realm();
         // Display the most powerful leaders of the realm and their follower info
         Character * leaderboard();
-        // Cause two leaders to battle, a characterer to victor is returned
-        Character * battle(Character * leader_a, Character * leader_b);
         int pledge(Character * & leader_hi, Character * & leader_low);
         int treason(Character * & traitor);
     protected:
-        Character * add_character(Character *);
+        Character * update_population(Character *);
+        CharacterList * update_population(CharacterList *);
         // The entire population of the realm is tracked here, independent of
         // social standing and relationships.
         // Character ** inhabitants;
         // int index;
         // int size;
-        CharacterNode * inhabitants_head;
+        CharacterList * inhabitants_head;
 
         // The single inhabitant with the greatest cmd_pwr is the keeper of
         // the realm. Commanding power is the sum of self power and all followers
@@ -72,15 +83,47 @@ class Realm {
     private: 
 };
 
+class Paragraph{
+    
+    public:
+        Paragraph();
+        Paragraph(CharacterList * new_characters, const char* new_text, Character * target, bool do_battle);
+        // display options and execute commands
+        // leaderboard
+        // display following
+        // continue win
+        // continue fail
+        // battle
+        // treaty
+        Paragraph * interact_user(Character * hero, Character * keeper);
+        // If new characters are added to the realm, return them and the story
+        // will deal with adding to realm list
+        CharacterList * get_new_characters();
+        Paragraph * connect_next_win(Paragraph * next_paragraph);
+        Paragraph * connect_next_fail(Paragraph * next_paragraph);
+    private:
+        Character * battle_target;
+        char * text;
+        // Instead of left/right, I am calling these win/fail so that
+        // it is obvious what convention is for winning and losing battles etc.
+        Paragraph * next_win; 
+        Paragraph * next_fail;
+        CharacterList * characters_list;
+        bool fight_the_keeper;
+
+        int get_user_input();
+};
+
 // This is a protected derivation because we want to hide the inner workings from the client.
 // The Story class creates a guided interaction rather than an open ended experiment.
-class Story: public Realm {
+class Story: protected Realm {
     public:
         Story();
         // displays the nexet paragraph and returns 0 if end of story, else 1
-        int read_next_paragraph();
+        bool read_next_paragraph(Character * hero, Character * keeper);
     private:
         Character * hero;
+        Paragraph * next_paragraph;
 };
 
 /*
