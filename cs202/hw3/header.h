@@ -1,3 +1,14 @@
+/*
+================================================================================
+Homework 3 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+5/24/2019
+
+This file is the mega-header that contains all constants and prefabs for all classes
+================================================================================
+*/
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -6,7 +17,45 @@
 using namespace std;
 
 const int SIZE_SMALL = 64;
+// Was going to be used for reading story from file, but didn't get there
 const int SIZE_LARGE = 1024;
+
+
+/*
+To Do
+
+Destructors and memory tests
+
+        // This destructor should deallocate self and all following, 
+        // but NOT the characters. That is only to be done explicitly.
+        xxxxx ~CharacterList();
+        xxxxx CharacterList::delete_characters_all();
+        xxxxx CharacterList::delete_character();
+
+        // Deallocate all characters, then deallocate lists
+        xxxxx ~Realm();
+
+        // If character list is still populated, delete all characters then delete list
+        xxxxx ~Paragraph();
+
+        // Destroy all paragraphs
+        xxxxx ~Story();
+
+        xxxxx virtual ~Character();
+        xxxxx ~MainCharacter();
+
+replace all delete characters with kill() which sets is_alive to false.
+
+headings
+
+Constants in operators
+
+writeups
+
+story dev
+*/
+
+
 
 /*
 This is a text adventure game. It is very simple. Your hero is an up and coming 
@@ -49,6 +98,11 @@ class CharacterList{
     public:
         CharacterList();
         CharacterList(Character * character);
+        // This destructor should deallocate self and all following, 
+        // but NOT the characters. That is only to be done explicitly.
+        ~CharacterList();
+        void delete_characters_all();
+        void delete_character();
         Character * append(Character * to_add);
         CharacterList * append(CharacterList * to_add);
         Character * get_top();
@@ -63,6 +117,8 @@ class CharacterList{
 class Realm {
     public:
         Realm();
+        // Deallocate all characters, then deallocate lists
+        ~Realm();
         // Display the most powerful leaders of the realm and their follower info
         Character * leaderboard();
         int pledge(Character * & leader_hi, Character * & leader_low);
@@ -91,6 +147,8 @@ class Paragraph{
         Paragraph();
         Paragraph(const char* new_text, Character * target, bool do_battle);
         Paragraph(CharacterList * new_characters, const char* new_text, Character * target, bool do_battle);
+        // If character list is still populated, delete all characters then delete list
+        ~Paragraph();
         // display options and execute commands
         // leaderboard
         // display following
@@ -122,10 +180,13 @@ class Paragraph{
 class Story: protected Realm {
     public:
         Story();
+        // Destroy all paragraphs
+        ~Story();
         // displays the nexet paragraph and returns 0 if end of story, else 1
         bool read_next_paragraph();
     private:
         Character * hero;
+        Paragraph * paragraphs_root;
         Paragraph * next_paragraph;
 };
 

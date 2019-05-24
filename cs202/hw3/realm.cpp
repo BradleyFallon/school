@@ -1,8 +1,24 @@
+/*
+================================================================================
+Homework 3 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+5/24/2019
 
+This file contains the implementations of all non-Character classes
+================================================================================
+*/
 #include "header.h"
 
 
 Realm::Realm(): inhabitants_head(NULL), keeper_of_realm(NULL){
+}
+
+Realm::~Realm(){
+    if (inhabitants_head){
+        inhabitants_head->delete_characters_all();
+        delete inhabitants_head;
+    }
 }
 
 CharacterList::CharacterList(Character * character): next(NULL){
@@ -10,6 +26,23 @@ CharacterList::CharacterList(Character * character): next(NULL){
 }
 
 CharacterList::CharacterList(): character(NULL), next(NULL) {}
+
+CharacterList::~CharacterList(){
+    // recursively deletes all
+    // The characters must be deleted separately, because there are multiple
+    // data structures that reference the same character data
+    if (next) delete next;
+}
+
+void CharacterList::delete_characters_all(){
+    delete_character();
+    if (next) next->delete_characters_all();
+}
+
+void CharacterList::delete_character(){
+    delete character;
+    character = NULL;
+}
 
 Character * CharacterList::append(Character * to_add){
     CharacterList * new_node = new CharacterList(to_add);
@@ -162,12 +195,17 @@ Story::Story(): Realm(){
     CharacterList * new_characters = NULL;
     Character * new_enemy = NULL;
 
-    next_paragraph = new Paragraph(
+    paragraphs_root = new Paragraph(
         "Welcome to the Ralm of Dragonlore.",
         new_enemy,
         false
     );
+    next_paragraph = paragraphs_root;
     cout << next_paragraph;
+}
+
+Story::~Story(){
+    if (paragraphs_root) delete paragraphs_root;
 }
 
 bool Story::read_next_paragraph(){
@@ -198,10 +236,20 @@ Paragraph::Paragraph(const char* new_text, Character * target, bool do_battle):
 }
 
 Paragraph::Paragraph(CharacterList * new_characters, const char* new_text, Character * target, bool do_battle){
-    
     characters_list = new_characters;
     text = new char[strlen(new_text) + 1];
     strcpy(text, new_text);
+}
+
+Paragraph::~Paragraph(){
+    if (characters_list){
+        characters_list->delete_characters_all();
+        delete characters_list;
+    }
+    if (text) delete [] text;
+    // Recursively delete following
+    if (next_fail) delete next_fail;
+    if (next_win) delete next_win;
 }
 
 int Paragraph::get_user_input(){

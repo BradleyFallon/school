@@ -1,14 +1,36 @@
+/*
+================================================================================
+Homework 3 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+5/24/2019
 
+This is the test client. All it does is initialize and run the story.
+There are also notes in here used to try to keep track of design choices.
+================================================================================
+*/
 #include "header.h"
 
 int main() {
-
     Story the_story;
-
     while (the_story.read_next_paragraph());
-
     return 0;
 }
+
+/*
+valgrind --leak-check=full --track-origins=yes ./a.out 
+
+mention operator issues
+
+I had a fun design for this assignment.The implemetation turned out to be very large and unwieldy.
+Take a look at the retrospective paragraph at the end of the design analysis for more info.
+I am aware that this program is incomplete. There are issues and I do not have time to fix everything.
+
+One issue is that my operators are not implemented as constants. My operators call update methods.
+I should be able to design around this, but I don't have time to fix it.
+*/
+
+
 /*
 
     int + (other or int)

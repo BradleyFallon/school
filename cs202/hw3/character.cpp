@@ -1,3 +1,14 @@
+/*
+================================================================================
+Homework 3 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+5/24/2019
+
+This file contains the implementation of Character and all derived classes
+================================================================================
+*/
+
 
 #include "header.h"
 
@@ -32,7 +43,12 @@ Character::Character(const Character & other){
     is_privileged = other.is_privileged;
 }
 
-Character::~Character(){}
+
+
+Character::~Character(){
+    secede();
+    if (name) delete [] name;
+}
 
 void Character::display_name(){
     cout << name;
@@ -442,7 +458,7 @@ MainCharacter::MainCharacter(const char * name, const char * house, int self_pwr
 };
 
 MainCharacter::~MainCharacter(){
-    cout << "Deleting main character" << endl;
+    if (house) delete [] house;
 }
 
 void MainCharacter::display_name(){
