@@ -448,7 +448,6 @@ bool Character::operator>=(const int val){
 
 MainCharacter::MainCharacter(): Character("Masked", 6){
     is_privileged = true;
-    cout << "In the mainchar constructor" << endl;
 }
 
 MainCharacter::MainCharacter(const char * name, const char * house, int self_pwr): Character(name, self_pwr){

@@ -20,8 +20,6 @@ int main() {
 /*
 valgrind --leak-check=full --track-origins=yes ./a.out 
 
-mention operator issues
-
 I had a fun design for this assignment.The implemetation turned out to be very large and unwieldy.
 Take a look at the retrospective paragraph at the end of the design analysis for more info.
 I am aware that this program is incomplete. There are issues and I do not have time to fix everything.

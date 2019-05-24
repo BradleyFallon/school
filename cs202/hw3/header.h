@@ -46,11 +46,11 @@ Destructors and memory tests
 
 replace all delete characters with kill() which sets is_alive to false.
 
-headings
+xxxxx headings
 
 Constants in operators
 
-writeups
+xxxxx writeups
 
 story dev
 */
@@ -422,3 +422,73 @@ class DragonEgg: public Creature {
 };
 
 
+
+/*
+PRESS ENTER TO CONTINUE...
+0. continue
+1. Treaty with goat
+2. fight goat
+3. Scream
+
+"Roooooar"
+"What in he bloody seven hells was that?" Jimmy exclaimed.
+"Meh." (goat).
+"Whoosh... Whoosh... Whoosh..." (dragon).
+"Almighty seven, old and new, thats a bloody Dragon!".
+"Meh." (goat)
+
+PRESS ENTER TO CONTINUE...
+0. continue
+1. Treaty with goat
+2. fight goat
+3. Scream
+
+
+The caravan guards fight in vain as they are burned and swallowed by the dragon.
+The dragon roasts and devours the horse heading Jimmy's cart, 
+but miraculously, Jimmy's goat cart rolls down a hill, through the woods and
+comes to a stop safely in a meadow four miles away.
+
+PRESS ENTER TO CONTINUE...
+
+After the pain and exhaustion become unbarable, he gives up and watches
+the goats as the graze in the meadow. As night falls, Jimmy and the goats
+pile together for warmth under the stars.
+
+PRESS ENTER TO CONTINUE...
+
+"What in the bloody seven hells is this?" a voice called out.
+Jimmy is awoken by a rider on horse.
+"What are you doing farming goats in my meadow? Boy!".
+"Uncle Flynn? Is that you?" Jimmy croaked.
+"Jimmy boy?!?!? What have you gotten yourself into, your'e all tied up!"
+Uncle Flynn breaks Jimmys bonds.
+"Thanks uncle Flynn, you're the best!".
+"Well, start talking boy..."
+"I can't remember, I was being help prisoner with these goats..."
+Jimmy explained the story up to this point to Uncle Flynn.
+
+PRESS ENTER TO CONTINUE...
+
+"Oh yeah, now I remember! I was on my way to go tell the dragon queen that I
+am her older brother's son. Then, as I was on my way, the Queen of the Realm's 
+patrols captured me."
+"What are you on about, you're my brother's bastard boy!"
+"Yeah, well actually no, I'm like really super royal blooded."
+"Alright then, well let's band together an army and take over the realm."
+"It is my birthright!"
+"It is your birthright!"
+"Meh!" (goat)
+
+PRESS ENTER TO CONTINUE...
+
+"How do you suppose we rise up to command the most powerful army in the realm."
+Uncle Flynn pondered aloud.
+Jimmy scratched his head. One of the goats layed its head upon Jimmy's lap.
+"Meh" the goat bleated.
+"Well... Looks like you've got yourself a loyal army of goats!"
+"Hahahahahahahaha" Jimmy laughed. "Looks like I do, dont I uncle Flynn!".
+"Hahahahahahahahahahahahahaha, you sure do boy!".
+"meh." (goat)
+
+*/

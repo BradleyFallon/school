@@ -134,36 +134,83 @@ Character * Realm::leaderboard(){
 // }
 
 
+// Story::Story(): Realm(){
+//     Character* new_character = NULL;
+
+//     Character * jimmy;
+//     Character * danise;
+//     Character * kahuna_dodo;
+
+    
+
+//     // A Character can be added to the realm and the pointer can be retained from return value
+//     jimmy = update_population(new MainCharacter("Jimmy", "Flake", 20));
+//     hero = jimmy;
+
+//     // Character additions can be nested in adoptions
+//     // Adoptions cause the argument character to become a follower of the caller
+//     new_character = update_population(new MainCharacter("Flynn", "Stronk", 20));
+//     new_character->adopt(update_population(new Horse()));
+//     jimmy->adopt(new_character);
+
+//     // Adoptions can be made by using the += operator with a character or creature pointer
+//     // Jimmy really likes goats
+//     for (int i = 0; i<30; ++i){
+//         new_character = update_population(new Goat());
+//         jimmy->adopt(new_character);
+//         // Jimmy likes goats so much, he gains personal strength from their presence
+//         *jimmy += 1;
+//     }
+
+//     jimmy->display();
+    
+
+//     // A Character can be added to the realm and the pointer can be retained from return value
+//     danise = update_population(new MainCharacter("Danise", "Dragonian", 20));
+//     new_character = update_population(new Dragon("Vesuvius", 300));
+//     danise->adopt(new_character);
+//     new_character = update_population(new MainCharacter("Jerpuh", "Morningmouth", 30));
+//     danise->adopt(new_character);
+//     new_character = update_population(new Character("Mistyday", 1));
+//     danise->adopt(new_character);
+//     new_character = update_population(new Character("Ash-maggot", 15));
+//     danise->adopt(new_character);
+//     for (int i = 0; i<30; ++i){
+//         new_character->adopt(update_population(new Character("Never-giggle", 12)));
+//     }
+//     danise->display();
+
+//     kahuna_dodo = update_population(new MainCharacter("Kuhuna", "DoDo", 25));
+//     kahuna_dodo->adopt(update_population(new Horse()));
+//     for (int i = 0; i<30; ++i){
+//         kahuna_dodo->adopt(
+//             update_population(new Character("Blood Rider", 9))->adopt(
+//                 update_population(new Horse())
+//             )
+//         );
+//     }
+//     kahuna_dodo->display();
+
+//     Paragraph * new_paragraph = NULL;
+//     CharacterList * new_characters = NULL;
+//     Character * new_enemy = NULL;
+
+//     paragraphs_root = new Paragraph(
+//         "Welcome to the Ralm of Dragonlore.",
+//         new_enemy,
+//         false
+//     );
+//     next_paragraph = paragraphs_root;
+// }
+const char* PARA = "Jimmy wakes up in a horse drawn cart.\nHe gathers his senses and looks around to see a bunch of guards\nand prisoners all travelling together in a caravan.\nHe struggles to suck his thumb, but his hands are shackled.\n'Where in the bloody seven hells am I... and why am I locked up?'\nJimmy mutters under his breath.\n'Meh' replies the goat who accompanies him in the cart.\n'Bloody seven hells Mr. Goat, how many goats are in this bloody cart?'\nThere were twenty six goats.";
+
+
 Story::Story(): Realm(){
     Character* new_character = NULL;
 
     Character * jimmy;
     Character * danise;
     Character * kahuna_dodo;
-
-    
-
-    // A Character can be added to the realm and the pointer can be retained from return value
-    jimmy = update_population(new MainCharacter("Jimmy", "Flake", 20));
-    hero = jimmy;
-
-    // Character additions can be nested in adoptions
-    // Adoptions cause the argument character to become a follower of the caller
-    new_character = update_population(new MainCharacter("Flynn", "Stronk", 20));
-    new_character->adopt(update_population(new Horse()));
-    jimmy->adopt(new_character);
-
-    // Adoptions can be made by using the += operator with a character or creature pointer
-    // Jimmy really likes goats
-    for (int i = 0; i<30; ++i){
-        new_character = update_population(new Goat());
-        jimmy->adopt(new_character);
-        // Jimmy likes goats so much, he gains personal strength from their presence
-        *jimmy += 1;
-    }
-
-    jimmy->display();
-    
 
     // A Character can be added to the realm and the pointer can be retained from return value
     danise = update_population(new MainCharacter("Danise", "Dragonian", 20));
@@ -181,7 +228,7 @@ Story::Story(): Realm(){
     danise->display();
 
     kahuna_dodo = update_population(new MainCharacter("Kuhuna", "DoDo", 25));
-    kahuna_dodo->adopt(new Horse());
+    kahuna_dodo->adopt(update_population(new Horse()));
     for (int i = 0; i<30; ++i){
         kahuna_dodo->adopt(
             update_population(new Character("Blood Rider", 9))->adopt(
@@ -190,6 +237,10 @@ Story::Story(): Realm(){
         );
     }
     kahuna_dodo->display();
+
+
+
+
 
     Paragraph * new_paragraph = NULL;
     CharacterList * new_characters = NULL;
@@ -201,7 +252,40 @@ Story::Story(): Realm(){
         false
     );
     next_paragraph = paragraphs_root;
-    cout << next_paragraph;
+    new_paragraph = NULL;
+    new_characters = NULL;
+    new_enemy = NULL;
+
+    // A Character can be added to the realm and the pointer can be retained from return value
+    jimmy = new MainCharacter("Jimmy", "Flake", 20);
+    hero = jimmy;
+    new_characters = new CharacterList(jimmy);
+
+    // Character additions can be nested in adoptions
+    // Adoptions cause the argument character to become a follower of the caller
+    new_character = new_characters->append(new MainCharacter("Flynn", "Stronk", 20));
+    new_character->adopt(new_characters->append(new Horse()));
+    jimmy->adopt(new_character);
+
+    // Adoptions can be made by using the += operator with a character or creature pointer
+    // Jimmy really likes goats
+    for (int i = 0; i<30; ++i){
+        new_character = new_characters->append(new Goat());
+        jimmy->adopt(new_character);
+        // Jimmy likes goats so much, he gains personal strength from their presence
+        *jimmy += 1;
+    }
+
+    jimmy->display();
+
+    next_paragraph = next_paragraph->connect_next_win(
+        new Paragraph(
+            new_characters,
+            PARA,
+            new_enemy,
+            false
+        )
+    );
 }
 
 Story::~Story(){
@@ -215,10 +299,7 @@ bool Story::read_next_paragraph(){
         cout << "And thus the story concludes." << endl;
         return false;
     }
-    cout << "next paragraph " << endl;
-    cout << next_paragraph << endl;
     new_characters = next_paragraph->get_characters_list();
-    cout << new_characters << endl;
     if (new_characters)
         update_population(new_characters);
     next_paragraph = next_paragraph->interact_user(hero, keeper_of_realm);
@@ -289,8 +370,10 @@ int Paragraph::get_user_input(){
 Paragraph * Paragraph::interact_user(Character * hero, Character * keeper){
     // display options and execute commands
     int option;
-
-    cout << "HELLO" << endl;
+    
+    cout << "----------------------------------" << endl;
+    cout << text << endl;
+    cout << "----------------------------------" << endl;
 
     option = get_user_input();
     Paragraph * next_paragraph = NULL;
@@ -336,7 +419,6 @@ Paragraph * Paragraph::interact_user(Character * hero, Character * keeper){
 // If new characters are added to the realm, return them and the story
 // will deal with adding to realm list
 CharacterList * Paragraph::get_characters_list(){
-    cout << text << endl;
     return NULL;
 }
 
