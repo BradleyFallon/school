@@ -52,6 +52,8 @@ class CharacterList{
         Character * append(Character * to_add);
         CharacterList * append(CharacterList * to_add);
         Character * get_top();
+        Character * get_ptr();
+        CharacterList * get_next();
     protected:
         void get_top(Character * & current_best);
         Character * character;
@@ -87,6 +89,7 @@ class Paragraph{
     
     public:
         Paragraph();
+        Paragraph(const char* new_text, Character * target, bool do_battle);
         Paragraph(CharacterList * new_characters, const char* new_text, Character * target, bool do_battle);
         // display options and execute commands
         // leaderboard
@@ -98,7 +101,7 @@ class Paragraph{
         Paragraph * interact_user(Character * hero, Character * keeper);
         // If new characters are added to the realm, return them and the story
         // will deal with adding to realm list
-        CharacterList * get_new_characters();
+        CharacterList * get_characters_list();
         Paragraph * connect_next_win(Paragraph * next_paragraph);
         Paragraph * connect_next_fail(Paragraph * next_paragraph);
     private:
@@ -120,7 +123,7 @@ class Story: protected Realm {
     public:
         Story();
         // displays the nexet paragraph and returns 0 if end of story, else 1
-        bool read_next_paragraph(Character * hero, Character * keeper);
+        bool read_next_paragraph();
     private:
         Character * hero;
         Paragraph * next_paragraph;
@@ -171,11 +174,16 @@ class Character {
         Character * adopt_followers(Character * recruiter);
         // Character * adopt(Creature * other);
         Character * battle(Character * other);
-        CharacterNode * get_battle_order();
-        CharacterNode * get_battle_order(CharacterNode* & tail_node);
-        CharacterNode * attack(CharacterNode * enemies_head);
+        CharacterList * get_battle_order();
+        CharacterList * get_battle_order(CharacterList* & tail_node);
+        CharacterList * attack(CharacterList * enemies_head);
         bool attack(Character * enemy);
         int strike();
+
+        // I am trying to improve runtime efficiency by deciding when it is necessary to refresh
+        // It would be intensive to recursively calculate cmd power with every comparison
+        // Update the power rating of self and all followers
+        int update_cmd_pwr();
 
         //The LHS becomes an exact deepcopy of the RHS.
         Character& operator = (const Character&);
@@ -215,10 +223,6 @@ class Character {
         friend ostream & operator << (ostream &, const Character &);
         friend istream & operator >> (istream &, Character &);
 
-        // // Recursively sum power of all followers and update cmd_pwr
-        // // Main characters get an even greater blessing
-        // virtual int update_cmd_pwr();
-
     protected:
         // Name is remained as NULL for some characters if they are not important as individual to story
         char * name;
@@ -251,8 +255,7 @@ class Character {
         // unless adapted to television. This blessing is more significant for privileged characters.
         bool is_privileged;
 
-        // Update the power rating of self and all followers
-        int update_cmd_pwr();
+
         // Return the power of self plus all lesser commrades
         int rally_power();
         // Displays name, without endl. For recursion or inline insertion in cout

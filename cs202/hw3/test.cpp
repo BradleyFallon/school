@@ -5,9 +5,7 @@ int main() {
 
     Story the_story;
 
-    the_story.leaderboard();
-
-    while (the_story.read_next_paragraph);
+    while (the_story.read_next_paragraph());
 
     return 0;
 }

@@ -51,6 +51,7 @@ bool Character::is_root(){
 
 int Character::display_rally(){
     display_name();
+    cout << " [" << cmd_pwr << "]";
     if (next) {
         cout << ", ";
         return 1 + next->display_rally();
@@ -151,7 +152,7 @@ Character * Character::battle(Character * other){
     // Get a LLL of characters from each side
     // Order using postorder follower_tail, prev, root
     // This is meant to simulate sending lowest rank followers into battle first
-    CharacterNode * defenders_head;
+    CharacterList * defenders_head;
 
     // Make each character temporarily independent during battle,
     // At the end, if characters are still alive, re-assign to leader
@@ -204,10 +205,11 @@ bool Character::attack(Character * enemy){
         return false;
 }
 
-CharacterNode * Character::attack(CharacterNode * enemies_head){
+CharacterList * Character::attack(CharacterList * enemies_head){
     // returns next target head node
 
-    CharacterNode * current_target = enemies_head;
+    CharacterList * current_target = enemies_head;
+    Character * target_ptr;
 
     if (!current_target)
         // Job done... You lucked out this time, buddy!
@@ -234,21 +236,21 @@ CharacterNode * Character::attack(CharacterNode * enemies_head){
     // Now that all delegation has been done, make this guy the next tail
     // Whoever is more powerful gets to make the call attack
     update_cmd_pwr(); // Update power because followers may have been defeated
-    enemies_head->character->update_cmd_pwr();
+    target_ptr = current_target->get_ptr();
 
     // More powerful strikes first
-    if (*this > *enemies_head->character){
-        if (! this->attack(enemies_head->character) )
+    if (*this > *target_ptr){
+        if (! this->attack(target_ptr) )
             // Countersrike
-            enemies_head->character->attack(this);
+            target_ptr->attack(this);
     } else {
-        if (! enemies_head->character->attack(this) )
+        if (! target_ptr->attack(this) )
             // Countersrike
-            this->attack(enemies_head->character);
+            this->attack(target_ptr);
     }
 
     // Tell whover is above in stack to attack next target
-    return current_target->next;
+    return current_target->get_next();
 }
 
 // Recursively attack 1 to 1 until offensive tree has all attacked
@@ -256,19 +258,17 @@ CharacterNode * Character::attack(CharacterNode * enemies_head){
 // In attack, if a vertex is defeated, take ownership of children leafs
 // vertexes cannot be captures
 // Benifit of having many direct reports as leaves is better defense, only direct report leaves contribute to defense in an attack
-CharacterNode * Character::get_battle_order(CharacterNode* & tail_node){
+CharacterList * Character::get_battle_order(CharacterList* & tail_node){
     // Head node is the first to fight
     // Tail Node is the last to fight
     // Tail node should be the highest rank (root)
     // Head node should be the lowest rank (lowest of lowest follower)
-    CharacterNode* this_node;
-    CharacterNode* head_node = NULL;
+    CharacterList* this_node;
+    CharacterList* head_node = NULL;
 
     // Set up new node for this character
     // within scope of this call, this will always be appended as the tail node
-    this_node = new CharacterNode;
-    this_node->character = this;
-    this_node->next = NULL;
+    this_node = new CharacterList(this);
 
     // This character sends next commrade to fight first, then sends followers second, then self
 
@@ -283,7 +283,7 @@ CharacterNode * Character::get_battle_order(CharacterNode* & tail_node){
     if (!tail_node) {
         tail_node = this_node;
     } else {
-        tail_node->next = this_node;
+        tail_node->append(this_node);
     }
 
     // Base Case. If nobody lower, then return this as head
@@ -296,8 +296,8 @@ CharacterNode * Character::get_battle_order(CharacterNode* & tail_node){
 }
 
 
-CharacterNode * Character::get_battle_order(){
-    CharacterNode* tail_node = NULL;
+CharacterList * Character::get_battle_order(){
+    CharacterList* tail_node = NULL;
     return get_battle_order(tail_node);
 }
 
@@ -448,15 +448,6 @@ MainCharacter::~MainCharacter(){
 void MainCharacter::display_name(){
     cout << "*" << name << " of House " << house << "*";
 }
-
-// void MainCharacter::display(){
-    
-//     Character::display();
-// }
-
-// int MainCharacter::update_cmd_pwr(){
-//     cmd_pwr = self_pwr;
-// }
 
 Creature::Creature(){}
 Creature::Creature(const char * name, int self_pwr): Character(name, self_pwr){};

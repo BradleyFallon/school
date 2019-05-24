@@ -5,28 +5,6 @@
 Realm::Realm(): inhabitants_head(NULL), keeper_of_realm(NULL){
 }
 
-
-// Was experimenting with arrays, decided to use an LLL
-// Character * Realm::update_population(Character * new_character){
-//     int new_size;
-//     Character** temp;
-
-//     if (index==0) {
-//         size = 10;
-//         inhabitants = new Character*[size];
-//     } else if (index == size){
-//         new_size = size * 2;
-//         temp = new Character*[new_size];
-//         for (int i = 0; i < size; ++i){
-//             temp[i] = inhabitants[i];
-//         }
-//         delete [] inhabitants;
-//         inhabitants = temp;
-//     }
-//     inhabitants[index] = new_character;
-//     return new_character;
-// }
-
 CharacterList::CharacterList(Character * character): next(NULL){
     this->character = character;
 }
@@ -48,21 +26,32 @@ CharacterList * CharacterList::append(CharacterList * to_add){
 }
 
 Character * Realm::update_population(Character * new_character){
-    if (!inhabitants_head) {
-        inhabitants_head = new CharacterList(new_character);
-    } else {
-        inhabitants_head->append(new_character);
+    if (new_character){
+        if (!inhabitants_head) {
+            inhabitants_head = new CharacterList(new_character);
+        } else {
+            inhabitants_head->append(new_character);
+        }
     }
     return new_character;
 }
 
 CharacterList * Realm::update_population(CharacterList * new_characters){
+    if (!new_characters) return new_characters;
     if (!inhabitants_head) {
         inhabitants_head = new_characters;
     } else {
         inhabitants_head->append(new_characters);
     }
-    return inhabitants_head;
+    return new_characters;
+}
+
+CharacterList * CharacterList::get_next(){
+    return next;
+}
+
+Character * CharacterList::get_ptr(){
+    return character;
 }
 
 Character * CharacterList::get_top(){
@@ -81,6 +70,8 @@ void CharacterList::get_top(Character * & current_best){
             current_best = character;
         }
     }
+    if (next)
+        next->get_top(current_best);
 }
 
 Character * Realm::leaderboard(){
@@ -91,11 +82,11 @@ Character * Realm::leaderboard(){
     if (!keeper_of_realm) return NULL;
 
     cout << ".oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.\n\n"
-        <<  "     Behold, Ye Keeper of Ye Realm:\n\n";
+        <<  "     BEHOLD, Ye KEEPER OF Ye REALM:\n\n";
     keeper_of_realm->display();
-    cout << "     May Ye reignf of thine reign be lengthy," << "\n"
-        <<  "        thy rainf be wet," << "\n"
-        <<  "            and thine thighf clap loud with thickneff." << "\n\n"
+    cout << "     May the reigns of thine reign be lengthy," << "\n"
+        <<  "        thy rains be wet," << "\n"
+        <<  "            and thine thighs clap loud with thickness." << "\n\n"
         << ".oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.\n" << endl;
 
     return keeper_of_realm;
@@ -113,8 +104,15 @@ Character * Realm::leaderboard(){
 Story::Story(): Realm(){
     Character* new_character = NULL;
 
+    Character * jimmy;
+    Character * danise;
+    Character * kahuna_dodo;
+
+    
+
     // A Character can be added to the realm and the pointer can be retained from return value
-    Character* jimmy = update_population(new MainCharacter("Jimmy", "Flake", 20));
+    jimmy = update_population(new MainCharacter("Jimmy", "Flake", 20));
+    hero = jimmy;
 
     // Character additions can be nested in adoptions
     // Adoptions cause the argument character to become a follower of the caller
@@ -132,39 +130,75 @@ Story::Story(): Realm(){
     }
 
     jimmy->display();
+    
 
     // A Character can be added to the realm and the pointer can be retained from return value
-    Character* danise = update_population(new MainCharacter("Danise", "Dragonian", 20));
+    danise = update_population(new MainCharacter("Danise", "Dragonian", 20));
     new_character = update_population(new Dragon("Vesuvius", 300));
     danise->adopt(new_character);
-    new_character = update_population(new Character("Gronk", 5));
+    new_character = update_population(new MainCharacter("Jerpuh", "Morningmouth", 30));
     danise->adopt(new_character);
-
+    new_character = update_population(new Character("Mistyday", 1));
+    danise->adopt(new_character);
+    new_character = update_population(new Character("Ash-maggot", 15));
+    danise->adopt(new_character);
+    for (int i = 0; i<30; ++i){
+        new_character->adopt(update_population(new Character("Never-giggle", 12)));
+    }
     danise->display();
 
+    kahuna_dodo = update_population(new MainCharacter("Kuhuna", "DoDo", 25));
+    kahuna_dodo->adopt(new Horse());
+    for (int i = 0; i<30; ++i){
+        kahuna_dodo->adopt(
+            update_population(new Character("Blood Rider", 9))->adopt(
+                update_population(new Horse())
+            )
+        );
+    }
+    kahuna_dodo->display();
 
     Paragraph * new_paragraph = NULL;
     CharacterList * new_characters = NULL;
     Character * new_enemy = NULL;
 
-    new_paragraph = new Paragraph(
-        new_characters,
+    next_paragraph = new Paragraph(
         "Welcome to the Ralm of Dragonlore.",
         new_enemy,
         false
     );
+    cout << next_paragraph;
 }
 
-bool Story::read_next_paragraph(Character * hero, Character * keeper){
-    if (!next_paragraph) return false;
-    update_population(next_paragraph->get_new_characters());
-    next_paragraph = next_paragraph->interact_user(hero, keeper);
+bool Story::read_next_paragraph(){
+    CharacterList * new_characters = NULL;
+    leaderboard();
+    if (!next_paragraph){
+        cout << "And thus the story concludes." << endl;
+        return false;
+    }
+    cout << "next paragraph " << endl;
+    cout << next_paragraph << endl;
+    new_characters = next_paragraph->get_characters_list();
+    cout << new_characters << endl;
+    if (new_characters)
+        update_population(new_characters);
+    next_paragraph = next_paragraph->interact_user(hero, keeper_of_realm);
+    return true;
 };
 
 Paragraph::Paragraph(): battle_target(NULL), text(NULL), next_win(NULL),
     next_fail(NULL), characters_list(NULL), fight_the_keeper(false) {}
 
-Paragraph::Paragraph(CharacterList * new_characters, const char* new_text, Character * target, bool do_battle): Paragraph(){
+Paragraph::Paragraph(const char* new_text, Character * target, bool do_battle):
+    next_win(NULL), next_fail(NULL), characters_list(NULL), fight_the_keeper(false){
+    cout << " in the paragraph constructor" << this << endl;
+    text = new char[strlen(new_text) + 1];
+    strcpy(text, new_text);
+}
+
+Paragraph::Paragraph(CharacterList * new_characters, const char* new_text, Character * target, bool do_battle){
+    
     characters_list = new_characters;
     text = new char[strlen(new_text) + 1];
     strcpy(text, new_text);
@@ -174,58 +208,88 @@ int Paragraph::get_user_input(){
     int option = 0; // The number of the chosen option
     bool failed = false; // Tracks if the user has alread failed to get option
 
-    while (!(option >=1 && option <= 5))
-    {
+    do {
         // After first try, print failed Term
-        if (failed)
-        {
+        if (failed) {
             cout << "Invalid response. Please try again..." << endl;
         }
         failed = true;
         // Give instructions and get response
         cout << "\n\nWhat wouldst thou doth?" << "\n"
-            << "1: Display mine power." << "\n"
-            << "2: Proceed with Ye story." << "\n";
-        if (battle_target){
-            cout << "3: Battle with thy present foe." << "\n"
-                << "4: Forbear conflict with thy present foe." << "\n";
-        if (characters_list) cout << "5: Assay to compose alliance with thy company." << "\n"
-            << "\nEnter a number to enjoy an option." << "\n"
+            << "1: Display mine power." << "\n";
+
+        if (battle_target || fight_the_keeper){
+            cout << "2: Forbear conflict with thy present foe." << "\n"
+                << "3: Battle with thy present foe." << "\n";
+        } else
+            cout << "2: Proceed with the story." << "\n";
+
+        if (characters_list) cout << "4: Assay to compose alliance with thy company." << "\n";
+        cout << "\nEnter a number to enjoy an option." << "\n"
             << endl;
+
         if (!(cin >> option)){
             cin.clear();
             cin.ignore();
             option = 0;
         } else
         cin.ignore(SIZE_SMALL, '\n');
-    }
+    } while (!(option >=1 && option <= 4));
     return option;
 }
-
 
 Paragraph * Paragraph::interact_user(Character * hero, Character * keeper){
     // display options and execute commands
     int option;
 
+    cout << "HELLO" << endl;
+
     option = get_user_input();
     Paragraph * next_paragraph = NULL;
 
-    switch (option)
-    {
-        case 1: // Display followers
-            break;
-        case 2: // Take path of least resistance or continue
-            break;
-        default: // code to be executed if n doesn't match any cases
-    }
+    
 
+    while (next_paragraph==NULL){
+        if (option==1) { // Display followers
+                hero->display();
+                next_paragraph = this;
+        } else if (option=2) { // Take path of least resistance or continue
+                if (next_fail){
+                    cout << "Our hero hast taken the path of the coward." << "\n"
+                        << "Nay blood wast shed this present day." << endl;
+                    next_paragraph = next_fail;
+                }
+                else
+                    next_paragraph = next_win;
+        } else if (option=3) { // Battle with target
+                next_paragraph = next_win; // default
+                if (fight_the_keeper)
+                    if (!hero->battle(keeper)) next_paragraph = next_fail;
+                else if (battle_target)
+                    if (hero->battle(battle_target)) next_paragraph = next_fail;
+                else 
+                    cout << "Our hero shouts fiercly into the vacant distance." << endl;
+                    option = 2;
+        } else if (option=4) { // Treaty with other head
+                cout << "Not implemented. Proceeding with story." << endl;
+                option = 2;
+        } else {// code to be executed if n doesn't match any cases
+                cout << "The realm is experiencing etchnical difficulties." << endl;
+                option = 3;
+        }
+        if (next_paragraph == this){
+            next_paragraph = interact_user(hero, keeper);
+        }
+        if (!next_win) return NULL;
+    }
     return next_paragraph;
 }
 
 // If new characters are added to the realm, return them and the story
 // will deal with adding to realm list
-CharacterList * Paragraph::get_new_characters(){
-    return characters_list;
+CharacterList * Paragraph::get_characters_list(){
+    cout << text << endl;
+    return NULL;
 }
 
 Paragraph * Paragraph::connect_next_win(Paragraph * next_paragraph){
