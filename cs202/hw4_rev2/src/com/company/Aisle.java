@@ -17,6 +17,12 @@ public class Aisle {
         this.id = 0;
     }
 
+    public Aisle(int id) {
+        this.array = new Booth[LEN_SHORT];
+        this.length = LEN_SHORT;
+        this.id = id;
+    }
+
     public Aisle(Booth[] array) {
         this.array = array;
         // ToDo this should be the size of the input
@@ -29,14 +35,24 @@ public class Aisle {
         System.out.println("=========== Aisle #" + id + ": ");
         for (int i=0; i<this.length; ++i) {
             System.out.print("\tBooth #" + (i+1) + ": ");
-            array[i].display();
+            if (array[i] != null) {
+                array[i].display();
+            } else {
+                System.out.println("--Vacant--");
+            }
         }
+        System.out.println();
     }
 
 
 
     public boolean isFull(){
-        return false;
+        for (int i=0; i<this.length; ++i) {
+            if (array[i] == null) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /*
@@ -44,6 +60,15 @@ public class Aisle {
     If already long, return false.
      */
     public boolean extendAisle () {
+        if (this.length == LEN_LONG) return false;
+
+        Booth[] extended_array = new Booth[LEN_LONG];
+        for (int i=0; i<this.length; ++i) {
+            if (array[i] != null) {
+                extended_array[i] = array[i];
+            }
+        }
+        array = extended_array;
         return true;
     }
 
@@ -51,13 +76,25 @@ public class Aisle {
     Count the number of booths matching the input booth's type are in the array
      */
     public int countType(Booth other) {
-        return 0;
+        int count = 0;
+        for (int i=0; i<this.length; ++i) {
+            if ((array[i] != null) && (array[i].getClass() == other.getClass())) {
+                ++count;
+            }
+        }
+        return count;
     }
 
     /*
     Add the booth to the first free slot, and return the index used.
      */
     public int addBooth(Booth other) {
+        for (int i=0; i<this.length; ++i) {
+            if (array[i] == null) {
+                array[i] = other;
+                return i;
+            }
+        }
         return 0;
     }
 

@@ -6,9 +6,9 @@ package com.company;
     Rear is the lik the back of a queue. The "next" after rear is the front. This is like the first
     item at the front of a queue.
 
-                            rear
-                             |
-   (front)                   v
+  front (no member)       rear (insert here)
+    |                       |
+    v                       v
     []--> []--> []--> []--> []--|
      ^                          |
      |__________________________|

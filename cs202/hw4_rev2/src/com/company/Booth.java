@@ -18,7 +18,7 @@ public class Booth {
     }
 
     public void display() {
-        System.out.println("Booth for " + company);
+        System.out.println(company);
     }
 
     public String getCompany() {

@@ -5,23 +5,36 @@ public class BoothManager {
 //    protected Tree23 lookup;
 
     public BoothManager() {
-        Aisle aisle1 = new Aisle();
-        Aisle aisle2 = new Aisle();
-        Aisle aisle3 = new Aisle();
+        Aisle aisle1 = new Aisle(1);
+        Aisle aisle2 = new Aisle(2);
+        Aisle aisle3 = new Aisle(3);
+        Aisle aisle4 = new Aisle(4);
+        Aisle aisle5 = new Aisle(5);
 
         layout = new BoothMap();
         layout.insert(aisle1);
         layout.insert(aisle2);
         layout.insert(aisle3);
+        layout.insert(aisle4);
+        layout.insert(aisle5);
+
     }
 
 
-    public void display_map() {
+    public void displayMap() {
         System.out.println("This is the map");
         layout.display();
     }
 
-    public void addBooth(int typeCode, String company){
+    public void displayTypes() {
+        System.out.println("These are the booth types:");
+        System.out.println("\t1: Food Booth (clustered)");
+        System.out.println("\t2: Photo Booth (spaced)");
+        System.out.println("\t3: Stage Booth (spaced, no doubles)");
+        System.out.println("\t4: Retail Booth (filler)");
+    }
+
+    public boolean addBooth(int typeCode, String company){
         Booth newBooth;
 
         if (typeCode == 1) {
@@ -38,11 +51,11 @@ public class BoothManager {
             newBooth = new RetailBooth();
         } else {
             // This is not a supported booth type
-            return;
+            return false;
         }
         newBooth.setCompany(company);
-        layout.placeBooth(newBooth);
-        return;
+
+        return layout.placeBooth(newBooth);
     }
 
 

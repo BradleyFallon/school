@@ -7,27 +7,34 @@ public class BoothMap extends AisleCLL {
     }
 
     public void display() {
-
+        if (rear == null) return;
+        display(rear.getNext());
+        rear.getAisle().display();
     }
 
-    public void placeBooth(Booth booth) {
+    public void display(AisleNodeCLL current) {
+        if (current == rear) return;
+        current.getAisle().display();
+        display(current.getNext());
+    }
+
+    public boolean placeBooth(Booth booth) {
         if (booth instanceof FoodBooth) {
             // Clustered. Unless more than 5 in a cluster, than can go to next cluster or alone.
-            placeFoodBooth((FoodBooth) booth);
+            return placeFoodBooth((FoodBooth) booth);
         } else if (booth instanceof PhotoBooth) {
             // Spaced as much as possible. No clusters if possible.
-            placePhotoBooth((PhotoBooth) booth);
+            return placePhotoBooth((PhotoBooth) booth);
         } else if (booth instanceof StageBooth) {
             // Spaced as much as possible. At least 5 other type booths in between.
-            placeStageBooth((StageBooth) booth);
+            return placeStageBooth((StageBooth) booth);
         } else if (booth instanceof RetailBooth) {
             // No special rules, these can go anywhere.
-            placeRetailBooth((RetailBooth) booth);
+            return placeRetailBooth((RetailBooth) booth);
         } else {
             // This is not a supported booth type
-            return;
+            return false;
         }
-        return;
     }
 
 
@@ -39,6 +46,7 @@ public class BoothMap extends AisleCLL {
         // if food booth count is greater than max, and aisle is not full,
         //     then set this as max
         // On the way back up stack, add to best aisle
+        System.out.println("in the food booth placer");
         int[] maxInt = new int[1];
         maxInt[0] = 0;
         return placeFoodBooth(booth, rear.getNext(), maxInt);
@@ -91,7 +99,7 @@ public class BoothMap extends AisleCLL {
 
         // Check how many food booths are in this aisle, and compare with up stack
         aisle = current.getAisle();
-        if (aisle.isFull() || aisle.countType(booth) > 0) {
+        if (aisle.isFull() || (aisle.countType(booth) > 0)) {
             return placePhotoBooth(booth, current.getNext());
         } else {
             aisle.addBooth(booth);

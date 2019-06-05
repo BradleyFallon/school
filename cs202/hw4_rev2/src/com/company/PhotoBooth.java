@@ -6,4 +6,9 @@ public class PhotoBooth extends Booth {
     public PhotoBooth(String company) {
         super(company);
     }
+
+    public void display() {
+        System.out.print("Photo Booth with ");
+        super.display();
+    }
 }
