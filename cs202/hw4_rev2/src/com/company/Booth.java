@@ -1,6 +1,6 @@
 package com.company;
 
-public class Booth {
+abstract public class Booth {
 
     // This is the company name that is operating the booth
     protected String company;
