@@ -26,6 +26,7 @@ public class Main {
         manager.displayMap();
 
 
+        Booth fetched;
 
 
         Scanner scan = new Scanner(System.in);
