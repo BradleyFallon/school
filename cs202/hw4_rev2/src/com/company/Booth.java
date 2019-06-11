@@ -1,5 +1,16 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is the abstract base class for all booths.
+================================================================================
+*/
+
 abstract public class Booth {
 
     // This is the company name that is operating the booth

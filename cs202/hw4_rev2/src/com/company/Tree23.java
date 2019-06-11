@@ -1,5 +1,17 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is the 23Tree. Most of the meat is in the node class. This class just handles
+root and has wrappers to get the recursion started.
+================================================================================
+*/
+
 public class Tree23 {
     protected BoothNode23 root;
 
@@ -23,10 +35,13 @@ public class Tree23 {
     }
 
     public Booth lookupBooth(String keyword) {
+        if (root == null) return null;
         return root.lookup(keyword);
     }
 
-
+    public void display() {
+        if (root != null) root.display();
+    }
 
 
     public static void main(String[] args) {

@@ -1,8 +1,21 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is the top class that manages the data structures. This class does not take
+user input directly but this is intended to be the only class that the client
+needs to use.
+================================================================================
+*/
+
 public class BoothManager {
     protected BoothMap layout;
-//    protected Tree23 lookup;
+    protected Tree23 lookup;
 
     public BoothManager() {
         Aisle aisle1 = new Aisle(1);
@@ -18,12 +31,15 @@ public class BoothManager {
         layout.insert(aisle4);
         layout.insert(aisle5);
 
+        lookup = new Tree23();
+
     }
 
 
     public void displayMap() {
         System.out.println("This is the map");
         layout.display();
+        lookup.display();
     }
 
     public void displayTypes() {
@@ -36,6 +52,12 @@ public class BoothManager {
 
     public boolean addBooth(int typeCode, String company){
         Booth newBooth;
+
+        newBooth = lookup.lookupBooth(company);
+        if (newBooth != null) {
+            System.out.println("Company already has a booth registered.");
+            return false;
+        }
 
         if (typeCode == 1) {
             // Clustered. Unless more than 5 in a cluster, than can go to next cluster or alone.
@@ -55,7 +77,11 @@ public class BoothManager {
         }
         newBooth.setCompany(company);
 
-        return layout.placeBooth(newBooth);
+        boolean wasPlaced =  layout.placeBooth(newBooth);
+        if (wasPlaced) {
+            lookup.addBooth(newBooth);
+        }
+        return wasPlaced;
     }
 
 

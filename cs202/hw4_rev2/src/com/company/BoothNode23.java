@@ -1,5 +1,18 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is the node of a 23tree. Most of the behavior for the 23Tree is from here.
+I built the recursive functions into the nodes, since in Java the nodes are a
+class and not a struct.
+================================================================================
+*/
+
 public class BoothNode23 {
 
     // These arrays can be temporarily overpopulated.
@@ -59,15 +72,19 @@ public class BoothNode23 {
     public final Booth lookup(String keyword) {
         int i = 0;
         int comp;
-        Booth temp;
 
         while (i < 2) {
-            if (data[i] == null) {
-                return null;
-            }
-            comp = keyword.compareTo(data[i].getCompany());
-            if (comp == 0) return data[i];
-            else if (comp < 0) {
+            if (data[i] != null) {
+                comp = keyword.compareTo(data[i].getCompany());
+                if (comp == 0){
+                    return data[i];
+                }
+                else if (comp < 0) {
+                    if (children[i] != null) {
+                        return children[i].lookup(keyword);
+                    }
+                }
+            } else {
                 if (children[i] != null) {
                     return children[i].lookup(keyword);
                 }

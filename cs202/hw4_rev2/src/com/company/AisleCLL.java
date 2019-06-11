@@ -2,6 +2,20 @@ package com.company;
 
 
 /*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is the CLL class, which contains AisleNodes. Aisles are arrays of booths.
+This class is very generic, not intended to do anything special for booths.
+This class is extended as BootMap, which has non-generic functionality.
+================================================================================
+*/
+
+
+/*
     The way this Circular Linked List is implemented, there is one pointer owned by the list, "rear".
     Rear is the lik the back of a queue. The "next" after rear is the front. This is like the first
     item at the front of a queue.

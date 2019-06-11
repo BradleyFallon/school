@@ -1,5 +1,18 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is an extension of a CLL, that contains operations related to placing booths
+at the best location according to type. The CLL of arrays is meant to represent
+a map of a main road with aisles of booths that branch off.
+================================================================================
+*/
+
 public class BoothMap extends AisleCLL {
 
     public BoothMap() {

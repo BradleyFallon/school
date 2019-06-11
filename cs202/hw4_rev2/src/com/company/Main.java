@@ -1,10 +1,36 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is the test client.
+================================================================================
+*/
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        boolean running = true;
+        int opt;
+
+        System.out.println(
+                "Welcome to my test client." + "\n"
+                + "In the HW5 edition of this app, we get to test a 23 tree." + "\n"
+                + "The booth manager will be loaded with some booths." + "\n"
+                + "When a booth is added, it is added to the CLL as a marker of location." + "\n"
+                + "The booth is also added to a 23tree, used to check for duplicates." + "\n"
+                + "If a booth to be added has one of the same company name in the 23tree," + "\n"
+                + "it will be rejected. This utilizes adding and retrieving from a 23tree." + "\n\n"
+                + "Press enter to continue."
+        );
+        scan.nextLine();
 
         BoothManager manager = new BoothManager();
 
@@ -29,9 +55,7 @@ public class Main {
         Booth fetched;
 
 
-        Scanner scan = new Scanner(System.in);
-        boolean running = true;
-        int opt;
+
         String companyName;
         int typeCode;
         while (running) {

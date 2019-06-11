@@ -1,5 +1,16 @@
 package com.company;
 
+/*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
+This is a node which is to be used with a CLL, and carries an Aisle (booth array).
+================================================================================
+*/
+
 public class AisleNodeCLL {
     protected AisleNodeCLL next;
     protected Aisle aisle;

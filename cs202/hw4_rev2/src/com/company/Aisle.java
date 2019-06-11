@@ -1,8 +1,16 @@
 package com.company;
 
 /*
+================================================================================
+Homework 5 for CS202
+Bradley Fallon
+bfallon@pdx.edu
+6/10/2019
+
 This class is an array of booths, which has added functionality for checking the array's content.
- */
+================================================================================
+*/
+
 public class Aisle {
     static int LEN_LONG = 8;
     static int LEN_SHORT = 4;
